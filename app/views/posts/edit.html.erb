@@ -1,0 +1,10 @@
+<% if current_user == @post.user %>
+<h1>Editing post</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @post %> |
+<%= link_to 'Back', posts_path %>
+<%else %>
+<% redirect_to_home("You do not have permission to do this") %>
+<%end%>

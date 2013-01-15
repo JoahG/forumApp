@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @post.content %>
+</p>
+
+<% if @post.user %>
+	<p>
+	  <b>User:</b>
+	  <%= @post.user.email %>
+	</p>
+<% end %>
+
+<%if current_user == @post.user%>
+<%= link_to 'Edit', edit_post_path(@post) %> |<%end%>
+<%= link_to 'Back', root_url %>
