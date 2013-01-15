@@ -1,13 +1,116 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
  *= require_self
  *= require_tree .
  */
+
+ /* CSS RESET */
+
+html,body,blockquote,code,h1,h2,h3,h4,h5,h6,p,pre{margin:0;padding:0}
+button,fieldset,form,input,legend,textarea,select{margin:0;padding:0}
+fieldset{border:0}
+a,a *{cursor:pointer}
+div{margin:0;padding:0;background-color:transparent;}
+hr,img{border:0}
+applet,iframe,object{border:0;margin:0;padding:0}
+button,input[type=button],input[type=image],input[type=reset],input[type=submit],label{cursor:pointer;}
+ul,li{list-style:none;margin:0;padding:0;}
+strong{font-weight:bold;}
+em{font-style:italic;}
+
+/* END CSS RESET */
+
+body {
+	background-color: #015367;
+	font-family: "Trebuchet MS"
+}
+
+a {
+	color: #333;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #000;
+	text-decoration: underline;
+}
+
+#container {
+	width: 800px;
+	height: 500px;
+	position: relative;
+	background-color:#60b9ce;
+	margin: auto;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+#user_nav {
+	background-color:#38b2ce;
+	margin-bottom: 10px;
+	width: 100%;
+	margin-left: -1.25%;
+	padding-right:1.25%;
+	padding-left: 1.25%;
+	padding-bottom: 3px;
+	text-align: center;
+}
+
+header {
+	background-color: #206676;
+	color: #206676;
+	text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;  
+	width: 100%;
+	margin-top: -1.25%;
+	margin-left: -1.25%;
+	padding-right:1.25%;
+	padding-left: 1.25%;
+	height: 100px;
+	text-align: center;
+	font-size: 80px;
+}
+
+.post {
+	width: 480px;
+	height: 30px;
+	border: 1px solid black;
+	padding: 5px;
+	margin-top: 10px;
+	border-radius: 5px;
+	background-color: ;
+}
+
+.post_title {
+	font-size: 23px
+}
+
+#post_container {
+	float:left;
+	width: 70%;
+	margin-left: 3.7%;
+}
+
+#sign_in {
+	float: right;
+	width: 20%;
+	border-radius: 5px;
+	border: 1px solid black;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	margin-top: 10px;
+	margin-right: 3.7%;
+}
+
+#sign_in .titlelg {
+	font-size: 23px;
+	text-align: center;
+}
+
+.centered {
+	text-align: center;
+}
+
+#flash_notice, #flash_alert {
+	color: red;
+}
