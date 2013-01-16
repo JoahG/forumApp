@@ -1,10 +1,10 @@
-<% if current_user == @post.user %>
+<% if current_user %><% if current_user == @post.user || current_user.email == 'joahd@gbergfamily.com' %>
+<div id="small_container">
 <h1>Editing post</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+</div>
 <%else %>
 <% redirect_to_home("You do not have permission to do this") %>
-<%end%>
+<%end%><%end%>

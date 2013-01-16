@@ -1,22 +1,28 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Title:</b>
+<%= link_to '« Go back', root_url %><% if current_user %><%if current_user == @post.user || current_user.email == 'joahd@gbergfamily.com'%>,
+<%= link_to 'edit this post,', edit_post_path(@post) %> or <%= link_to 'delete this post', @post, method: :delete, data: { confirm: 'Are you sure?' } %> if you really want to.<%end%><%end%><br><br>
+<p class="post_page_title">
   <%= @post.title %>
+  <span class="post_page_author">
+  	by <%=link_to @post.user.name, @post.user %>
+  </span>
 </p>
 
-<p>
-  <b>Content:</b>
+<p class="post_page_content">
   <%= @post.content %>
 </p>
+<%if current_user %>
+ <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'joahforum'; // required: replace example with your forum shortname
 
-<% if @post.user %>
-	<p>
-	  <b>User:</b>
-	  <%= @post.user.email %>
-	</p>
-<% end %>
-
-<%if current_user == @post.user%>
-<%= link_to 'Edit', edit_post_path(@post) %> |<%end%>
-<%= link_to 'Back', root_url %>
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<%end%>

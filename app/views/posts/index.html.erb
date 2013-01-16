@@ -2,14 +2,18 @@
   <p>Welcome</p>
 </header>
 <div id="post_container">
-<% @posts.each do |post| %>
-  <div class="post">
-    <%= link_to post.title, post, :class => 'post_title' %> by <span class="post_author"><%= post.user.email %></span>
-    <% if current_user == post.user %>
-        <%= link_to 'Edit', edit_post_path(post) %>
-        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <%end%>
-  </div>
+<% if @posts.length < 10 %>
+  <% @posts.reverse.each do |post| %>
+   <div class="post">
+     <%= link_to post.title, post, :class => 'post_title' %> by <span class="post_author"><%=link_to post.user.name, post.user %></span>
+   </div>
+  <% end %>
+<% else %>
+  <% @posts[-10,10].each do |post| %>
+   <div class="post">
+     <%= link_to post.title, post, :class => 'post_title' %> by <span class="post_author"><%= post.user.name %></span>
+   </div>
+  <% end %>
 <% end %>
 </div>
 
@@ -29,9 +33,13 @@
       <span class="button">or <%= link_to "Sign Up", sign_up_path %></span>
     <% end %>
   <% else %>
-      <p class="titlelg">Welcome, <%= current_user.email %>!</p><br>
+      <p class="titlelg">Welcome, <%= current_user.name %>!</p><br>
       <p class="centered">
-        <%= link_to 'New Post', new_post_path %>
+        <%= image_tag avatar_url(current_user, 80) %><br><br>
+        <%= link_to 'New Post', new_post_path %><br>
+        <%= link_to 'View my profile', current_user %><br>
+        <%= link_to 'Edit my account', edit_user_path(current_user) %><br>
+        <%= link_to 'Delete my account', current_user, method: :delete, data: { confirm: 'Are you sure?' } %>
       </p>
   <%end%>
 </div>

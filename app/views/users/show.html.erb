@@ -1,0 +1,6 @@
+<%= link_to '« Go back', root_url %><% if current_user %><%if current_user == @user || current_user.email == 'joahd@gbergfamily.com'%> or <%= link_to 'delete this user', @user, method: :delete, data: { confirm: 'Are you sure?' } %> if you really want to.<%end%><%end%><br><br>
+<div id="small_container">
+	<%= image_tag avatar_url(@user, 200) %><br><br>
+	Name: <%=@user.name%><br>
+	Email: <%=@user.email%>
+</div>

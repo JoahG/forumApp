@@ -36,12 +36,13 @@ a:hover {
 
 #container {
 	width: 800px;
-	height: 500px;
+	min-height: 660px;
 	position: relative;
 	background-color:#60b9ce;
 	margin: auto;
 	padding-right: 10px;
 	padding-left: 10px;
+	padding-bottom: 20px;
 }
 
 #user_nav {
@@ -113,4 +114,30 @@ header {
 
 #flash_notice, #flash_alert {
 	color: red;
+}
+
+.post_page_title {
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.post_page_author {
+	font-size:15px;
+	font-weight: normal;
+}
+
+#small_container {
+	width: 350px;
+	margin:auto;
+	text-align: center;
+}
+
+#disqus_thread {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px dashed black;
+	position: relative;
+	bottom: 0px;
+	width: 98%;
 }
