@@ -140,4 +140,23 @@ header {
 	position: relative;
 	bottom: 0px;
 	width: 98%;
+	min-height: 84px;
+}
+
+.inline {
+	display: inline;
+	float: left;
+}
+
+.comment_avatar {
+	margin-right: 10px;
+}
+
+.full_wide {
+	width: 100%;
+}
+
+.comment_header {
+	font-weight: bold;
+	
 }

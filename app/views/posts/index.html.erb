@@ -5,7 +5,7 @@
 <% if @posts.length < 10 %>
   <% @posts.reverse.each do |post| %>
    <div class="post">
-     <%= link_to post.title, post, :class => 'post_title' %> by <span class="post_author"><%=link_to post.user.name, post.user %></span>
+     <%= link_to post.title, post, :class => 'post_title' %> by <span class="post_author"><%=link_to post.user.name, post.user %> <%= time_ago_in_words(post.created_at) %> ago. Has <%= post.comments.length %> comments.</span>
    </div>
   <% end %>
 <% else %>
