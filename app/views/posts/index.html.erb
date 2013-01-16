@@ -9,7 +9,7 @@
    </div>
   <% end %>
 <% else %>
-  <% @posts[-10,10].each do |post| %>
+  <% @posts[-10,10].reverse.each do |post| %>
    <div class="post">
      <%= link_to post.title, post, :class => 'post_title' %> by <span class="post_author"><%= post.user.name %></span>
    </div>
