@@ -21,8 +21,8 @@
   <%end%>
 <%end%>
 
-<div id="disqus_thread">
 <%if current_user %>
+<div id="disqus_thread">
 <%= form_for(@comment) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
@@ -43,6 +43,6 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+</div>
 <% end %>
 <%end%>
-</div>
