@@ -13,7 +13,7 @@ div{margin:0;padding:0;background-color:transparent;}
 hr,img{border:0}
 applet,iframe,object{border:0;margin:0;padding:0}
 button,input[type=button],input[type=image],input[type=reset],input[type=submit],label{cursor:pointer;}
-ul,li{list-style:none;margin:0;padding:0;}
+ul,li{list-style-type:none;margin:0;padding:0;}
 strong{font-weight:bold;}
 em{font-style:italic;}
 
