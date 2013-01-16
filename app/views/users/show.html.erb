@@ -11,7 +11,7 @@
 			<%else%>
 				<li> <em>[No posts by this user]</em> </li>
 			<%end%>
-		</ul>
+		</ul><br>
 		Comment Activity:<br>
 		<ul><%if @user.comments.length > 0 %>
 			<% @user.comments.each do |comment| %>
