@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
   validates :email, :presence => true, :email => true
-  validates_length_of :password, :minimum => 8
+  validates_length_of :password, :minimum => 6
 
   def self.authenticate(email,password)
   	user = find_by_email(email)
