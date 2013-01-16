@@ -128,9 +128,14 @@ header {
 }
 
 #small_container {
-	width: 350px;
+	min-width: 350px;
 	margin:auto;
 	text-align: center;
+}
+
+#small_container.left {
+	text-align: left;
+	margin-left: 50px;
 }
 
 #disqus_thread {
@@ -158,5 +163,13 @@ header {
 
 .comment_header {
 	font-weight: bold;
-	
+
+}
+
+#user_activity {
+	clear:both;
+}
+
+#user_activity ul li {
+	margin-left: 20px;
 }
