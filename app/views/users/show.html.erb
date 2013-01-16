@@ -15,7 +15,7 @@
 		All Comments:<br>
 		<ul><%if @user.comments.length > 0 %>
 			<% @user.comments.each do |comment| %>
-				<li>Commented '<%= comment.content %>' on <%= link_to comment.post, comment.post %></li>
+				<li>Commented '<%= comment.content %>' on <%= link_to comment.post, comment.post %> <%= time_ago_in_words(comment.created_at) %> ago.</li>
 			<% end %>
 			<%else%>
 				<li><em>[No comments by this user]</em></li>
