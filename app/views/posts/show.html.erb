@@ -1,6 +1,6 @@
 <%= link_to '« Go back', root_url %><% if current_user %><%if current_user == @post.user || current_user.email == 'joahd@gbergfamily.com'%>,
 <%= link_to 'edit this post,', edit_post_path(@post) %> or <%= link_to 'delete this post', @post, method: :delete, data: { confirm: 'Are you sure?' } %> if you really want to.<%end%><%end%><br>
-<div id="disqus_thread" class="noborder">
+<div id="disqus_thread" class="noborder post_">
   <p class="inline post_page_title"><%= @post.title %></p><br><br>
   <p class="inline"><%= image_tag avatar_url(@post.user, 80), :class => 'comment_avatar' %></p>
   <p class="inline comment_header">Posted by <%= link_to @post.user.name, @post.user%>  <%= time_ago_in_words(@post.created_at) %> ago.</p><br>
