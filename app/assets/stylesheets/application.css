@@ -149,8 +149,8 @@ header {
 }
 
 .inline {
-	display: inline;
-	float: left;
+	display: inline-block;
+	float:left;
 }
 
 .comment_avatar {
@@ -172,4 +172,8 @@ header {
 
 #user_activity ul li {
 	margin-left: 20px;
+}
+
+.comment_body {
+	max-width: 650px
 }

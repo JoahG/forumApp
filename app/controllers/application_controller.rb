@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
   helper_method :redirect_to_home
-
   private
 
   def redirect_to_home(msg)

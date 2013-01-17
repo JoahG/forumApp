@@ -7,6 +7,8 @@ gem 'rails', '3.2.11'
 
 gem 'sqlite3'
 
+gem 'redcarpet'
+
 gem "bcrypt-ruby", :require => "bcrypt"
 
 # Gems used only for assets and not required
