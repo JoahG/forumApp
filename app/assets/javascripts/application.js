@@ -13,12 +13,3 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
-$(document).ready(function(){
-	$(".post_page_content").html($(".post_page_content").text());
-	c = $(".comment_body");
-	for (i=0;i<30;i++){
-		$("p#"+i).html($("p#"+i).text());
-		console.log(i)
-	}
-});
