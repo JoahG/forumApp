@@ -151,6 +151,8 @@ header {
 
 #disqus_thread.post_ {
 	min-height: 113px;
+	padding-top: 5px;
+	margin-top: 5px;
 }
 
 .inline {
