@@ -170,7 +170,22 @@ header {
 
 .comment_header {
 	font-weight: bold;
+}
 
+.pa {
+	max-width: 350px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	display:inline-block;
+}
+
+.li {
+	max-width: 100px;
+}
+
+.fix3 {
+	max-width: 500px;
 }
 
 #user_activity {

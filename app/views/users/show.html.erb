@@ -1,7 +1,7 @@
-<%= link_to '« Go back', root_url %><% if current_user %><%if current_user == @user || current_user.email == 'joahd@gbergfamily.com'%> or <%= link_to 'delete this user', @user, method: :delete, data: { confirm: 'Are you sure?       [Warning: Deleting user will also delete all posts/comments associated with this user]' } %> if you really want to.<%end%><%end%><br><br>
+<%= link_to '« Go home', root_url %><% if current_user %><%if current_user == @user || current_user.email == 'joahd@gbergfamily.com'%> or <%= link_to 'delete this user', @user, method: :delete, data: { confirm: 'Are you sure?       [Warning: Deleting user will also delete all posts/comments associated with this user]' } %> if you really want to.<%end%><%end%><br><br>
 <div id="small_container" class="left">
 	<p class="inline"><%= image_tag avatar_url(@user, 200), :class => 'comment_avatar' %></p>
-	<p class="inline"><br><br><br><br><br>Name: <%=@user.name%></p>
+	<p class="inline fix3"><br><br><br><br><br>Name: <%=@user.name%></p>
 	<br><br><div id="user_activity">
 		Post Activity:<br>
 		<ul><%if @user.posts.length > 0 %>

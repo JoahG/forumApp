@@ -5,13 +5,13 @@
 <% if @posts.length < 10 %>
   <% @posts.reverse.each do |post| %>
    <div class="post">
-     <%= link_to post.title, post, :class => 'post_title' %> by <span class="post_author"><%=link_to post.user.name, post.user %> <%= time_ago_in_words(post.created_at) %> ago. Has <%=pluralize(post.comments.length, 'comment')%>.</span>
+     <%= link_to post.title, post, :class => 'post_title' %> by <p class="pa li"><span class="post_author"><%=link_to post.user.name, post.user %></p> <%= time_ago_in_words(post.created_at) %> ago. Has <%=pluralize(post.comments.length, 'comment')%>.</span>
    </div>
   <% end %>
 <% else %>
   <% @posts[-10,10].reverse.each do |post| %>
    <div class="post">
-     <%= link_to post.title, post, :class => 'post_title' %> by <span class="post_author"><%= post.user.name %></span>
+     <%= link_to post.title, post, :class => 'post_title' %> by <p class="pa li"><span class="post_author"><%=link_to post.user.name, post.user %></p> <%= time_ago_in_words(post.created_at) %> ago. Has <%=pluralize(post.comments.length, 'comment')%>.</span>
    </div>
   <% end %>
 <% end %>
