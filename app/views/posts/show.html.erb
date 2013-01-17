@@ -11,7 +11,7 @@
   <% @post.comments.each do |comment| %>
     <div id="disqus_thread">
       <p class="inline"><%= image_tag avatar_url(comment.user, 80), :class => 'comment_avatar' %></p>
-      <p class="inline comment_header">Commented by <%= link_to comment.user.name, comment.user%>  <%= time_ago_in_words(comment.created_at) %> ago.</p><br>
+      <p class="inline comment_header">Commented by <%= link_to comment.user.name, comment.user%>  <%= time_ago_in_words(comment.created_at) %> ago. <%= link_to 'delete this post', comment::destroy, data: { confirm: 'Are you sure?' } %></p><br><br>
       <p class="inline comment_body"><p id="<%=comment.id%>"><%=raw comment.content%></p></p>
     </div>
   <%end%>
