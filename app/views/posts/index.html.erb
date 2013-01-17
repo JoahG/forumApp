@@ -39,7 +39,7 @@
         <%= link_to 'New Post', new_post_path %><br>
         <%= link_to 'View my profile', current_user %><br>
         <%= link_to 'Edit my account', edit_user_path(current_user) %><br>
-        <%= link_to 'Delete my account', current_user, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Delete my account', current_user, method: :delete, data: { confirm: 'Are you sure?       [Warning: Deleting user will also delete all posts/comments associated with this user]' } %>
       </p>
   <%end%>
 </div>

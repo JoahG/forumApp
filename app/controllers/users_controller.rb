@@ -23,6 +23,12 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    @user.posts.each do |post|
+      post::destroy
+    end
+    @user.comments.each do |comment|
+      comment::destroy
+    end
     t = false
     if current_user == @user
       t = true
