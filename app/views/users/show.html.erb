@@ -6,7 +6,7 @@
 		Post Activity:<br>
 		<ul><%if @user.posts.length > 0 %>
 			<% @user.posts.each do |post| %>
-				<li>Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.</li>
+				<li>Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.</li><br>
 			<% end %>
 			<%else%>
 				<li> <em>[No posts by this user]</em> </li>
@@ -15,7 +15,7 @@
 		Comment Activity:<br>
 		<ul><%if @user.comments.length > 0 %>
 			<% @user.comments.each do |comment| %>
-				<li>Commented '<%= comment.content %>' on <%= link_to comment.post.title, comment.post %> <%= time_ago_in_words(comment.created_at) %> ago.</li>
+				<li>Commented '<%= comment.content %>' on <%= link_to comment.post.title, comment.post %> <%= time_ago_in_words(comment.created_at) %> ago.</li><br>
 			<% end %>
 			<%else%>
 				<li><em>[No comments by this user]</em></li>
