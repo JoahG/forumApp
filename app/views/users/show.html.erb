@@ -6,7 +6,7 @@
 		Post Activity:<br>
 		<ul><%if @user.posts.length > 0 %>
 			<% @user.posts.each do |post| %>
-				<li>Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.</li><br>
+				<li>Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.</li>
 			<% end %>
 			<%else%>
 				<li> <em>[No posts by this user]</em> </li>
