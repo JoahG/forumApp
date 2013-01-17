@@ -120,6 +120,7 @@ header {
 	font-size: 30px;
 	font-weight: bold;
 	text-align: center;
+	width: 100%;
 }
 
 .post_page_author {
@@ -159,6 +160,7 @@ header {
 
 .full_wide {
 	width: 100%;
+	height:130px;
 }
 
 .comment_header {
@@ -176,4 +178,16 @@ header {
 
 .comment_body {
 	max-width: 650px
+}
+
+.note {
+	font-size: 11px
+}
+
+.new_post_title {
+	width: 296px;
+}
+
+.noborder {
+	border:none !important;
 }

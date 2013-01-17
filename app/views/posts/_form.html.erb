@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :class => 'new_post_title' %>
   </div>
   <div class="field">
     <%= f.label :content %><br />
@@ -21,6 +21,6 @@
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="actions">
-    <%= f.submit %> Posts are parsed with <a href="http://daringfireball.net/projects/markdown/syntax">Markdown Syntax</a>
+    <%= f.submit %><br><span class="note"> Posts are parsed with <a href="http://daringfireball.net/projects/markdown/syntax">Markdown Syntax</a></span>
   </div>
 <% end %>
