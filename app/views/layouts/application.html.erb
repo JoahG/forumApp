@@ -11,7 +11,7 @@
 <div id="container">
 <div id="user_nav">
   <% if current_user %>
-    Logged in as <%= link_to current_user.email, current_user %>.
+    Logged in as <%= link_to current_user.email, current_user %>. You have <%=link_to pluralize(current_user.notifications.length, 'notification'), current_user %>.
     <%= link_to "Log out", log_out_path %> 
     <% if !current_page?(posts_path) && !current_page?(root_path) %> or <%= link_to "go home", root_url %><%end%><% if current_user.email == 'joahd@gbergfamily.com' %> or to the <%= link_to "Admin page", users_path %><%end%>
   <% else %>

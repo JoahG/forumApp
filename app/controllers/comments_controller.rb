@@ -22,6 +22,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        @n = Notification.create(:content => "<a href='/users/#{@comment.user.id}'>#{@comment.user.name}</a> commented on your post '<a href='/posts/#{@comment.post.id}'>#{@comment.post.title}</a>'", :user_id => @comment.post.user.id)
         format.html { redirect_to @comment.post }
         format.json { render json: @comment, status: :created, location: @comment }
       else

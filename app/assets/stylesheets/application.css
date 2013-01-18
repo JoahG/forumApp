@@ -190,6 +190,7 @@ header {
 
 #user_activity {
 	clear:both;
+	max-width:400px;
 }
 
 #user_activity ul li {
@@ -217,4 +218,10 @@ header {
 	margin-top: 10px;
 	position:relative;
 	right: 0;
+}
+
+#notification_container {
+	float:right;
+	position: relative;
+	width: 375px;
 }

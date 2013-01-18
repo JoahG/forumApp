@@ -2,6 +2,16 @@
 <div id="small_container" class="left">
 	<p class="inline"><%= image_tag avatar_url(@user, 200), :class => 'comment_avatar' %></p>
 	<p class="inline fix3"><br><br><br><br><br>Name: <%=@user.name%></p>
+<%if current_user %><%if current_user == @user || current_user.email == 'joahd@gbergfamily.com'%><div id="notification_container">
+	Notifications:
+<ul>
+	<% if @user.notifications.length > 0 %>
+	<%@user.notifications.each do |n|%>
+<li><%=raw n.content%>  <%= link_to 'Dismiss', n, method: :delete %></li>
+<%end%><%else%><li><em>Great Job! You have no notifications!</em></li>
+<%end%>
+</ul>
+</div><%end%><%end%>
 	<br><br><div id="user_activity">
 		Post Activity:<br>
 		<ul><%if @user.posts.length > 0 %>
@@ -22,4 +32,5 @@
 			<%end%>
 		</ul>
 	</div>
+
 </div>
