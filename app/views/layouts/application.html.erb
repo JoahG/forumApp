@@ -16,7 +16,8 @@
     <% if !current_page?(posts_path) && !current_page?(root_path) %> or <%= link_to "go home", root_url %><%end%><% if current_user.email == 'joahd@gbergfamily.com' %> or to the <%= link_to "Admin page", users_path %><%end%>
   <% else %>
     <%= link_to "Sign up", sign_up_path %> or
-    <%= link_to "log in", log_in_path %><% if !current_page?(posts_path) && !current_page?(root_path) %> or <%= link_to "go home", root_url %><%end%>
+    <%= link_to "log in", log_in_path %>
+    <% if !current_page?(posts_path) && !current_page?(root_path) %> or <%= link_to "go home", root_url %><%end%>
   <% end %>
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, :id => "flash_#{name}" %>

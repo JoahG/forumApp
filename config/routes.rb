@@ -7,4 +7,5 @@ ForumApp::Application.routes.draw do
   resources :sessions
   resources :posts
   resources :comments
+  resources :ncomments
 end

@@ -12,6 +12,36 @@
       <p class="inline"><%= image_tag avatar_url(comment.user, 80), :class => 'comment_avatar' %></p>
       <p class="inline comment_header">Commented by <%= link_to comment.user.name, comment.user%>  <%= time_ago_in_words(comment.created_at) %> ago. <% if current_user %><% if current_user == comment.user || current_user.email == 'joahd@gbergfamily.com'%><%= link_to 'Delete', comment, method: :delete %><%end%><%end%></p><br>
       <p class="inline comment_body"><p id="<%=comment.id%>"><%=raw comment.content%></p></p>
+
+      <% if comment.ncomments.length > 0 %>
+        <% comment.ncomments.each do |ncomment| %>
+          <p><%=ncomment.content%></p>
+        <%end%>
+      <%end%>
+
+      <%= form_for(@ncomment) do |f| %>
+<div id="disqus_thread">
+  <% if @ncomment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ncomment.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @ncomment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.text_area :content %>
+  </div>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :comment_id, :value => comment.id %>
+  <div class="actions">
+    <%= f.submit "Comment"%> <span class="note"> Comments are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span>
+  </div>
+</div>
+<% end %>
     </div>
   <%end%>
 <%else%>
@@ -20,8 +50,8 @@
 <%end%>
 
 <%if current_user %>
-<div id="disqus_thread">
 <%= form_for(@comment) do |f| %>
+<div id="disqus_thread">
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this post from being saved:</h2>

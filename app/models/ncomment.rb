@@ -1,10 +1,7 @@
-class Comment < ActiveRecord::Base
+class Ncomment < ActiveRecord::Base
   belongs_to :user
-  belongs_to :post
-  has_many :ncomments
-  attr_accessible :content, :user_id, :post_id
-  validates_presence_of :content
-  validates_length_of :content, :minimum => 1
+  belongs_to :comment
+  attr_accessible :comment_id, :content, :user_id
   before_save :render_body
 
   private
