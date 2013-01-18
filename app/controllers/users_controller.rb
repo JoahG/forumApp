@@ -30,6 +30,9 @@ class UsersController < ApplicationController
     @user.comments.each do |comment|
       comment::destroy
     end
+    @user.ncomments.each do |ncomment|
+      ncomment::destroy
+    end
     t = false
     if current_user == @user
       t = true

@@ -22,7 +22,7 @@ class NcommentsController < ApplicationController
 
     respond_to do |format|
       if @ncomment.save
-        format.html { redirect_to @ncomment.post }
+        format.html { redirect_to @ncomment.comment.post }
         format.json { render json: @ncomment, status: :created, location: @ncomment }
       else
         format.html { render action: "new" }
