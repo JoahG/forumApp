@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
   helper_method :redirect_to_home
+  helper_method :render_body
+  
   private
 
   def redirect_to_home(msg)
@@ -10,5 +12,11 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def render_body(p)
+    require 'redcarpet'
+    redcarpet = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new, {fenced_code_blocks: true})
+    return redcarpet.render p.content
   end
 end
