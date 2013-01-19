@@ -16,7 +16,7 @@
     </div><div id='nested_comments_container'>
       <% if comment.ncomments.length > 0 %>
         <% comment.ncomments.each do |ncomment| %>
-          <p><%=link_to ncomment.user.name, ncomment.user%>:&nbsp;<%=ncomment.content%> - <% if current_user %><% if current_user == ncomment.user || current_user.email == 'joahd@gbergfamily.com' || current_user == ncomment.comment.user%><%= link_to 'Delete', ncomment, method: :delete %><%end%><%end%></p>
+          <p><%=link_to ncomment.user.name, ncomment.user%>:&nbsp;<%=ncomment.content%><% if current_user %><% if current_user == ncomment.user || current_user.email == 'joahd@gbergfamily.com' || current_user == ncomment.comment.user%> - <%= link_to 'Delete', ncomment, method: :delete %><%end%><%end%></p>
         <%end%>
       <%end%>
     <% if current_user %>
