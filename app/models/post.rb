@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   validates_length_of :title, :minimum => 2
   validates_length_of :content, :minimum => 5
   before_save :render_body
+  before_save :test_whitespace
 
   private
   def render_body
@@ -13,5 +14,11 @@ class Post < ActiveRecord::Base
     extensions = {fenced_code_blocks: true}
     redcarpet = Redcarpet::Markdown.new(renderer, extensions)
     self.content = redcarpet.render self.content
+  end
+
+  def test_whitespace
+    if self.content.strip.length == 0
+      self.content.length = 0
+    end
   end
 end

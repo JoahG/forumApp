@@ -6,6 +6,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of :content
   validates_length_of :content, :minimum => 1
   before_save :render_body
+  before_save :test_whitespace
 
   private
   def render_body
@@ -14,5 +15,11 @@ class Comment < ActiveRecord::Base
     extensions = {fenced_code_blocks: true}
     redcarpet = Redcarpet::Markdown.new(renderer, extensions)
     self.content = redcarpet.render self.content
+  end
+
+  def test_whitespace
+    if self.content.strip.length == 0
+      self.content.length = 0
+    end
   end
 end
