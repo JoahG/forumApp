@@ -4,7 +4,7 @@
 
 <%= render 'form' %>
 <br>
-<%= link_to 'Delete this user', @user, method: :delete, data: { confirm: 'Are you sure?       [Warning: Deleting user will also delete all posts/comments associated with this user]' } %>
+<%= link_to 'Delete this account', @user, method: :delete, data: { confirm: 'Are you sure?       [Warning: Deleting user will also delete all posts/comments associated with this user]' } %>
 </div>
 <%else %>
 <% redirect_to_home("You do not have permission to do this") %>
