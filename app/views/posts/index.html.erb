@@ -1,45 +1,18 @@
-<header>
-  <p>Welcome</p>
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>Welcome</h1>
+    <p class="lead">Here's a list of all the posts.</p>
+  </div>
 </header>
-<div id="post_container">
-<% if @posts.length < 10 %>
-  <% @posts.reverse.each do |post| %>
-   <div class="post">
-     <%= link_to post.title, post, :class => 'post_title' %><br> by <p class="pa li"><span class="post_author"><%=link_to post.user.name, post.user %></p> <%= time_ago_in_words(post.created_at) %> ago on <%= post.created_at.strftime("%b. %d %Y") %>. Has <%=pluralize(post.comments.length, 'comment')%>.</span>
-   </div>
-  <% end %>
-<% else %>
-  <% @posts[-10,10].reverse.each do |post| %>
-   <div class="post">
-     <%= link_to post.title, post, :class => 'post_title' %> by <p class="pa li"><span class="post_author"><%=link_to post.user.name, post.user %></p> <%= time_ago_in_words(post.created_at) %> ago on <%= post.created_at.strftime("%b. %d %Y") %>. Has <%=pluralize(post.comments.length, 'comment')%>.</span>
-   </div>
-  <% end %>
-<% end %>
-</div>
 
-<div id="sign_in">
-  <% if !current_user %>
-    <p class="titlelg">Log In</p>
-    <%= form_tag sessions_path do %>
-      <p>
-        <%= label_tag :email %><br>
-        <%= text_field_tag :email, params[:email] %>
-      </p>
-      <p>
-        <%= label_tag :password %><br>
-        <%= password_field_tag :password %>
-      </p>
-      <span class="button"><%= submit_tag "Log in" %></span>
-      <span class="button">or <%= link_to "Sign Up", sign_up_path %></span>
-    <% end %>
-  <% else %>
-      <p class="titlelg">Welcome, <%= current_user.name %>!</p><br>
-      <p class="centered">
-        <%= image_tag avatar_url(current_user, 80) %><br><br>
-        <%= link_to 'New Post', new_post_path %><br>
-        <%= link_to 'View my profile', current_user %><br>
-        <%= link_to 'Edit my account', edit_user_path(current_user) %><br>
-        <%= link_to 'Delete my account', current_user, method: :delete, data: { confirm: 'Are you sure?       [Warning: Deleting user will also delete all posts/comments associated with this user]' } %>
-      </p>
-  <%end%>
+
+<div class="hero-unit">
+<% @posts.reverse.each do |post| %>
+ <div class="post">
+   <%= link_to post.title, post, :class => 'post_title' %> by <span class="post_author"><%=link_to post.user.name, post.user %> <%= time_ago_in_words(post.created_at) %> ago on <%= post.created_at.strftime("%b. %d %Y") %>. <%=pluralize(post.comments.length, 'comment')%>.</span>
+<% unless post == @posts[-0] %>
+   <hr>
+   <%end%>
+ </div>
+<% end %>
 </div>

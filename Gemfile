@@ -9,6 +9,8 @@ gem 'sqlite3'
 
 gem 'redcarpet'
 
+gem 'anjlab-bootstrap-rails', '>= 2.2', :require => 'bootstrap-rails'
+
 gem "bcrypt-ruby", :require => "bcrypt"
 
 # Gems used only for assets and not required

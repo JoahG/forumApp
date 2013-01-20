@@ -1,9 +1,10 @@
 <% if current_user %><% if current_user == @user || current_user.email == 'joahd@gbergfamily.com' %>
-<div id="small_container">
+<div class="hero-unit form">
 <h1>Edit Account</h1>
 
 <%= render 'form' %>
-
+<br>
+<%= link_to 'Delete this user', @user, method: :delete, data: { confirm: 'Are you sure?       [Warning: Deleting user will also delete all posts/comments associated with this user]' } %>
 </div>
 <%else %>
 <% redirect_to_home("You do not have permission to do this") %>

@@ -1,3 +1,5 @@
+<br>
+
 <%= form_for @user do |f| %>
 	<% if @user.errors.any? %>
 		<div class="error_messages">
@@ -10,20 +12,16 @@
 		</div>
 	<% end %>
 	<p>
-		<%= f.label :name %><br />
-		<%= f.text_field :name %>
+		<%= f.text_field :name, :placeholder => "Name", :class => 'signup_field' %>
 	</p>
 	<p>
-		<%= f.label :email %><br />
-		<%= f.text_field :email %>
+		<%= f.text_field :email, :placeholder => "Email Address", :class => 'signup_field' %>
 	</p>
 	<p>
-		<%= f.label :password %><br />
-		<%= f.password_field :password %>
+		<%= f.password_field :password, :placeholder => "Password", :class => 'signup_field' %>
 	</p>
 	<p>
-		<%= f.label :password_confirmation %><br />
-		<%= f.password_field :password_confirmation %>
+		<%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", :class => 'signup_field' %>
 	</p>
-	<p class="button"><%= f.submit %></p>
+	<p class="button"><%= f.submit(:class => 'btn') %></p>
 <% end %>

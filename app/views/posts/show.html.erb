@@ -1,46 +1,64 @@
-<%= link_to '« Go home', root_url %>
-<div id="disqus_thread" class="noborder post_">
-  <p class="inline post_page_title"><%= @post.title %></p><br><br>
-  <p class="inline"><%= image_tag avatar_url(@post.user, 80), :class => 'comment_avatar' %></p>
-  <b><p class="inline comment_header">Posted by&nbsp;<p class="pa"><%= link_to @post.user.name, @post.user%></p>  <%= time_ago_in_words(@post.created_at) %> ago on <%= @post.created_at.strftime("%b. %d %Y") %> &nbsp;&nbsp;&nbsp; - <a href="#comment_content">Comment</a> <% if current_user %><%if current_user == @post.user || current_user.email == 'joahd@gbergfamily.com'%>| <%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><%end%><%end%></p></b>
-  <p class="inline comment_body"><p><%=raw render_body(@post)%></p></p>
+<div id="post_nav">
+  <a onclick="goToByScroll('top')">&uarr;</a><br>
+  –<br>
+  <a onclick="goToByScroll('bottom')">&darr;</a>
 </div>
+<div id="top"></div>
+<div class="hero-unit post_page_post">
+  <div class="inline post_info">
+    <p class="center"><%= image_tag avatar_url(@post.user, 80) %><br><%= link_to @post.user.name, @post.user%> <br> <%= time_ago_in_words(@post.created_at) %> ago <br><%= @post.created_at.strftime("%b. %d %Y") %><br><small><a href="#comment_content">Comment</a> <% if current_user %><%if current_user == @post.user || current_user.email == 'joahd@gbergfamily.com'%>| <%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><%end%><%end%></small> </p>
+  </div>
+  <div class="inline post_content">
+    <h1> <%=@post.title%> </h1>
+    <p class="inline comment_body"><p><%=raw render_body(@post)%></p></p>
+  </div>
+</div>
+
+
 
 <% if @post.comments.length > 0 %>
   <% @post.comments.each do |comment| %>
-    <div id="disqus_thread">
-      <p class="inline"><%= image_tag avatar_url(comment.user, 80), :class => 'comment_avatar' %></p>
-      <p class="inline comment_header">Commented by <%= link_to comment.user.name, comment.user%>  <%= time_ago_in_words(comment.created_at) %> ago. - <% if current_user %><% if current_user == comment.user || current_user.email == 'joahd@gbergfamily.com'%><%= link_to 'Delete', comment, method: :delete %><%end%><%end%></p><br>
-      <p class="inline comment_body"><p id="<%=comment.id%>"><%=raw comment.content%></p></p>
+    <div class="well">
+      <div class="comment">
+        <%= image_tag avatar_url(comment.user, 80), :class => 'comment_avatar' %>
+        <div class="inline comment_content">
+           <p class="comment_info">Commented by <%= link_to comment.user.name, comment.user%>  <%= time_ago_in_words(comment.created_at) %> ago. - <% if current_user %><% if current_user == comment.user || current_user.email == 'joahd@gbergfamily.com'%><%= link_to 'Delete', comment, method: :delete %><%end%><%end%>
+           </p>
+        <%=raw comment.content%>
+        </div>
+      </div>
 
-    </div><div id='nested_comments_container'>
-      <% if comment.ncomments.length > 0 %>
-        <% comment.ncomments.each do |ncomment| %>
-          <p><%=link_to ncomment.user.name, ncomment.user%>:&nbsp;<%=ncomment.content%><% if current_user %><% if current_user == ncomment.user || current_user.email == 'joahd@gbergfamily.com' || current_user == ncomment.comment.user%> - <%= link_to 'Delete', ncomment, method: :delete %><%end%><%end%></p>
+
+      <div id='nested_comments_container'>
+        <% if comment.ncomments.length > 0 %>
+          <% comment.ncomments.each do |ncomment| %>
+            <p><%=link_to ncomment.user.name, ncomment.user%>:&nbsp;<%=ncomment.content%><% if current_user %><% if current_user == ncomment.user || current_user.email == 'joahd@gbergfamily.com' || current_user == ncomment.comment.user%> - <%= link_to 'Delete', ncomment, method: :delete %><%end%><%end%></p>
+          <%end%>
         <%end%>
-      <%end%>
-    <% if current_user %>
-      <%= form_for(@ncomment) do |f| %>
-        <%= f.text_field :content %>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-        <%= f.hidden_field :comment_id, :value => comment.id %>
-        <%= f.submit "Comment"%> 
-    <% end %>
+        <% if current_user %>
+          <%= form_for @ncomment,  :html => {:class => 'navbar-form'} do |f|%>
+            <%= f.text_field :content %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.hidden_field :comment_id, :value => comment.id %>
+            <%= f.submit "Comment", :class => 'btn'%> 
+        <% end %>
+        <%else%>
+          <span class="spalert">You have to be signed in to post comments.</span>
       <%end%>
     </div>
+  </div>
+
   <%end%>
-<%else%>
-  <br>
-  <br>
+
 <%end%>
 
 <%if current_user %>
+
 <%= form_for(@comment) do |f| %>
-<div id="disqus_thread">
+<div class="well">
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this post from being saved:</h2>
-
       <ul>
       <% @comment.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -49,15 +67,16 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.text_area :content, :class => 'full_wide' %>
+    <div id="wmd-button-bar"></div>
+    <%= f.text_area :content, :id => 'wmd-input', :class =>'full_wide get_me' %>
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.hidden_field :post_id, :value => @post.id %>
-  <div class="actions">
-    <%= f.submit "Comment"%> <span class="note"> Comments are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span>
+  <div class="actions comment_actions">
+    <%= f.submit "Comment", :class => 'btn'%>&nbsp; &nbsp;&nbsp;<span class="note"> Comments are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span>
   </div>
 </div>
 <% end %>
 <%end%>
 
-<p class="centered"><a href="#user_nav">Back To Top</a></p>
+<div id="bottom"></div>

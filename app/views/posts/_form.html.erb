@@ -1,3 +1,5 @@
+<br>
+
 <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -12,15 +14,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, :class => 'new_post_title' %>
+    <%= f.text_field :title, :class => 'new_post_title', :placeholder => "Post Title Here", :id => "title_field" %>
   </div>
   <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <div id="wmd-button-bar"></div>
+    <%= f.text_area :content, :id => 'wmd-input', :placeholder => "Post Content Here" %>
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="actions">
-    <%= f.submit %><br><span class="note"> Posts are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span>
+    <%= f.submit(:class => 'btn') %>&nbsp; &nbsp;&nbsp;<span class="note"> Posts are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span>
   </div>
 <% end %>

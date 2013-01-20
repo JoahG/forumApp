@@ -1,231 +1,190 @@
 /*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
  *= require_self
  *= require_tree .
+ *= require twitter/bootstrap
  */
 
- /* CSS RESET */
-
-html,body,blockquote,code,h1,h2,h3,h4,h5,h6,p,pre{margin:0;padding:0}
-button,fieldset,form,input,legend,textarea,select{margin:0;padding:0}
-fieldset{border:0}
-a,a *{cursor:pointer}
-div{margin:0;padding:0;background-color:transparent;}
-hr,img{border:0}
-applet,iframe,object{border:0;margin:0;padding:0}
-button,input[type=button],input[type=image],input[type=reset],input[type=submit],label{cursor:pointer;}
-ul,li{margin:0;padding:0;}
-strong{font-weight:bold;}
-em{font-style:italic;}
-
-/* END CSS RESET */
-
-body {
-	background-color: #015367;
-	font-family: "Trebuchet MS"
+.left {
+	float:left;
 }
 
-a {
-	color: #333;
-	text-decoration: none;
+.right {
+	float:right;
 }
 
-a:hover {
-	color: #000;
-	text-decoration: underline;
-}
-
-#container {
-	width: 800px;
-	min-height: 660px;
-	position: relative;
-	background-color:#60b9ce;
-	margin: auto;
-	padding-right: 10px;
-	padding-left: 10px;
-	padding-bottom: 20px;
-}
-
-#user_nav {
-	background-color:#38b2ce;
-	margin-bottom: 10px;
-	width: 100%;
-	margin-left: -1.25%;
-	padding-right:1.25%;
-	padding-left: 1.25%;
-	padding-bottom: 3px;
+.center {
 	text-align: center;
 }
 
-header {
-	background-color: #206676;
-	color: #206676;
-	text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;  
+nav.center {
+	color: red;
 	width: 100%;
-	margin-top: -1.25%;
-	margin-left: -1.25%;
-	padding-right:1.25%;
-	padding-left: 1.25%;
-	height: 100px;
-	text-align: center;
-	font-size: 80px;
+	position:absolute;
+	padding: 10px 15px 10px;
+	float:left;
 }
 
-.post {
-	min-height: 30px;
-	border: 1px solid black;
-	padding: 5px;
-	margin-top: 10px;
-	border-radius: 5px;
-	background-color: ;
+body { 
+    padding-top: 50px; 
+}
+
+input[type='text'], input[type='password'] {
+	width: 150px;
+	margin-left: 10px;
+}
+
+input[type='submit'] {
+	margin-left: 10px;
+}
+
+nav > ul > li > a {
+	display: block;
+	padding: 0 25px;
+	line-height: 20px;
+	height: 20px;
 }
 
 .post_title {
-	font-size: 23px
-}
-
-#post_container {
-	float:left;
-	width: 70%;
-	margin-left: 3.7%;
-}
-
-#sign_in {
-	float: right;
-	width: 18%;
-	border-radius: 5px;
-	border: 1px solid black;
-	padding: 5px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 10px;
-	margin-top: 10px;
-	margin-right: 3.7%;
-}
-
-#sign_in .titlelg {
-	font-size: 23px;
-	text-align: center;
-}
-
-.centered {
-	text-align: center;
-}
-
-#flash_notice, #flash_alert {
-	color: red;
-}
-
-.post_page_title {
-	font-size: 30px;
 	font-weight: bold;
-	text-align: center;
-	width: 100%;
+	font-size: 24.7px
 }
 
-.post_page_author {
-	font-size:15px;
-	font-weight: normal;
+.post_info {
+	width: 150px;
+	display:inline-block;
+	border-right: 1px solid black;
+	padding-right: 20px;
 }
 
-#small_container {
-	min-width: 350px;
-	margin:auto;
-	text-align: center;
+div.post_info {
+	position:absolute;
 }
 
-#small_container.left {
-	text-align: left;
-	margin-left: 50px;
+div.post_content {
+	margin-left: 200px;
 }
 
-#small_container ul {
-	list-style-type: none;
+div.post_page_post {
+	min-height: 232px;
 }
 
-#disqus_thread {
-	margin-top: 20px;
-	padding-top: 20px;
-	border-top: 1px dashed black;
-	position: relative;
-	bottom: 0px;
-	width: 98%;
-	min-height: 84px;
-}
-
-#disqus_thread.post_ {
-	min-height: 113px;
-	padding-top: 5px;
-	margin-top: 5px;
+small {
+	font-size: 65% !important;
 }
 
 .inline {
 	display: inline-block;
-	float:left;
 }
 
 .comment_avatar {
-	margin-right: 10px;
+	position:relative;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	float:left;
 }
 
-.full_wide {
-	width: 100%;
-	height:130px;
-}
-
-.comment_header {
+.comment_info {
 	font-weight: bold;
 }
 
-.pa {
-	max-width: 350px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	display:inline-block;
-}
-
-.li {
-	max-width: 100px;
-}
-
-.fix3 {
-	max-width: 500px;
-}
-
-#user_activity {
-	clear:both;
-	max-width:400px;
-}
-
-#user_activity ul li {
-	margin-left: 20px;
-}
-
-.comment_body {
-	max-width: 650px
-}
-
-.note {
-	font-size: 11px
-}
-
-.new_post_title {
-	width: 296px;
-}
-
-.noborder {
-	border:none !important;
+.comment_content {
+	width: 800px;
+	float:left;
+	min-height: 100px;
 }
 
 #nested_comments_container {
-	margin-left: 100px;
-	margin-top: 10px;
-	position:relative;
-	right: 0;
+	clear:both;
+	width: 99.8%;
+	margin-left:-2.31%;
+	background-color: white;
+	border: 1px solid #e3e3e3;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	padding: 20px;
+	margin-bottom: -19px;
 }
 
-#notification_container {
-	float:right;
-	position: relative;
-	width: 375px;
+#nested_comments_container p {
+	margin-left: 10px;
+}
+
+#ncomment_content {
+	width: 700px;
+}
+
+.well .close {
+	float: right;
+	position:relative;
+}
+
+.get_me {
+	height: 200px !important;
+	margin-left:42px !important;
+}
+
+#wmd-input {
+	width: 800px !important;
+}
+
+.comment_actions {
+	text-align: center;
+}
+
+#post_nav {
+	position: fixed;
+	left: 0;
+	margin-top: 50%;
+	padding:5px;
+	background-color: whitesmoke;
+	border-top-right-radius:4px;
+	border-bottom-right-radius:4px;
+	border: 1px solid #e3e3e3;
+}
+
+#post_nav a{
+	cursor:pointer;
+}
+
+.spalert {
+	color: red;
+	opacity:0.3;
+}
+
+#title_field {
+	height: 40px;
+	width: 800px;
+	font-size: 20px;
+	margin-left: 0px;
+}
+
+.form {
+	text-align: center;
+}
+
+.signup_field {
+	width: 400px !important;
+	height: 30px !important;
+	font-size: 20px !important;
+}
+
+.user_tabs {
+	width: 680px;
+}
+
+.user_left {
+	max-width: 220px;
+}
+
+.user_tabs ul, ul.no-lst {
+	list-style-type: none;
 }

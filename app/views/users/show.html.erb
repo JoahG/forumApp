@@ -1,36 +1,41 @@
-<%= link_to '« Go home', root_url %><% if current_user %><%if current_user == @user || current_user.email == 'joahd@gbergfamily.com'%> or <%= link_to 'delete this user', @user, method: :delete, data: { confirm: 'Are you sure?       [Warning: Deleting user will also delete all posts/comments associated with this user]' } %> if you really want to.<%end%><%end%><br><br>
-<div id="small_container" class="left">
-	<p class="inline"><%= image_tag avatar_url(@user, 200), :class => 'comment_avatar' %></p>
-	<p class="inline fix3"><br><br><br><br><br>Name: <%=@user.name%></p>
-<%if current_user %><%if current_user == @user || current_user.email == 'joahd@gbergfamily.com'%><div id="notification_container">
-	Notifications:
-<ul>
-	<% if @user.notifications.length > 0 %>
-	<%@user.notifications.each do |n|%>
-<li><%=raw n.content%>  <%= link_to 'Dismiss', n, method: :delete %></li>
-<%end%><%else%><li><em>Great Job! You have no notifications!</em></li>
-<%end%>
-</ul>
-</div><%end%><%end%>
-	<br><br><div id="user_activity">
-		Post Activity:<br>
-		<ul><%if @user.posts.length > 0 %>
-			<% @user.posts.each do |post| %>
-				<li>Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.</li>
-			<% end %>
-			<%else%>
-				<li> <em>[No posts by this user]</em> </li>
-			<%end%>
-		</ul><br>
-		Comment Activity:<br>
-		<ul><%if @user.comments.length > 0 %>
-			<% @user.comments.each do |comment| %>
-				<li>Commented on <%= link_to comment.post.title, comment.post %> <%= time_ago_in_words(comment.created_at) %> ago.</li>
-			<% end %>
-			<%else%>
-				<li><em>[No comments by this user]</em></li>
-			<%end%>
-		</ul>
-	</div>
-
+<br><br><div class="left user_left"><%= image_tag avatar_url(@user, 200), :class => 'comment_avatar' %><br>
+	<h1><%=@user.name%></h1></div>
+<div class="tabbable left user_tabs">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Post Activity</a></li>
+    <li><a href="#tab2" data-toggle="tab">Comment Activity</a></li>
+    <li><a href="#tab3" data-toggle="tab">Notifications</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <ul><%if @user.posts.length > 0 %>
+		<% @user.posts.each do |post| %>
+			<li>Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.</li><hr>
+		<% end %>
+		<%else%>
+			<li> <em>[No posts by this user]</em> </li>
+		<%end%>
+	</ul>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <ul><%if @user.comments.length > 0 %>
+		<% @user.comments.each do |comment| %>
+			<li>Commented on <%= link_to comment.post.title, comment.post %> <%= time_ago_in_words(comment.created_at) %> ago.</li><hr>
+		<% end %>
+		<%else%>
+			<li><em>[No comments by this user]</em></li>
+		<%end%>
+	</ul>
+    </div>
+    <div class="tab-pane" id="tab3">
+      <ul><%if @user.notifications.length > 0 %>
+		<%@user.notifications.each do |n|%>
+			<li><%=raw n.content%>  <%= link_to 'Dismiss', n, method: :delete %></li><hr>
+		<% end %>
+		<%else%>
+			<li><em>[No comments by this user]</em></li>
+		<%end%>
+	</ul>
+    </div>
+  </div>
 </div>
