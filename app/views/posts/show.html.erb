@@ -63,7 +63,7 @@
         <%end%>
         <% if current_user %>
           <%= form_for @ncomment,  :html => {:class => 'navbar-form'} do |f|%>
-            <%= f.text_field :content %>
+            <%= f.text_field :content, :placeholder => "Comment...." %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.hidden_field :comment_id, :value => comment.id %>
             <%= f.submit "Comment", :class => 'btn'%> 
@@ -94,7 +94,7 @@
   <% end %>
   <div class="field">
     <div id="wmd-button-bar"></div>
-    <%= f.text_area :content, :id => 'wmd-input', :class =>'full_wide get_me' %>
+    <%= f.text_area :content, :id => 'wmd-input', :class =>'full_wide get_me', :placeholder => "Comments Go Here..." %>
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.hidden_field :post_id, :value => @post.id %>
