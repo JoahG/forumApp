@@ -6,7 +6,19 @@
 <div id="top"></div>
 <div class="hero-unit post_page_post">
   <div class="inline post_info">
-    <p class="center"><%= image_tag avatar_url(@post.user, 80) %><br><%= link_to @post.user.name, @post.user%> <br> <%= time_ago_in_words(@post.created_at) %> ago <br><%= @post.created_at.strftime("%b. %d %Y") %><br><small><%if current_user%><a href="#comment_content">Comment</a><%end%> <% if current_user %><%if current_user == @post.user || current_user.email == 'joahd@gbergfamily.com'%>| <%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><%end%><%end%></small> </p>
+    <p class="center">
+      <%if current_user %>
+      <% if current_user == @post.user %>
+        <%= image_tag avatar_url(@post.user, 76), :class => 'current_user_pic' %>
+      <% elsif @post.user.email == 'joahd@gbergfamily.com' %>
+        <%= image_tag avatar_url(@post.user, 76), :class => 'admin_pic' %>
+      <%else%>
+        <%= image_tag avatar_url(@post.user, 76), :class => 'post_author_pic' %>
+      <%end%>
+      <%else%>
+      <%= image_tag avatar_url(@post.user, 76), :class => 'post_author_pic' %>
+      <%end%>
+      <br><%= link_to @post.user.name, @post.user%> <br> <%= time_ago_in_words(@post.created_at) %> ago <br><%= @post.created_at.strftime("%b. %d %Y") %><br><small><%if current_user%><a href="#comment_content">Comment</a><%end%> <% if current_user %><%if current_user == @post.user || current_user.email == 'joahd@gbergfamily.com'%>| <%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><%end%><%end%></small> </p>
   </div>
   <div class="inline post_content">
     <h1> <%=@post.title%> </h1>
@@ -20,7 +32,21 @@
   <% @post.comments.each do |comment| %>
     <div class="well">
       <div class="comment">
-        <%= image_tag avatar_url(comment.user, 80), :class => 'comment_avatar' %>
+
+        <% if current_user %>
+          <% if current_user == comment.user %>
+            <%= image_tag avatar_url(@post.user, 76), :class => 'current_user_pic comment_avatar' %>
+          <% end %>
+      <% elsif comment.post.user == comment.user %>
+        <%= image_tag avatar_url(comment.user, 76), :class => 'post_author_pic comment_avatar' %>
+      <%elsif comment.user.email == 'joahd@gbergfamily.com'%>
+        <%= image_tag avatar_url(comment.user, 76), :class => 'admin_pic comment_avatar' %>
+        <%else%>
+        <%= image_tag avatar_url(comment.user, 76), :class => 'comment_avatar' %>
+      <%end%>
+
+
+
         <div class="inline comment_content">
            <p class="comment_info">Commented by <%= link_to comment.user.name, comment.user%>  <%= time_ago_in_words(comment.created_at) %> ago. - <% if current_user %><% if current_user == comment.user || current_user.email == 'joahd@gbergfamily.com'%><%= link_to 'Delete', comment, method: :delete %><%end%><%end%>
            </p>

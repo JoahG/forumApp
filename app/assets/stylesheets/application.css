@@ -188,3 +188,15 @@ small {
 .user_tabs ul, ul.no-lst {
 	list-style-type: none;
 }
+
+.admin_pic {
+	border: 2px solid black;
+}
+
+.current_user_pic {
+	border: 2px solid red;
+}
+
+.post_author_pic {
+	border: 2px solid #0088cc;
+}

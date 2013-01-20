@@ -1,4 +1,10 @@
-<br><br><div class="left user_left"><%= image_tag avatar_url(@user, 200), :class => 'comment_avatar' %><br>
+<br><br><div class="left user_left">      <% if current_user == @user %>
+        <%= image_tag avatar_url(@user, 196), :class => 'current_user_pic comment_avatar' %>
+      <% elsif @user.email == 'joahd@gbergfamily.com' %>
+        <%= image_tag avatar_url(@user, 196), :class => 'admin_pic comment_avatar' %>
+      <%else%>
+        <%= image_tag avatar_url(@user, 196), :class => 'comment_avatar' %>
+      <%end%><br>
 	<h1><%=@user.name%></h1></div>
 <div class="tabbable left user_tabs">
   <ul class="nav nav-tabs">
