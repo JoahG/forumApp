@@ -30,10 +30,14 @@
     </div>
     <div class="tab-pane" id="tab2">
       <ul><%if @user.comments.length > 0 %>
-		<% @user.comments.reverse.each do |comment| %>
-			<% if comment.post && comment.post.title && comment.created_at%>
-			<li>Commented on <%= link_to comment.post.title, comment.post %> <%= time_ago_in_words(comment.created_at) %> ago.</li><% unless comment == @user.comments[0] %><hr><%end%>
-		<% end %>
+				<% @user.comments.reverse.each do |comment| %>
+					<% if comment.post && comment.post.title && comment.created_at%>
+						<li>Commented on <%= link_to comment.post.title, comment.post %> <%= time_ago_in_words(comment.created_at) %> ago.</li>
+						<% unless comment == @user.comments[0] %>
+							<hr>
+						<%end%>
+					<% end %>
+				<%end%>
 		<%else%>
 			<li><em>[No comments by this user]</em></li>
 		<%end%>
@@ -41,11 +45,11 @@
     </div> <%if current_user%><%if current_user == @user || current_user.email == "joahd@gbergfamily.com" %>
     <div class="tab-pane" id="tab3">
       <ul><%if @user.notifications.length > 0 %>
-		<%@user.notifications.reverse.each do |n|%>
-			<% if n.content %>
-			<li><%=raw n.content%>  <%= link_to 'Dismiss', n, method: :delete %></li><% unless n == @user.notifications[0] %><hr><%end%>
-			<%end%>
-		<% end %>
+				<%@user.notifications.reverse.each do |n|%>
+					<% if n.content %>
+						<li><%=raw n.content%>  <%= link_to 'Dismiss', n, method: :delete %></li><% unless n == @user.notifications[0] %><hr><%end%>
+					<%end%>
+				<% end %>
 		<%else%>
 			<li><em>No Notifications!</em></li>
 		<%end%><%end%><%end%>
