@@ -37,7 +37,8 @@
           <% if current_user == comment.user %>
             <%= image_tag avatar_url(comment.user, 76), :class => 'current_user_pic comment_avatar' %>
           <% end %>
-      <% elsif comment.post.user == comment.user %>
+        <%end%>
+      <% if comment.post.user == comment.user %>
         <%= image_tag avatar_url(comment.user, 76), :class => 'post_author_pic comment_avatar' %>
       <%elsif comment.user.email == 'joahd@gbergfamily.com'%>
         <%= image_tag avatar_url(comment.user, 76), :class => 'admin_pic comment_avatar' %>
