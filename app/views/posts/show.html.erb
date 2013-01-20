@@ -6,7 +6,7 @@
 <div id="top"></div>
 <div class="hero-unit post_page_post">
   <div class="inline post_info">
-    <p class="center"><%= image_tag avatar_url(@post.user, 80) %><br><%= link_to @post.user.name, @post.user%> <br> <%= time_ago_in_words(@post.created_at) %> ago <br><%= @post.created_at.strftime("%b. %d %Y") %><br><small><a href="#comment_content">Comment</a> <% if current_user %><%if current_user == @post.user || current_user.email == 'joahd@gbergfamily.com'%>| <%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><%end%><%end%></small> </p>
+    <p class="center"><%= image_tag avatar_url(@post.user, 80) %><br><%= link_to @post.user.name, @post.user%> <br> <%= time_ago_in_words(@post.created_at) %> ago <br><%= @post.created_at.strftime("%b. %d %Y") %><br><small><%if current_user%><a href="#comment_content">Comment</a><%end%> <% if current_user %><%if current_user == @post.user || current_user.email == 'joahd@gbergfamily.com'%>| <%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><%end%><%end%></small> </p>
   </div>
   <div class="inline post_content">
     <h1> <%=@post.title%> </h1>

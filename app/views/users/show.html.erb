@@ -4,7 +4,7 @@
   <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab">Post Activity</a></li>
     <li><a href="#tab2" data-toggle="tab">Comment Activity</a></li>
-    <li><a href="#tab3" data-toggle="tab">Notifications</a></li>
+    <%if current_user%><%if current_user == @user || current_user.email == "joahd@gbergfamily.com" %><li><a href="#tab3" data-toggle="tab">Notifications</a></li><%end%><%end%>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
@@ -26,15 +26,15 @@
 			<li><em>[No comments by this user]</em></li>
 		<%end%>
 	</ul>
-    </div>
+    </div> <%if current_user%><%if current_user == @user || current_user.email == "joahd@gbergfamily.com" %>
     <div class="tab-pane" id="tab3">
       <ul><%if @user.notifications.length > 0 %>
 		<%@user.notifications.each do |n|%>
 			<li><%=raw n.content%>  <%= link_to 'Dismiss', n, method: :delete %></li><hr>
 		<% end %>
 		<%else%>
-			<li><em>[No comments by this user]</em></li>
-		<%end%>
+			<li><em>No Notifications!</em></li>
+		<%end%><%end%><%end%>
 	</ul>
     </div>
   </div>
