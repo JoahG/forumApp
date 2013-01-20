@@ -38,11 +38,11 @@
             <%= image_tag avatar_url(comment.user, 76), :class => 'current_user_pic comment_avatar' %>
           <% end %>
         <%end%>
-      <% if comment.post.user == comment.user %>
+      <% if comment.post.user == comment.user && current_user != comment.user %>
         <%= image_tag avatar_url(comment.user, 76), :class => 'post_author_pic comment_avatar' %>
-      <%elsif comment.user.email == 'joahd@gbergfamily.com'%>
+      <%elsif comment.user.email == 'joahd@gbergfamily.com' && current_user != comment.user%>
         <%= image_tag avatar_url(comment.user, 76), :class => 'admin_pic comment_avatar' %>
-        <%else%>
+        <%elsif current_user != comment.user%>
         <%= image_tag avatar_url(comment.user, 76), :class => 'comment_avatar' %>
       <%end%>
 

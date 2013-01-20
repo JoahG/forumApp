@@ -17,9 +17,14 @@
       <ul><%if @user.posts.length > 0 %>
 				<% @user.posts.reverse.each do |post| %>
 					<% if post && post.title && post.created_at%>
-						<li>Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.</li><% unless post == @user.posts[0] %><hr><%end%>
+						<li>Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.</li>
+						<% unless post == @user.posts[0] %>
+							<hr>
+						<%end%>
 					<% end %>
 				<%end%>
+			<%else%>
+				<li> <em>[No posts by this user]</em> </li>
 			<%end%>
 		</ul>
     </div>
