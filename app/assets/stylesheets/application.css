@@ -237,3 +237,17 @@ small {
 	color: black;
 	opacity: 0.4;
 }
+
+.ranks_inline {
+	width: 40%;
+	position:relative;
+	display:inline-block;
+}
+
+.lmargin {
+	margin-left: 2.5%;
+}
+
+.rmargin {
+	margin-right: 2.5%;
+}

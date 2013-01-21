@@ -1,0 +1,18 @@
+<div class="hero-unit form"><h1>User Ranks</h1>
+<br>
+<div class="ranks_inline well rmargin">
+	<b>Most +1's Recieved</b>
+<ol>
+	<% @users.each do |user| %>
+		<li><%= link_to user.name, user %></li>
+	<%end%>
+</div>
+<div class="ranks_inline well lmargin">
+	<b>Most +1's Given</b>
+	<ol>
+	<% @rusers.each do |ruser| %>
+		<li><%= link_to ruser.name, ruser %></li>
+	<%end%>
+	</ol>
+</div>
+</ul></div>

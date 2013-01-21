@@ -2,6 +2,13 @@ class UsersController < ApplicationController
   def rank
     @users = User.find(:all)
     @users.sort! { |a,b| collect_plus(a) <=> collect_plus(b)}
+    @users = @users.reverse
+    @users = @users[0..9]
+
+    @rusers = User.find(:all)
+    @rusers.sort! { |a,b| a.plusones <=> b.plusones }
+    @rusers = @rusers.reverse
+    @rusers = @rusers[0..9]
 
     respond_to do |format|
       format.html
