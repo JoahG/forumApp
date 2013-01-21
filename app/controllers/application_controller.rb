@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :redirect_to_home
   helper_method :render_body
   helper_method :render_aboutme
+  helper_method :collect_plus
   
   private
 
@@ -25,5 +26,15 @@ class ApplicationController < ActionController::Base
     require 'redcarpet'
     redcarpet = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new, {fenced_code_blocks: true})
     return redcarpet.render p
+  end
+
+  def collect_plus(u)
+    p = 0
+    u.comments.each do |c|
+      if c.post
+        p += c.plusones.length
+      end
+    end
+    return p
   end
 end

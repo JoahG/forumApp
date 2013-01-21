@@ -232,3 +232,8 @@ small {
 .required {
 	color: red;
 }
+
+.user_pluses {
+	color: black;
+	opacity: 0.4;
+}

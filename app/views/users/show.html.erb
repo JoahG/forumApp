@@ -5,7 +5,7 @@
       <%else%>
         <%= image_tag avatar_url(@user, 196), :class => 'comment_avatar' %>
       <%end%><br>
-	<h1><%=@user.name%></h1><br>
+	<h1><%=@user.name%> <span class="user_pluses">+<%=collect_plus(@user)%></span></h1><br>
 
 
 	<%if @user.sociallink && @user.sociallink.strip.length !=  0 && @user.sociallink != "http://"%>
