@@ -5,7 +5,41 @@
       <%else%>
         <%= image_tag avatar_url(@user, 196), :class => 'comment_avatar' %>
       <%end%><br>
-	<h1><%=@user.name%></h1></div>
+	<h1><%=@user.name%></h1><br>
+
+
+	<%if @user.sociallink != "http://"%>
+		<p id="user_social_link">
+			<%=link_to @user.sociallink, @user.sociallink%><br>
+		</p>
+	<%end%><br>
+	
+
+<p id="user_social_icons">
+	<%if @user.linkedin != "http://linkedin.com/"%>
+		<%=link_to image_tag("linkedin.png"), @user.linkedin%>
+	<%end%>
+
+	<%if @user.gplus != "http://plus.google.com"%>
+		<%=link_to image_tag("gplus.png"), @user.gplus%>
+	<%end%>
+
+	<%if @user.github != ""%>
+		<%=link_to image_tag("github.png"), "http://github.com/"+@user.github%>
+	<%end%>
+
+	<%if @user.twitter != ""%>
+		<%=link_to image_tag("twitter.png"), "https://twitter.com/"+@user.twitter%>
+	
+	<%end%></p>
+	<br>
+	<%if @user.aboutme.length != 0%>
+		<b>About Me:</b><br>
+		<%= raw render_aboutme(@user.aboutme) %>
+	<%end%>
+
+
+	</div>
 <div class="tabbable left user_tabs">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab">Post Activity</a></li>

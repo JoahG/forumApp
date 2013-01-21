@@ -12,16 +12,39 @@
 		</div>
 	<% end %>
 	<p>
-		<%= f.text_field :name, :placeholder => "Name", :class => 'signup_field' %>
+		 <span class="required">* = required field</span>
 	</p>
 	<p>
-		<%= f.text_field :email, :placeholder => "Email Address", :class => 'signup_field' %>
+		<%= f.text_field :name, :placeholder => "Name", :class => 'signup_field' %> <span class="required">*</span>
 	</p>
 	<p>
-		<%= f.password_field :password, :placeholder => "Password", :class => 'signup_field' %>
+		<%= f.text_field :email, :placeholder => "Email Address", :class => 'signup_field' %> <span class="required">*</span>
 	</p>
 	<p>
-		<%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", :class => 'signup_field' %>
+		<%= f.password_field :password, :placeholder => "Password", :class => 'signup_field' %> <span class="required">*</span>
 	</p>
+	<p>
+		<%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", :class => 'signup_field' %> <span class="required">*</span>
+	</p>
+	<p>
+		<%= f.text_field :sociallink, :placeholder => "Homepage Link", :class => 'signup_field', :value => @user.sociallink %>
+	</p>
+	<p>
+		<%= f.text_field :twitter, :placeholder => "Twitter Handle", :class => 'signup_field' %>
+	</p>
+	<p>
+		<%= f.text_field :github, :placeholder => "Github Username", :class => 'signup_field' %>
+	</p>
+
+	<p>
+		<%= f.text_field :linkedin, :placeholder => "LinkedIn URL", :class => 'signup_field', :value => @user.linkedin %>
+	</p>
+	<p>
+		<%= f.text_field :gplus, :placeholder => "Google+ URL", :class => 'signup_field', :value => @user.gplus %>
+	</p>
+	<div class="field">
+    <div id="wmd-button-bar"></div>
+    <%= f.text_area :aboutme, :id => 'wmd-input', :placeholder => "About Me..." %>
+  </div>
 	<p class="button"><%= f.submit(:class => 'btn') %></p>
 <% end %>

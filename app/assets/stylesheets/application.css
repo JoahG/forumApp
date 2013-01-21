@@ -220,3 +220,15 @@ small {
 	opacity: 0.4;
 	color:black;
 }
+
+#user_social_link::before {
+	content: url(link.png);
+}
+
+#user_social_icons {
+	text-align: center;
+}
+
+.required {
+	color: red;
+}

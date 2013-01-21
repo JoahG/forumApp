@@ -32,9 +32,11 @@
   <% @post.comments.each do |comment| %>
     <div class="well">
       <div class="comment" id= <%=comment.id%> >
+        <% if current_user %>
         <%= form_for @plusone do |f| %>
           <%= f.hidden_field :user_id, :value => current_user.id %>
           <%= f.hidden_field :comment_id, :value => comment.id %>
+        <%end%>
         <%end%>
         <% if current_user %>
           <% if current_user == comment.user %>
@@ -57,9 +59,9 @@
         <%=raw comment.content%>
         </div>
       </div>
-
+<%if current_user%>
       <p id="plusones"><%= link_to '+'+(comment.plusones.length).to_s(), "#", :onclick=>"document.getElementById('#{comment.id}').getElementsByTagName('form')[0].submit()" %></p>
-
+<%end%>
       <div id='nested_comments_container'>
         <% if comment.ncomments.length > 0 %>
           <% comment.ncomments.each do |ncomment| %>

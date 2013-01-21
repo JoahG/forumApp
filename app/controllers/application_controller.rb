@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :redirect_to_home
   helper_method :render_body
+  helper_method :render_aboutme
   
   private
 
@@ -18,5 +19,11 @@ class ApplicationController < ActionController::Base
     require 'redcarpet'
     redcarpet = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new, {fenced_code_blocks: true})
     return redcarpet.render p.content
+  end
+
+  def render_aboutme(p)
+    require 'redcarpet'
+    redcarpet = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new, {fenced_code_blocks: true})
+    return redcarpet.render p
   end
 end
