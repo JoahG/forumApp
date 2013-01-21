@@ -8,7 +8,7 @@
 	<h1><%=@user.name%></h1><br>
 
 
-	<%if @user.sociallink != "http://"%>
+	<%if @user.sociallink && @user.sociallink != "http://"%>
 		<p id="user_social_link">
 			<%=link_to @user.sociallink, @user.sociallink%><br>
 		</p>
@@ -33,7 +33,7 @@
 	
 	<%end%></p>
 	<br>
-	<%if @user.aboutme.length != 0%>
+	<%if @user.aboutme && @user.aboutme.length != 0%>
 		<b>About Me:</b><br>
 		<%= raw render_aboutme(@user.aboutme) %>
 	<%end%>
