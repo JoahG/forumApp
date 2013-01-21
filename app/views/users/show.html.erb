@@ -16,19 +16,19 @@
 	
 
 <p id="user_social_icons">
-	<%if @user.linkedin != "http://linkedin.com/"%>
+	<%if @user.linkedin && @user.linkedin != "http://linkedin.com/"%>
 		<%=link_to image_tag("linkedin.png"), @user.linkedin%>
 	<%end%>
 
-	<%if @user.gplus != "http://plus.google.com"%>
+	<%if @user.gplus && @user.gplus != "http://plus.google.com"%>
 		<%=link_to image_tag("gplus.png"), @user.gplus%>
 	<%end%>
 
-	<%if @user.github != ""%>
+	<%if @user.github && @user.github != ""%>
 		<%=link_to image_tag("github.png"), "http://github.com/"+@user.github%>
 	<%end%>
 
-	<%if @user.twitter != ""%>
+	<%if @user.twitter && @user.twitter != ""%>
 		<%=link_to image_tag("twitter.png"), "https://twitter.com/"+@user.twitter%>
 	
 	<%end%></p>
