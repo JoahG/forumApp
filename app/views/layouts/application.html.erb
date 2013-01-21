@@ -75,7 +75,7 @@
                     </ul>
                   </li>
                   <li>
-                    <%=link_to pluralize(current_user.notifications.length, 'notification'), current_user %>
+                    <%=link_to pluralize(current_user.notifications.length, 'notification'), users_path+"/"+current_user.id.to_s()+"#tab3" %>
                   </li>
                 </ul>
               <%else%>
