@@ -97,7 +97,7 @@ small {
 }
 
 .comment_content {
-	width: 800px;
+	width: 770px;
 	float:left;
 	min-height: 100px;
 }
@@ -199,4 +199,24 @@ small {
 
 .post_author_pic {
 	border: 2px solid #0088cc;
+}
+
+#plusones a {
+	color: black;
+	text-decoration: none;
+	font-size: 20px;
+	text-align: right;
+	display: inline-block;
+	float: left;
+	position: relative;
+	color: black;
+	opacity: 0.2;
+	margin-top: -5px;
+	margin-left:5px;
+}
+
+#plusones a:hover{
+	text-decoration: none;
+	opacity: 0.4;
+	color:black;
 }

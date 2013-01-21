@@ -31,8 +31,11 @@
 <% if @post.comments.length > 0 %>
   <% @post.comments.each do |comment| %>
     <div class="well">
-      <div class="comment">
-
+      <div class="comment" id= <%=comment.id%> >
+        <%= form_for @plusone do |f| %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :comment_id, :value => comment.id %>
+        <%end%>
         <% if current_user %>
           <% if current_user == comment.user %>
             <%= image_tag avatar_url(comment.user, 76), :class => 'current_user_pic comment_avatar' %>
@@ -55,6 +58,7 @@
         </div>
       </div>
 
+      <p id="plusones"><%= link_to '+'+(comment.plusones.length).to_s(), "#", :onclick=>"document.getElementById('#{comment.id}').getElementsByTagName('form')[0].submit()" %></p>
 
       <div id='nested_comments_container'>
         <% if comment.ncomments.length > 0 %>

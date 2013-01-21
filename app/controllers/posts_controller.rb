@@ -16,6 +16,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @ncomment = Ncomment.new
+    @plusone = Plusone.new
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
