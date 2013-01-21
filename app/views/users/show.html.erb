@@ -10,8 +10,12 @@
 
 	<%if @user.sociallink && @user.sociallink.strip.length !=  0 && @user.sociallink != "http://"%>
 		<p id="user_social_link">
-			<%=link_to @user.sociallink, @user.sociallink%><br>
-		</p><br>
+		<% if @user.sociallink[0..6] == "http://" || @user.sociallink[0..7] == "https://" %>
+			<%=link_to @user.sociallink, @user.sociallink%>
+		<%else%>
+			<%=link_to @user.sociallink, "http://"+@user.sociallink%>
+		<%end%>
+		<br></p><br>
 	<%end%>
 	
 
