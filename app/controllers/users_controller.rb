@@ -1,4 +1,14 @@
 class UsersController < ApplicationController
+  def rank
+    @users = User.find(:all)
+    @users.sort! { |a,b| collect_plus(a) <=> collect_plus(b)}
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+    end
+  end
+
   def index
     @users = User.all
 
