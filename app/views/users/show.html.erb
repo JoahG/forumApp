@@ -8,7 +8,7 @@
 	<h1><%=@user.name%></h1><br>
 
 
-	<%if @user.sociallink && @user.sociallink != "http://"%>
+	<%if @user.sociallink && @user.sociallink.strip.length !=  0 || @user.sociallink != "http://"%>
 		<p id="user_social_link">
 			<%=link_to @user.sociallink, @user.sociallink%><br>
 		</p>
@@ -16,19 +16,19 @@
 	
 
 <p id="user_social_icons">
-	<%if @user.linkedin && @user.linkedin != ""%>
+	<%if @user.linkedin && @user.linkedin.strip.length !=  0%>
 		<%=link_to image_tag("linkedin.png"), @user.linkedin%>
 	<%end%>
 
-	<%if @user.gplus && @user.gplus != ""%>
+	<%if @user.gplus && @user.gplus.strip.length !=  0%>
 		<%=link_to image_tag("gplus.png"), @user.gplus%>
 	<%end%>
 
-	<%if @user.github && @user.github != ""%>
+	<%if @user.github && @user.github.strip.length !=  0%>
 		<%=link_to image_tag("github.png"), "http://github.com/"+@user.github%>
 	<%end%>
 
-	<%if @user.twitter && @user.twitter != ""%>
+	<%if @user.twitter && @user.twitter.strip.length !=  0%>
 		<%=link_to image_tag("twitter.png"), "https://twitter.com/"+@user.twitter%>
 	
 	<%end%></p>
