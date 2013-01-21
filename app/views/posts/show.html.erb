@@ -56,7 +56,7 @@
         <div class="inline comment_content">
            <p class="comment_info">Commented by <%= link_to comment.user.name, comment.user%>  <%= time_ago_in_words(comment.created_at) %> ago.<% if current_user %><% if current_user == comment.user || current_user.email == 'joahd@gbergfamily.com'%> - <%= link_to 'Delete', comment, method: :delete %><%end%><%end%>
            </p>
-        <%=raw comment.content%>
+        <%=raw render_body(comment)%>
         </div>
       </div>
 <%if current_user%>
