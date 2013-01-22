@@ -37,7 +37,7 @@
 
 <br>
 <% if @tcp && @tcc && @tcc.post %>
-	<%if @tcp.title && @tcc.post.title && @tcp.post %>
+	<%if @tcp.title && @tcc.post.title && @tcp.title %>
 		<div class="ranks_inline well rmargin">
 			<b>Most Commented Post</b><br>
 			<%= link_to @tcp.title, @tcp %>
