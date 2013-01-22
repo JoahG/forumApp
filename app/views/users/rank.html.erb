@@ -2,16 +2,16 @@
 <br>
 <div class="ranks_inline well rmargin">
 	<b>Most +1's Recieved</b>
-	<ol>
+	<ol class="ranks">
 	<% @users.each do |user| %>
-		<li><%= link_to user.name, user %></li>
+		<li><%= link_to user.name, user %><p class=" right-aligned"><%=collect_plus(user)%></p></li>
 	<%end%>
 </div>
 <div class="ranks_inline well lmargin">
 	<b>Most +1's Given</b>
-	<ol>
+	<ol class="ranks">
 	<% @rusers.each do |ruser| %>
-		<li><%= link_to ruser.name, ruser %></li>
+		<li><%= link_to ruser.name, ruser %><p class=" right-aligned"><%=ruser.plusones.length%></p></li>
 	<%end%>
 	</ol>
 </div>
@@ -20,17 +20,17 @@
 
 <div class="ranks_inline well rmargin">
 	<b>Most Posts</b>
-	<ol>
+	<ol class="ranks">
 	<% @mp.each do |mp| %>
-		<li><%= link_to mp.name, mp %></li>
+		<li><%= link_to mp.name, mp %><p class=" right-aligned"><%=collect_posts(mp)%></p></li>
 	<%end%>
 	</ol>
 </div>
 <div class="ranks_inline well lmargin">
 	<b>Most Comments</b>
-	<ol>
+	<ol class="ranks">
 	<% @mc.each do |mc| %>
-		<li><%= link_to mc.name, mc %></li>
+		<li><%= link_to mc.name, mc %><p class=" right-aligned"><%=collect_comments(mc)%></p></li>
 	<%end%>
 	</ol>
 </div>

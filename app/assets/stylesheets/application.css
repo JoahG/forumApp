@@ -251,3 +251,15 @@ small {
 .rmargin {
 	margin-right: 2.5%;
 }
+
+.right-aligned {
+	text-align: right;
+	width: 10%;
+	float:right;
+	margin-bottom:0px;
+}
+
+.ranks li {
+	width: 100%;
+	float:left;
+}

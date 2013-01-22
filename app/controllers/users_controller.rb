@@ -15,13 +15,13 @@ class UsersController < ApplicationController
     @tcc = Comment.find(:all)
     @tcc.sort! {|a,b| a.ncomments.length <=> b.ncomments.length}
     @tcc = @tcc.reverse[0]
-    
+
     @mc = User.find(:all)
-    @mc.sort! { |a,b| a.comments.length <=> b.comments.length }
+    @mc.sort! { |a,b| collect_comments(a) <=> collect_comments(b) }
     @mc = @mc.reverse[0..9]
 
     @mp = User.find(:all)
-    @mp.sort! { |a,b| a.posts.length <=> b.posts.length }
+    @mp.sort! { |a,b| collect_posts(a) <=> collect_posts(b) }
     @mp = @mp.reverse[0..9]
 
     respond_to do |format|

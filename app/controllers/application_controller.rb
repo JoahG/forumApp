@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   helper_method :render_body
   helper_method :render_aboutme
   helper_method :collect_plus
+  helper_method :collect_comments
+  helper_method :collect_posts
   
   private
 
@@ -36,5 +38,25 @@ class ApplicationController < ActionController::Base
       end
     end
     return p
+  end
+
+  def collect_comments(u)
+    p = 0
+    u.comments.each do |c|
+      if c.post
+        p += 1
+      end
+    end
+    return p
+  end
+
+  def collect_posts(u)
+    c = 0
+    u.posts.each do |p|
+      if p
+        c += 1
+      end
+    end
+    return c
   end
 end
