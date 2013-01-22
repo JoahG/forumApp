@@ -1,8 +1,8 @@
-<div class="hero-unit form"><h1>User Ranks</h1>
+<div class="hero-unit form"><h1>Stats</h1>
 <br>
 <div class="ranks_inline well rmargin">
 	<b>Most +1's Recieved</b>
-<ol>
+	<ol>
 	<% @users.each do |user| %>
 		<li><%= link_to user.name, user %></li>
 	<%end%>
@@ -15,4 +15,37 @@
 	<%end%>
 	</ol>
 </div>
+
+<br>
+
+<div class="ranks_inline well rmargin">
+	<b>Most Posts</b>
+	<ol>
+	<% @mp.each do |mp| %>
+		<li><%= link_to mp.name, mp %></li>
+	<%end%>
+	</ol>
+</div>
+<div class="ranks_inline well lmargin">
+	<b>Most Comments</b>
+	<ol>
+	<% @mc.each do |mc| %>
+		<li><%= link_to mc.name, mc %></li>
+	<%end%>
+	</ol>
+</div>
+
+<br>
+<% if @tcp && @tcc && @tcc.post %>
+	<%if @tcp.title && @tcc.post.title && @tcp.post %>
+		<div class="ranks_inline well rmargin">
+			<b>Most Commented Post</b><br>
+			<%= link_to @tcp.title, @tcp %>
+		</div>
+		<div class="ranks_inline well lmargin">
+			<b>Most Commented Comment</b><br>
+			<%= link_to "Comment on: "+@tcc.post.title, @tcc.post %>
+		</div>
+	<%end%>
+<%end%>
 </ul></div>

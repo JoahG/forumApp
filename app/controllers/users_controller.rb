@@ -2,13 +2,27 @@ class UsersController < ApplicationController
   def rank
     @users = User.find(:all)
     @users.sort! { |a,b| collect_plus(a) <=> collect_plus(b)}
-    @users = @users.reverse
-    @users = @users[0..9]
+    @users = @users.reverse[0..9]
 
     @rusers = User.find(:all)
     @rusers.sort! { |a,b| a.plusones <=> b.plusones }
-    @rusers = @rusers.reverse
-    @rusers = @rusers[0..9]
+    @rusers = @rusers.reverse[0..9]
+
+    @tcp = Post.find(:all)
+    @tcp.sort! { |a,b| a.comments.length <=> b.comments.length}
+    @tcp = @tcp.reverse[0]
+
+    @tcc = Comment.find(:all)
+    @tcc.sort! {|a,b| a.ncomments.length <=> b.ncomments.length}
+    @tcc = @tcc.reverse[0]
+    
+    @mc = User.find(:all)
+    @mc.sort! { |a,b| a.comments.length <=> b.comments.length }
+    @mc = @mc.reverse[0..9]
+
+    @mp = User.find(:all)
+    @mp.sort! { |a,b| a.posts.length <=> b.posts.length }
+    @mp = @mp.reverse[0..9]
 
     respond_to do |format|
       format.html
