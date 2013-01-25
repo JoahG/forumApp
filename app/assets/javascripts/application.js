@@ -37,4 +37,12 @@ $(document).ready(function(){
 		$(".underlay").fadeOut()
 		$(".overlay").fadeOut()
 	});
+	$(".dismiss-all").click(function(){
+		d = $(".dismiss").length
+		for (i=0;i<d;i++) {
+			($(".dismiss")[i]).click()
+			console.log(i)
+			console.log($(".dismiss")[i])
+		}
+	});
 });

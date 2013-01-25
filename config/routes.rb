@@ -13,6 +13,7 @@ ForumApp::Application.routes.draw do
       get 'make_not_admin'
       get 'make_mod'
       get 'make_not_mod'
+      get 'dismiss_all_notifications'
     end
   end
   

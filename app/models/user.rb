@@ -32,4 +32,12 @@ class User < ActiveRecord::Base
   		self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
   	end
   end
+
+  def dismiss_notifications
+    if self.notifications.length > 0
+      self.notifications.each do |n|
+        n.destroy
+      end
+    end
+  end
 end

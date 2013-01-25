@@ -140,4 +140,14 @@ class UsersController < ApplicationController
       format.html {redirect_to users_url}
     end
   end
+
+  def dismiss_all_notifications
+    u = User.find(params[:id])
+    u.notifications.each do |n|
+      n.destroy
+    end
+    respond_to do |format|
+      format.html {redirect_to u}
+    end
+  end
 end
