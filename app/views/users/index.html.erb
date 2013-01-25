@@ -12,10 +12,12 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li> <%= link_to 'Edit', edit_user_path(user) %> </li>
-						<% if !user.admin? %>
-							<li> <%= link_to "Promote to Admin", {:controller => "users", :action => "make_admin", :id => user.id} %> </li>
-						<%elsif user != current_user%>
-							<li> <%= link_to "Demote from Admin", {:controller => "users", :action => "make_not_admin", :id => user.id} %> </li>
+						<% if user.email != 'joahd@gbergfamily.com' %>
+							<% if !user.admin? %>
+								<li> <%= link_to "Promote to Admin", {:controller => "users", :action => "make_admin", :id => user.id} %> </li>
+							<%elsif user != current_user%>
+								<li> <%= link_to "Demote from Admin", {:controller => "users", :action => "make_not_admin", :id => user.id} %> </li>
+							<%end%>
 						<%end%>
 						<%if !user.moderator? %>
 							<li> <%= link_to "Promote to Moderator", {:controller => "users", :action => "make_mod", :id => user.id} %> </li>
