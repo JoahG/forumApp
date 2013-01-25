@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @users = @users.reverse[0..9]
 
     @rusers = User.find(:all)
-    @rusers.sort! { |a,b| a.plusones <=> b.plusones }
+    @rusers.sort! { |a,b| a.plusones.length <=> b.plusones.length }
     @rusers = @rusers.reverse[0..9]
 
     @tcp = Post.find(:all)
