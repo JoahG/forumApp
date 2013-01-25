@@ -273,3 +273,12 @@ small {
 	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
+
+ul.admin {
+	width: 550px;
+	margin:auto;
+}
+
+ul.admin li.admin-in {
+	height: 35px;
+}
