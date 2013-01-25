@@ -293,7 +293,7 @@ ul.admin li.admin-in {
 	position: absolute;
 	height: 100000%;
 	background-color: black;
-	opacity:0.2;
+	opacity:0.4;
 	margin-left: -200%;
 	margin-top: -100%;
 }
