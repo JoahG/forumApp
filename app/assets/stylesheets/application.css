@@ -324,3 +324,7 @@ ul.admin li.admin-in {
 #t-input {
 	height:200px;
 }
+
+.admin_alert {
+	color: red;
+}

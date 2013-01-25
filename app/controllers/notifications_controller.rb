@@ -4,7 +4,13 @@ class NotificationsController < ApplicationController
   end
 
   def create
-  	@notification = Notification.new(params[:comment])
+    User.all.each do |u|
+      Notification.create(:content => "<span class='admin_alert'>"+params[:notification][:content]+"</span>", :user_id => u.id)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to users_url }
+    end
   end
 
   def destroy

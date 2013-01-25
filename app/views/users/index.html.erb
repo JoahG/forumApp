@@ -30,7 +30,15 @@
 				</div>
 		</li>
 	<%end%>
-</ul></div>
+</ul><br><br>
+<div class="center">
+<%=form_for @notification do |f|%>
+	&lt;span class="admin_alert"&gt;<%=f.text_field :content%>&nbsp;&lt;/span&gt;<br>
+	<%=f.submit "Broadcast Notification", :class => 'btn' %>
+<%end%>
+</div>
+
+</div>
 <%else%>
 	<%redirect_to_home("You do not have permissions to do this") %>
 <% end %><%else%>
