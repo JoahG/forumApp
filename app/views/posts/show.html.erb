@@ -1,3 +1,14 @@
+<div class="underlay"></div>
+<div class="overlay hero-unit">
+  <%=image_tag "rem.png", :class => "close_overlay"%>
+  <form accept-charset="UTF-8" action="" class="edit_comment" id="edit_comment_96" method="post">
+  <div class="field">
+      <div id="wmd-button-bar"></div>
+      <textarea cols="40" id="wmd-input" name="comment[content]" placeholder="Comment Content Here" rows="20">test123</textarea>
+  </div>
+  <div class="actions"><input class="btn" name="commit" type="submit" value="Update Comment">&nbsp; &nbsp;&nbsp;<span class="note"> Comments are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span></div></form>
+</div>
+
 <div id="post_nav">
   <a onclick="goToByScroll('top')">&uarr;</a><br>
   –<br>
@@ -31,7 +42,7 @@
 <% if @post.comments.length > 0 %>
   <% @post.comments.each do |comment| %>
     <div class="well">
-      <div class="comment" id= <%=comment.id%> >
+      <div class="comment" >
         <% if current_user %>
         <%= form_for @plusone do |f| %>
           <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -54,9 +65,9 @@
 
 
         <div class="inline comment_content">
-           <p class="comment_info">Commented by <%= link_to comment.user.name, comment.user%> <span class="user_pluses">(+<%=collect_plus(comment.user)%>)</span> <%= time_ago_in_words(comment.created_at) %> ago.<% if current_user %><% if current_user == comment.user || current_user.admin? || current_user.moderator?%> - <%= link_to 'Delete', comment, method: :delete %><%end%><%end%>
+           <p class="comment_info">Commented by <%= link_to comment.user.name, comment.user%> <span class="user_pluses">(+<%=collect_plus(comment.user)%>)</span> <%= time_ago_in_words(comment.created_at) %> ago.<% if current_user %><% if current_user == comment.user || current_user.admin? || current_user.moderator?%> - <%= link_to 'Delete', comment, method: :delete %> | <a class="comment_edit">Edit</a><%end%><%end%>
            </p>
-        <%=raw render_body(comment)%>
+        <div id= <%=comment.id%>><div class="comment_raw"><%=comment.content%></div><%=raw render_body(comment)%></div>
         </div>
       </div>
 <%if current_user%>

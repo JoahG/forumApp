@@ -18,3 +18,23 @@
 function goToByScroll(id){
         $('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
 }
+
+$(document).ready(function(){
+	$(".comment_edit").click(function(){
+		$(".underlay").fadeIn()
+		$(".overlay").fadeIn()
+		c = $(this).parent().parent().find("div")
+		cid = c.attr("id")
+		$(".overlay form").attr("action", "/comments/"+cid.toString(10))
+		$(".overlay form").attr("id", "edit_comment_"+cid.toString(10))
+		$(".overlay form textarea").text(c.find(".comment_raw").text())
+	});
+	$(".close_overlay").click(function(){
+		$(".underlay").fadeOut()
+		$(".overlay").fadeOut()
+	});
+	$(".underlay").click(function(){
+		$(".underlay").fadeOut()
+		$(".overlay").fadeOut()
+	});
+});

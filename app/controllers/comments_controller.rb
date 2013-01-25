@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => [:update]
   def new
   	@comment = Comment.new
 
@@ -8,11 +9,38 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit 
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+
+    if current_user
+      if current_user.admin? || current_user.moderator? || current_user == @comment.user
+        respond_to do |format|
+          if @comment.update_attributes(params[:comment])
+            @comment.save
+            format.html { redirect_to @comment.post, notice: 'Comment was successfully updated.' }
+            format.json { head :no_content }
+          else
+            format.html { render action: "edit" }
+            format.json { render json: @comment.errors, status: :unprocessable_entity }
+          end
+        end
+      else
+        redirect_to @comment.post
+      end
+    else
+      redirect_to @comment.post
+    end
+  end
+
   def show
     @comment = Comment.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {redirect_to @comment.post}
       format.json { render json: @comment }
     end
   end

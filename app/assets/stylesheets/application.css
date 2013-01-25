@@ -282,3 +282,37 @@ ul.admin {
 ul.admin li.admin-in {
 	height: 35px;
 }
+
+.comment_edit {
+	cursor: pointer;
+}
+
+.underlay {
+	display:none;
+	width: 1000%;
+	position: absolute;
+	height: 500%;
+	background-color: black;
+	opacity:0.2;
+	margin-left: -200%;
+	margin-top: -100%;
+}
+
+.overlay.hero-unit {
+	display:none;
+	background-color: white;
+	z-index: 100000000;
+	position: fixed;
+	margin-top: 50px;
+}
+
+.close_overlay {
+	position:absolute;
+	top:-5px;
+	right:-5px;
+	cursor:pointer;
+}
+
+.comment_raw {
+	display:none;
+}
