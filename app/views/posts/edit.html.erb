@@ -1,4 +1,4 @@
-<% if current_user %><% if current_user == @post.user || current_user.email == 'joahd@gbergfamily.com' %>
+<% if current_user %><% if current_user == @post.user || current_user.admin? || current_user.moderator? %>
 <div id="hero-unit form">
 <h1>Editing post</h1>
 

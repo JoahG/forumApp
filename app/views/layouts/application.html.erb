@@ -36,7 +36,7 @@
                   <a href="/stats">Stats</a>
                 </li>
                 <% if current_user %>
-                  <% if current_user.email == 'joahd@gbergfamily.com' %>
+                  <% if current_user.admin? %>
                     <li class="">
                       <%= link_to "Admin Page", users_path %>
                     </li>

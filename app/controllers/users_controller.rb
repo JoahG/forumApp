@@ -104,4 +104,40 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def make_admin
+    u = User.find(params[:id])
+    u.update_attribute(:admin, true)
+
+    respond_to do |format|
+      format.html {redirect_to users_url}
+    end
+  end
+
+  def make_not_admin
+    u = User.find(params[:id])
+    u.update_attribute(:admin, false)
+
+    respond_to do |format|
+      format.html {redirect_to users_url}
+    end
+  end
+
+  def make_mod
+    u = User.find(params[:id])
+    u.update_attribute(:moderator, true)
+
+    respond_to do |format|
+      format.html {redirect_to users_url}
+    end
+  end
+
+  def make_not_mod
+    u = User.find(params[:id])
+    u.update_attribute(:moderator, false)
+
+    respond_to do |format|
+      format.html {redirect_to users_url}
+    end
+  end
 end

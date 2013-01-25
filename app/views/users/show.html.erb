@@ -1,11 +1,11 @@
 <br><br><div class="left user_left">      <% if current_user == @user %>
         <%= image_tag avatar_url(@user, 196), :class => 'current_user_pic comment_avatar' %>
-      <% elsif @user.email == 'joahd@gbergfamily.com' %>
+      <% elsif @user.admin? %>
         <%= image_tag avatar_url(@user, 196), :class => 'admin_pic comment_avatar' %>
       <%else%>
         <%= image_tag avatar_url(@user, 196), :class => 'comment_avatar' %>
       <%end%><br>
-	<h1><%=@user.name%> <span class="user_pluses">+<%=collect_plus(@user)%></span></h1><br>
+	<h1><%=@user.name%> <span class="user_pluses">+<%=collect_plus(@user)%></span></h1><%if @user.admin?%><mark class="user-role">admin</mark><%end%><%if @user.moderator?%>&nbsp;<mark class="user-role">moderator</mark><br><%end%><br>
 
 
 	<%if @user.sociallink && @user.sociallink.strip.length !=  0 && @user.sociallink != "http://"%>
@@ -48,7 +48,7 @@
   <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab">Post Activity</a></li>
     <li><a href="#tab2" data-toggle="tab">Comment Activity</a></li>
-    <%if current_user%><%if current_user == @user || current_user.email == "joahd@gbergfamily.com" %><li><a href="#tab3" data-toggle="tab">Notifications</a></li><%end%><%end%>
+    <%if current_user%><%if current_user == @user || current_user.admin? %><li><a href="#tab3" data-toggle="tab">Notifications</a></li><%end%><%end%>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
@@ -80,7 +80,7 @@
 			<li><em>[No comments by this user]</em></li>
 		<%end%>
 	</ul>
-    </div> <%if current_user%><%if current_user == @user || current_user.email == "joahd@gbergfamily.com" %>
+    </div> <%if current_user%><%if current_user == @user || current_user.admin? %>
     <div class="tab-pane" id="tab3">
       <ul><%if @user.notifications.length > 0 %>
 				<%@user.notifications.reverse.each do |n|%>

@@ -1,4 +1,4 @@
-<% if current_user %><% if current_user == @user || current_user.email == 'joahd@gbergfamily.com' %>
+<% if current_user %><% if current_user == @user || current_user.admin? %>
 <div class="hero-unit form">
 <h1>Edit Account</h1>
 

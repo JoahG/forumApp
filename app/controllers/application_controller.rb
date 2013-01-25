@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :collect_plus
   helper_method :collect_comments
   helper_method :collect_posts
-  
+
   private
 
   def redirect_to_home(msg)

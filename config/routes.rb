@@ -4,7 +4,14 @@ ForumApp::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   get "stats" => "users#rank", :as => "stats"
   root :to => "posts#index"
-  resources :users
+  resources :users do 
+    member do
+      get 'make_admin'
+      get 'make_not_admin'
+      get 'make_mod'
+      get 'make_not_mod'
+    end
+  end
   resources :sessions
   resources :posts
   resources :comments
