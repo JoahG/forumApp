@@ -132,7 +132,7 @@ small {
 	margin-left:42px !important;
 }
 
-#wmd-input {
+#wmd-input, #t-input {
 	width: 800px !important;
 }
 
@@ -303,16 +303,24 @@ ul.admin li.admin-in {
 	background-color: white;
 	z-index: 100000000;
 	position: fixed;
-	margin-top: 50px;
+	margin-top: 150px;
+	text-align: center
 }
 
 .close_overlay {
 	position:absolute;
-	top:-5px;
-	right:-5px;
+	top:-7px;
+	right:-7px;
 	cursor:pointer;
+	background-color: white;
+	padding:4px;
+	border-radius: 14px;
 }
 
 .comment_raw {
 	display:none;
+}
+
+#t-input {
+	height:200px;
 }
