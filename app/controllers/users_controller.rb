@@ -32,9 +32,9 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @posts = Post.all
-    @comments = Comment.all
-    @ncomments = Ncomment.all
+    @posts = Post.all.reverse[0..9]
+    @comments = Comment.all.reverse[0..9]
+    @ncomments = Ncomment.all.reverse[0..9]
     @notification = Notification.new
     respond_to do |format|
       format.html # index.html.erb
