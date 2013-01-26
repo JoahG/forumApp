@@ -1,6 +1,16 @@
+<div class="admin-nav">
+	Jump To...<br>
+	<a onclick="goToByScroll('users')">Users</a><br>
+	<a onclick="goToByScroll('posts')">Posts</a><br>
+	<a onclick="goToByScroll('comments')">Comments</a><br>
+	<a onclick="goToByScroll('ncomments')">NComments</a><br>
+	<a onclick="goToByScroll('broadcast')">Broadcast</a>
+</div>
+
 <%if current_user%><% if current_user.admin? %>
 <div class="hero-unit"><h1 class="center">Admin Control Center</h1>
 <br>
+<div id="users"></div>
 <div class="well">
 	<h2 class="center">All Users</h2>
 <ul class="no-lst admin">
@@ -33,7 +43,7 @@
 		</li>
 	<%end%>
 </ul></div>
-
+<div id="posts"></div>
 <div class="center well">
 	<h2>Recent Posts</h2>
 	<ul class="no-lst admin">
@@ -42,7 +52,7 @@
 		<%end%>
 	</ul>
 </div>
-
+<div id="comments"></div>
 <div class="center well">
 	<h2>Recent Comments</h2>
 	<ul class="no-lst admin">
@@ -51,7 +61,7 @@
 		<%end%>
 	</ul>
 </div>
-
+<div id="ncomments"></div>
 <div class="center well">
 	<h2>Recent Nested Comments</h2>
 	<ul class="no-lst admin">
@@ -60,7 +70,7 @@
 		<%end%>
 	</ul>
 </div>
-
+<div id="broadcast"></div>
 <div class="well center">
 	<h2>Admin Broadcast Notification</h2>
 <%=form_for @notification do |f|%>
