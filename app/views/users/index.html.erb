@@ -1,6 +1,8 @@
 <%if current_user%><% if current_user.admin? %>
-<div class="hero-unit"><h1 class="center">Admin: All Users</h1>
+<div class="hero-unit"><h1 class="center">Admin Control Center</h1>
 <br>
+<div class="well">
+	<h2 class="center">All Users</h2>
 <ul class="no-lst admin">
 	<% @users.each do |user| %>
 		<li class="admin-in">
@@ -30,8 +32,37 @@
 				</div>
 		</li>
 	<%end%>
-</ul><br><br>
-<div class="center">
+</ul></div>
+
+<div class="center well">
+	<h2>Recent Posts</h2>
+	<ul class="no-lst admin">
+		<% @posts.reverse[0..9].each do |post|%>
+			<li><%=link_to post.title, post%> by <%=link_to post.user.name, post.user%></li>
+		<%end%>
+	</ul>
+</div>
+
+<div class="center well">
+	<h2>Recent Comments</h2>
+	<ul class="no-lst admin">
+		<% @comments.reverse[0..9].each do |comment|%>
+			<li>"<%=link_to comment.content, comment.post%>"</li>
+		<%end%>
+	</ul>
+</div>
+
+<div class="center well">
+	<h2>Recent Nested Comments</h2>
+	<ul class="no-lst admin">
+		<% @ncomments.reverse[0..9].each do |ncomment|%>
+			<li>"<%= ncomment.content %>"</li>
+		<%end%>
+	</ul>
+</div>
+
+<div class="well center">
+	<h2>Admin Broadcast Notification</h2>
 <%=form_for @notification do |f|%>
 	&lt;span class="admin_alert"&gt;<%=f.text_field :content%>&nbsp;&lt;/span&gt;<br>
 	<%=f.submit "Broadcast Notification", :class => 'btn' %>
