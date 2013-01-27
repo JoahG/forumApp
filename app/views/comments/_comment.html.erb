@@ -32,7 +32,7 @@
         <div id="ncomments">
         <% if comment.ncomments.length > 0 %>
           <% comment.ncomments.each do |ncomment| %>
-            <p id=<%=ncomment.id%>><% if current_user %><% if current_user == ncomment.user || current_user.admin? || current_user.moderator? || current_user == ncomment.comment.user%><%= link_to '×', ncomment, method: :delete,:remote => true, :class => 'close' %><%end%><%end%> <%=link_to ncomment.user.name, ncomment.user%>:&nbsp;<%=ncomment.content%></p>
+            <p id=<%=ncomment.id%>><% if current_user %><% if current_user == ncomment.user || current_user.admin? || current_user.moderator? || current_user == ncomment.comment.user%><%= link_to '×', ncomment, method: :delete, "data-remote" => "true", :class => 'close' %><%end%><%end%> <%=link_to ncomment.user.name, ncomment.user%>:&nbsp;<%=ncomment.content%></p>
           <%end%>
         <%end%>
       </div>
