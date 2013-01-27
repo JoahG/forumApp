@@ -1,0 +1,1 @@
+<p><% if current_user %><% if current_user == ncomment.user || current_user.admin? || current_user.moderator? || current_user == ncomment.comment.user%><%= link_to '×', ncomment, method: :delete, :class => 'close' %><%end%><%end%> <%=link_to ncomment.user.name, ncomment.user%>:&nbsp;<%=ncomment.content%></p>

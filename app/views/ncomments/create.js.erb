@@ -1,0 +1,4 @@
+container = $("#<%= escape_javascript @ncomment.comment.id.to_s %>").parent().find("#nested_comments_container");
+container.find("#ncomments").append("<div class='hidden'><%= escape_javascript render :partial => 'ncomment', :object => @ncomment%></div>");
+container.find(".hidden").fadeIn(500)
+container.find("form")[0].reset();

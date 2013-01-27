@@ -27,7 +27,7 @@ $(document).ready(function(){
 		cid = c.attr("id")
 		$(".overlay form").attr("action", "/comments/"+cid.toString(10))
 		$(".overlay form").attr("id", "edit_comment_"+cid.toString(10))
-		$(".overlay form textarea").text(c.find(".comment_raw").text())
+		$(".overlay form textarea").html(c.find(".comment_raw").text())
 	});
 	$(".close_overlay").click(function(){
 		$(".underlay").fadeOut()
@@ -45,4 +45,5 @@ $(document).ready(function(){
 			console.log($(".dismiss")[i])
 		}
 	});
+	$(".overlay form .actions input").click(function(){$(".close_overlay").click()})
 });

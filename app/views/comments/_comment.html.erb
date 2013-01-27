@@ -28,14 +28,16 @@
           <p id="plusones" class=<%=comment.id%>><%= f.submit '+'+(comment.plusones.length).to_s(), :class=> "nostyle"%>
         <%end%>
         <%end%>
-      <div id='nested_comments_container'>
+      <div id='nested_comments_container' id= <%=comment.id%>>
+        <div id="ncomments">
         <% if comment.ncomments.length > 0 %>
           <% comment.ncomments.each do |ncomment| %>
             <p><% if current_user %><% if current_user == ncomment.user || current_user.admin? || current_user.moderator? || current_user == ncomment.comment.user%><%= link_to '×', ncomment, method: :delete, :class => 'close' %><%end%><%end%> <%=link_to ncomment.user.name, ncomment.user%>:&nbsp;<%=ncomment.content%></p>
           <%end%>
         <%end%>
+      </div>
         <% if current_user %>
-          <%= form_for Ncomment.new,  :html => {:class => 'navbar-form'} do |f|%>
+          <%= form_for Ncomment.new, :remote => true, :html => {:class => 'navbar-form'} do |f|%>
             <%= f.text_field :content, :placeholder => "Comment...." %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.hidden_field :comment_id, :value => comment.id %>

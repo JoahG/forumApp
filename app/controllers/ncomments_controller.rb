@@ -25,11 +25,7 @@ class NcommentsController < ApplicationController
         if @ncomment.user != @ncomment.comment.user
           Notification.create(:content => "<a href='/users/#{@ncomment.user.id}'>#{@ncomment.user.name}</a> commented on your comment on '<a href='/posts/#{@ncomment.comment.post.id}##{@ncomment.comment.id}'>#{@ncomment.comment.post.title}</a>'", :user_id => @ncomment.comment.user.id)
         end
-        format.html { redirect_to @ncomment.comment.post }
-        format.json { render json: @ncomment, status: :created, location: @ncomment }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @ncomment.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
