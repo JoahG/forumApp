@@ -1,0 +1,1 @@
+$(".comment#<%=escape_javascript @ncomment.comment.id.to_s%>").parent().find("#nested_comments_container").find("#ncomments").find("#<%=escape_javascript @ncomment.id.to_s%>").fadeOut(500)

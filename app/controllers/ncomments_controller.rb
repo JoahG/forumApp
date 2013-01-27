@@ -32,12 +32,10 @@ class NcommentsController < ApplicationController
 
   def destroy
     @ncomment = Ncomment.find(params[:id])
-    p = @ncomment.comment.post
     @ncomment.destroy
 
     respond_to do |format|
-      format.html { redirect_to p }
-      format.json { head :no_content }
+      format.js
     end
   end
 end
