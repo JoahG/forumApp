@@ -15,12 +15,10 @@ class NotificationsController < ApplicationController
 
   def destroy
     @notification = Notification.find(params[:id])
-    p = @notification.user
     @notification.destroy
 
     respond_to do |format|
-      format.html { redirect_to p }
-      format.json { head :no_content }
+      format.js
     end
   end
 end
