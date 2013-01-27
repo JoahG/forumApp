@@ -1,0 +1,4 @@
+$("p#plusones.<%= escape_javascript @plusone.comment.id.to_s %> input").fadeOut(200, function(){
+	$(this).attr("value","+<%= escape_javascript @plusone.comment.plusones.length.to_s %>")
+	$(this).fadeIn(200)
+})

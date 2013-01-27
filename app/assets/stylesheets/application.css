@@ -201,7 +201,16 @@ small {
 	border: 2px solid #0088cc;
 }
 
-#plusones a {
+#plusones input {
+	display:block;
+    background: none;
+    cursor: pointer;
+    -webkit-box-align:stretch;
+    box-sizing: content-box;
+    vertical-align: baseline;
+    white-space: normal;
+    border: none;
+    padding: 0px;
 	color: black;
 	text-decoration: none;
 	font-size: 20px;
@@ -209,13 +218,12 @@ small {
 	display: inline-block;
 	float: left;
 	position: relative;
-	color: black;
 	opacity: 0.2;
 	margin-top: -5px;
 	margin-left:5px;
 }
 
-#plusones a:hover{
+#plusones input:hover{
 	text-decoration: none;
 	opacity: 0.4;
 	color:black;
