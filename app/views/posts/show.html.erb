@@ -40,7 +40,7 @@
 
 <% if @post.comments.length > 0 %><div id="comments_container">
   <% @post.comments.each do |comment| %>
-    <%= render :partial => 'comment', :object => comment%>
+    <%= render :partial => '/comments/comment', :object => comment%>
   <%end%>
 </div><%end%>
 
