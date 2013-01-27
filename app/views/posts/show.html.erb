@@ -38,64 +38,15 @@
 
 
 
-<% if @post.comments.length > 0 %>
+<% if @post.comments.length > 0 %><div id="comments_container">
   <% @post.comments.each do |comment| %>
-    <div class="well">
-      <div class="comment" id= <%=comment.id%> >
-        <% if current_user %>
-          <% if current_user == comment.user %>
-            <%= image_tag avatar_url(comment.user, 76), :class => 'current_user_pic comment_avatar' %>
-          <% end %>
-        <%end%>
-      <% if comment.post.user == comment.user && current_user != comment.user %>
-        <%= image_tag avatar_url(comment.user, 76), :class => 'post_author_pic comment_avatar' %>
-      <%elsif comment.user.admin? && current_user != comment.user%>
-        <%= image_tag avatar_url(comment.user, 76), :class => 'admin_pic comment_avatar' %>
-        <%elsif current_user != comment.user%>
-        <%= image_tag avatar_url(comment.user, 76), :class => 'comment_avatar' %>
-      <%end%>
-
-
-
-        <div class="inline comment_content">
-           <p class="comment_info">Commented by <%= link_to comment.user.name, comment.user%> <span class="user_pluses">(+<%=collect_plus(comment.user)%>)</span> <%= time_ago_in_words(comment.created_at) %> ago.<% if current_user %><% if current_user == comment.user || current_user.admin? || current_user.moderator?%> - <%= link_to 'Delete', comment, method: :delete %> | <a class="comment_edit">Edit</a><%end%><%end%>
-           </p>
-        <div id= <%=comment.id%>><div class="comment_raw"><%=comment.content%></div><%=raw render_body(comment)%></div>
-        </div>
-      </div>
-              <% if current_user %>
-        <%= form_for @plusone, :remote => true do |f| %>
-          <%= f.hidden_field :user_id, :value => current_user.id %>
-          <%= f.hidden_field :comment_id, :value => comment.id %>
-          <p id="plusones" class=<%=comment.id%>><%= f.submit '+'+(comment.plusones.length).to_s(), :class=> "nostyle"%>
-        <%end%>
-        <%end%>
-      <div id='nested_comments_container'>
-        <% if comment.ncomments.length > 0 %>
-          <% comment.ncomments.each do |ncomment| %>
-            <p><% if current_user %><% if current_user == ncomment.user || current_user.admin? || current_user.moderator? || current_user == ncomment.comment.user%><%= link_to '×', ncomment, method: :delete, :class => 'close' %><%end%><%end%> <%=link_to ncomment.user.name, ncomment.user%>:&nbsp;<%=ncomment.content%></p>
-          <%end%>
-        <%end%>
-        <% if current_user %>
-          <%= form_for @ncomment,  :html => {:class => 'navbar-form'} do |f|%>
-            <%= f.text_field :content, :placeholder => "Comment...." %>
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-            <%= f.hidden_field :comment_id, :value => comment.id %>
-            <%= f.submit "Comment", :class => 'btn'%> 
-        <% end %>
-        <%else%>
-          <span class="spalert">You have to be signed in to post comments.</span>
-      <%end%>
-    </div>
-  </div>
-
+    <%= render :partial => 'comment', :object => comment%>
   <%end%>
-
-<%end%>
+</div><%end%>
 
 <%if current_user %>
 
-<%= form_for(@comment) do |f| %>
+<%= form_for @comment, :remote => true do |f| %>
 <div class="well">
   <% if @comment.errors.any? %>
     <div id="error_explanation">

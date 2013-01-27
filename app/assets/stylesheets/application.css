@@ -351,3 +351,7 @@ ul.admin li.admin-in {
 .admin-nav a {
 	cursor: pointer;
 }
+
+.hidden {
+	display:none;
+}

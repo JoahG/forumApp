@@ -53,11 +53,7 @@ class CommentsController < ApplicationController
         if @comment.user != @comment.post.user
           Notification.create(:content => "<a href='/users/#{@comment.user.id}'>#{@comment.user.name}</a> commented on your post '<a href='/posts/#{@comment.post.id}'>#{@comment.post.title}</a>'", :user_id => @comment.post.user.id)
         end
-        format.html { redirect_to @comment.post }
-        format.json { render json: @comment, status: :created, location: @comment }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
