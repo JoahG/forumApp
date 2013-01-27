@@ -18,7 +18,7 @@
         <div class="inline comment_content">
            <p class="comment_info">Commented by <%= link_to comment.user.name, comment.user%> <span class="user_pluses">(+<%=collect_plus(comment.user)%>)</span> <%= time_ago_in_words(comment.created_at) %> ago.<% if current_user %><% if current_user == comment.user || current_user.admin? || current_user.moderator?%> - <%= link_to 'Delete', comment, method: :delete %> | <a class="comment_edit">Edit</a><%end%><%end%>
            </p>
-        <div id= <%=comment.id%>><div class="comment_raw"><%=comment.content%></div><%=raw render_body(comment)%></div>
+        <div id= <%=comment.id%>><div class="comment_raw"><%=comment.content%></div><div class="comment_text"><%=raw render_body(comment)%></div></div>
         </div>
       </div>
               <% if current_user %>

@@ -20,7 +20,7 @@ function goToByScroll(id){
 }
 
 $(document).ready(function(){
-	$(".comment_edit").click(function(){
+	$(".comment_edit").live("click", function(){
 		$(".underlay").fadeIn()
 		$(".overlay").fadeIn()
 		c = $(this).parent().parent().find("div")
