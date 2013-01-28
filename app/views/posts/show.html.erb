@@ -29,7 +29,7 @@
       <%= image_tag avatar_url(@post.user, 76), :class => 'post_author_pic' %>
       <%end%>
       <br><%= link_to @post.user.name, @post.user%> <span class="user_pluses">(+<%=collect_plus(@post.user)%>)</span> <br>
-      <%if @post.user.admin? || @post.user.moderator?%><%if @post.user.admin?%><mark class="user-role">admin</mark><%end%><%if @post.user.moderator?%>&nbsp;<mark class="user-role">moderator</mark><br><%end%><%end%>
+      <%if @post.user.admin? || @post.user.moderator?%><%if @post.user.admin?%><mark class="user-role">admin</mark><%end%><%if @post.user.moderator?%>&nbsp;<mark class="user-role">moderator</mark><%end%><br><%end%>
        <%= time_ago_in_words(@post.created_at) %> ago <br><%= @post.created_at.strftime("%b. %d %Y") %><br><small><%if current_user%><a href="#bottom">Comment</a><%end%> <% if current_user %><%if current_user == @post.user || current_user.admin? || current_user.moderator? %>| <%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><%end%><%end%></small> </p>
   </div>
   <div class="inline post_content">
