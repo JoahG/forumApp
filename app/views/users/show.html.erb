@@ -176,7 +176,7 @@
 					<li>
 						<% if e.class.to_s == "Ncomment" %>
 							<%if e.comment && e.comment.post && e.comment.post.title %>
-								Commented on a comment on <%= link_to e.comment.post.title, e.comment.post %> <%= time_ago_in_words(e.created_at) %> ago.
+								Commented on <%= link_to "a comment", "/posts/"+e.comment.post.id.to_s+"#"+e.comment.id.to_s %> on <%= link_to e.comment.post.title, e.comment.post %> <%= time_ago_in_words(e.created_at) %> ago.
 								<% unless e == @events[-1] %>
 									<hr>
 								<%end%>
