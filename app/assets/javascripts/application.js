@@ -46,4 +46,8 @@ $(document).ready(function(){
 		}
 	});
 	$(".overlay form .actions input").click(function(){$(".close_overlay").click()})
+	$(".pagination a").live("click", function() {
+		$.get(this.href, null, null, "script")
+		return false;
+	});
 });
