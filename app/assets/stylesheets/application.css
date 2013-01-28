@@ -358,3 +358,7 @@ ul.admin li.admin-in {
 .hidden {
 	display:none;
 }
+
+.pagination {
+	text-align: center;
+}
