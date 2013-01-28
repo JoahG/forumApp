@@ -83,7 +83,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
+    @events = ((@user.posts.all + @user.comments.all + @user.ncomments.all).sort_by { |obj| obj.created_at }).reverse[0..19]
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }

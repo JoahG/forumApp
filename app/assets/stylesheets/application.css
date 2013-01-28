@@ -179,10 +179,12 @@ small {
 
 .user_tabs {
 	width: 680px;
+	margin-left:250px;
 }
 
 .user_left {
-	max-width: 220px;
+	max-width: 250px;
+	position: fixed
 }
 
 .user_tabs ul, ul.no-lst {

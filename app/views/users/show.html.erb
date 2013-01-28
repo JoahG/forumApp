@@ -9,17 +9,16 @@
 
 
 	<%if @user.sociallink && @user.sociallink.strip.length !=  0 && @user.sociallink != "http://"%>
-		<p id="user_social_link">
+		<span id="user_social_link">
 		<% if @user.sociallink[0..6] == "http://" || @user.sociallink[0..7] == "https://" %>
 			<%=link_to @user.sociallink, @user.sociallink%>
 		<%else%>
 			<%=link_to @user.sociallink, "http://"+@user.sociallink%>
-		<%end%>
-		<br></p><br>
+		<%end%></span> &nbsp;&nbsp;
 	<%end%>
 	
 
-<p id="user_social_icons">
+<span id="user_social_icons">
 	<%if @user.linkedin && @user.linkedin.strip.length !=  0%>
 		<%=link_to image_tag("linkedin.png"), @user.linkedin%>
 	<%end%>
@@ -35,7 +34,9 @@
 	<%if @user.twitter && @user.twitter.strip.length !=  0%>
 		<%=link_to image_tag("twitter.png"), "https://twitter.com/"+@user.twitter%>
 	
-	<%end%></p>
+	<%end%></span>
+
+<br>
 	<br>
 	<%if @user.aboutme && @user.aboutme.length != 0%>
 		<b>About Me:</b><br>
@@ -46,12 +47,13 @@
 	</div>
 <div class="tabbable left user_tabs">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Post Activity</a></li>
+  	<li class="active"><a href="#tab4" data-toggle="tab">Recent Activity</a></li>
+    <li><a href="#tab1" data-toggle="tab">Post Activity</a></li>
     <li><a href="#tab2" data-toggle="tab">Comment Activity</a></li>
     <%if current_user%><%if current_user == @user || current_user.admin? %><li><a href="#tab3" data-toggle="tab">Notifications</a></li><%end%><%end%>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
+    <div class="tab-pane" id="tab1">
       <ul><%if @user.posts.length > 0 %>
 				<% @user.posts.reverse.each do |post| %>
 					<% if post && post.title && post.created_at%>
@@ -94,6 +96,16 @@
 			<li><em>No Notifications!</em></li>
 		<%end%><%end%><%end%>
 	</ul>
+	<div class="tab-pane active" id="tab4">
+      <ul>
+		<% @events.each do |e| %>
+			<li><% if e.class.to_s == "Ncomment" %><%if e.comment && e.comment.post && e.comment.post.title %>Commented on a comment on <%= link_to e.comment.post.title, e.comment.post %> <%= time_ago_in_words(e.created_at) %> ago.<% unless e == @events[-1] %><hr><%end%><%end%>
+				<% elsif e.class.to_s.to_s == "Comment" %><%if e.post && e.post.title %>Commented on <%= link_to e.post.title, e.post %> <%= time_ago_in_words(e.created_at) %> ago.<% unless e == @events[-1] %><hr><%end%><%end%>
+				<% elsif e.class.to_s == "Post" %> <% if e && e.title %>Posted <%= link_to e.title, e %> <%= time_ago_in_words(e.created_at) %> ago. <% unless e == @events[-1] %><hr><%end%><%end%><%end%></li>
+		<%end%>
+		</ul>
     </div>
+    </div>
+    
   </div>
 </div>
