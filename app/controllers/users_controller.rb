@@ -36,6 +36,8 @@ class UsersController < ApplicationController
     @comments = Comment.all.reverse[0..9]
     @ncomments = Ncomment.all.reverse[0..9]
     @notification = Notification.new
+    @forum = Forum.new
+    @forums = Forum.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }

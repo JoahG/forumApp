@@ -20,6 +20,13 @@
     <div id="wmd-button-bar"></div>
     <%= f.text_area :content, :id => 'wmd-input', :placeholder => "Post Content Here" %>
   </div>
+  <div class="field">
+    Forum: <select name="post[forum_id]">
+      <% @forums.each do |forum| %>
+        <option value="<%=forum.id%>"><%=forum.title%></option>
+      <%end%>
+    </select>
+  </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="actions">
     <%= f.submit(:class => 'btn') %>&nbsp; &nbsp;&nbsp;<span class="note"> Posts are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span>

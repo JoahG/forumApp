@@ -23,4 +23,5 @@ ForumApp::Application.routes.draw do
   resources :ncomments
   resources :notifications
   resources :plusones
+  resources :forums
 end

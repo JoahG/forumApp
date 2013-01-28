@@ -1,10 +1,12 @@
 <div class="admin-nav">
 	Jump To...<br>
 	<a onclick="goToByScroll('users')">Users</a><br>
+	<a onclick="goToByScroll('forums')">Forums</a><br>
 	<a onclick="goToByScroll('posts')">Posts</a><br>
 	<a onclick="goToByScroll('comments')">Comments</a><br>
 	<a onclick="goToByScroll('ncomments')">NComments</a><br>
-	<a onclick="goToByScroll('broadcast')">Broadcast</a>
+	<a onclick="goToByScroll('broadcast')">Broadcast</a><br>
+	<a onclick="goToByScroll('new_forum')">New Forum</a>
 </div>
 
 <%if current_user%><% if current_user.admin? %>
@@ -43,6 +45,24 @@
 		</li>
 	<%end%>
 </ul></div>
+<div id="forums"></div>
+<div class="well">
+	<h2 class="center">All Forums</h2>
+		<ul class="no-lst admin">
+			<% @forums.each do |forum| %>
+				<li class="admin-in">
+					<%= forum.title %> - <%= forum.posts.length%> posts.
+					<% unless forum.id == 1 %>
+						<div class="right">
+							<%=link_to 'Delete', forum, method: :delete, data: { confirm: 'Are you sure?' } %>
+						</div>
+					<%end%>
+				</li>
+			<%end%>
+		</ul>
+</div>
+
+</div>
 <div id="posts"></div>
 <div class="center well">
 	<h2>Recent Posts</h2>
@@ -78,7 +98,16 @@
 	<%=f.submit "Broadcast Notification", :class => 'btn' %>
 <%end%>
 </div>
+<div id="new_forum"></div>
+<div class="well center">
+	<h2>New Forum</h2>
+	<%= form_for @forum do |f| %>
 
+	<%= f.text_field :title, :placeholder => "Title", :class => "signup_field" %>
+	<br>
+	<%= f.submit "Create Forum" %>
+	<%end%>
+</div>
 </div>
 <%else%>
 	<%redirect_to_home("You do not have permissions to do this") %>

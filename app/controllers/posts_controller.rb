@@ -2,8 +2,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.paginate(:per_page => 10, :page => params[:page])
-
+    #@posts = Post.paginate(:per_page => 10, :page => params[:page])
+    @forums = Forum.all
     respond_to do |format|
       format.html # index.html.erb
       format.js
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
-
+    @forums = Forum.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post }
@@ -38,13 +38,14 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+    @forums = Forum.all
   end
 
   # POST /posts
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
-
+    @forums = Forum.all
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }

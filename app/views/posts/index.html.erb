@@ -1,10 +1,35 @@
+<script>
+	$(document).ready(function(){
+		$(".tabbable .navbar .navbar-inner ul.nav li:first").addClass("active");
+		$(".tab-content div:first").addClass("active");
+	});
+</script>
+
 <header class="jumbotron subhead" id="overview">
-  <div class="container">
-    <h1>Welcome.</h1>
-    <p class="lead">This is my first project while I am trying to learn the ropes of the Ruby on Rails web framework.<br> All the code for this is open sourced on a <a href="https://github.com/JoahG/forumApp">Github Repository</a>. <br> Here's a list of all the posts.</p>
-  </div>
+	<div class="container">
+		<h1>Welcome.</h1>
+		<p class="lead">This is my first project while I am trying to learn the ropes of the Ruby on Rails web framework.<br> All the code for this is open sourced on a <a href="https://github.com/JoahG/forumApp">Github Repository</a>.</p>
+	</div>
 </header>
 
-<div id="posts">
-<%= render :partial => "posts" %>
+<div class="tabbable">
+	<div class="navbar">
+		<div class="navbar-inner">
+			<ul class="nav">
+				<% @forums.each do |forum| %>
+					<li>
+						<a href="#tab<%=forum.id%>" data-toggle="tab"><%=forum.title%></a>
+					</li>
+				<%end%>
+			</ul>
+		</div>
+	</div>
+
+	<div class="tab-content">
+		<% @forums.each do |forum| %>
+			<div class="tab-pane" id="tab<%=forum.id%>">
+				<%= render :partial => 'posts', :object => forum.posts.all %>
+			</div>
+		<%end%>
+	</div>
 </div>
