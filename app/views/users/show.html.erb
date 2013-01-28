@@ -1,111 +1,205 @@
-<br><br><div class="left user_left">      <% if current_user == @user %>
-        <%= image_tag avatar_url(@user, 196), :class => 'current_user_pic comment_avatar' %>
-      <% elsif @user.admin? %>
-        <%= image_tag avatar_url(@user, 196), :class => 'admin_pic comment_avatar' %>
-      <%else%>
-        <%= image_tag avatar_url(@user, 196), :class => 'comment_avatar' %>
-      <%end%><br>
-	<h1><%=@user.name%> <span class="user_pluses">+<%=collect_plus(@user)%></span></h1><%if @user.admin?%><mark class="user-role">admin</mark><%end%><%if @user.moderator?%>&nbsp;<mark class="user-role">moderator</mark><br><%end%><br>
+<br>
+<br>
+<div class="left user_left">
+    <% if current_user == @user %>
+      	<%= image_tag avatar_url(@user, 196), :class => 'current_user_pic comment_avatar' %>
+	<% elsif @user.admin? %>
+		<%= image_tag avatar_url(@user, 196), :class => 'admin_pic comment_avatar' %>
+	<%else%>
+		<%= image_tag avatar_url(@user, 196), :class => 'comment_avatar' %>
+	<%end%>
+	<br>
+	<h1>
+		<%=@user.name%> 
+		<span class="user_pluses">
+			+<%=collect_plus(@user)%>
+		</span>
+	</h1>
+
+	<%if @user.admin?%>
+		<mark class="user-role">
+			admin
+		</mark>
+	<%end%>
+	<%if @user.moderator?%>
+		&nbsp;
+		<mark class="user-role">
+			moderator
+		</mark>
+		<br>
+	<%end%>
+	<br>
 
 
 	<%if @user.sociallink && @user.sociallink.strip.length !=  0 && @user.sociallink != "http://"%>
 		<span id="user_social_link">
-		<% if @user.sociallink[0..6] == "http://" || @user.sociallink[0..7] == "https://" %>
-			<%=link_to @user.sociallink, @user.sociallink%>
-		<%else%>
-			<%=link_to @user.sociallink, "http://"+@user.sociallink%>
-		<%end%></span> &nbsp;&nbsp;
-	<%end%>
-	
-
-<span id="user_social_icons">
-	<%if @user.linkedin && @user.linkedin.strip.length !=  0%>
-		<%=link_to image_tag("linkedin.png"), @user.linkedin%>
+			<% if @user.sociallink[0..6] == "http://" || @user.sociallink[0..7] == "https://" %>
+				<%=link_to @user.sociallink, @user.sociallink%>
+			<%else%>
+				<%=link_to @user.sociallink, "http://"+@user.sociallink%>
+			<%end%>
+		</span> 
+		&nbsp;&nbsp;
 	<%end%>
 
-	<%if @user.gplus && @user.gplus.strip.length !=  0%>
-		<%=link_to image_tag("gplus.png"), @user.gplus%>
-	<%end%>
 
-	<%if @user.github && @user.github.strip.length !=  0%>
-		<%=link_to image_tag("github.png"), "http://github.com/"+@user.github%>
-	<%end%>
+	<span id="user_social_icons">
+		<%if @user.linkedin && @user.linkedin.strip.length !=  0%>
+			<%=link_to image_tag("linkedin.png"), @user.linkedin%>
+		<%end%>
+		<%if @user.gplus && @user.gplus.strip.length !=  0%>
+			<%=link_to image_tag("gplus.png"), @user.gplus%>
+		<%end%>
+		<%if @user.github && @user.github.strip.length !=  0%>
+			<%=link_to image_tag("github.png"), "http://github.com/"+@user.github%>
+		<%end%>
+		<%if @user.twitter && @user.twitter.strip.length !=  0%>
+			<%=link_to image_tag("twitter.png"), "https://twitter.com/"+@user.twitter%>
+		<%end%>
+	</span>
 
-	<%if @user.twitter && @user.twitter.strip.length !=  0%>
-		<%=link_to image_tag("twitter.png"), "https://twitter.com/"+@user.twitter%>
-	
-	<%end%></span>
-
-<br>
 	<br>
+	<br>
+
 	<%if @user.aboutme && @user.aboutme.length != 0%>
-		<b>About Me:</b><br>
+		<b>
+			About Me:
+		</b>
+		<br>
 		<%= raw render_aboutme(@user.aboutme) %>
 	<%end%>
+</div>
 
-
-	</div>
 <div class="tabbable left user_tabs">
-  <ul class="nav nav-tabs">
-  	<li class="active"><a href="#tab4" data-toggle="tab">Recent Activity</a></li>
-    <li><a href="#tab1" data-toggle="tab">Post Activity</a></li>
-    <li><a href="#tab2" data-toggle="tab">Comment Activity</a></li>
-    <%if current_user%><%if current_user == @user || current_user.admin? %><li><a href="#tab3" data-toggle="tab">Notifications</a></li><%end%><%end%>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane" id="tab1">
-      <ul><%if @user.posts.length > 0 %>
-				<% @user.posts.reverse.each do |post| %>
-					<% if post && post.title && post.created_at%>
-						<li>Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.</li>
-						<% unless post == @user.posts[0] %>
-							<hr>
-						<%end%>
-					<% end %>
-				<%end%>
-			<%else%>
-				<li> <em>[No posts by this user]</em> </li>
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="#tab4" data-toggle="tab">
+				Recent Activity
+			</a>
+		</li>
+		<li>
+			<a href="#tab1" data-toggle="tab">
+				Post Activity
+			</a>
+		</li>
+		<li>
+			<a href="#tab2" data-toggle="tab">
+				Comment Activity
+			</a>
+		</li>
+		<%if current_user%>
+			<%if current_user == @user || current_user.admin? %>
+				<li>
+					<a href="#tab3" data-toggle="tab">
+						Notifications
+					</a>
+				</li>
 			<%end%>
-		</ul>
-    </div>
-    <div class="tab-pane" id="tab2">
-      <ul><%if @user.comments.length > 0 %>
-				<% @user.comments.reverse.each do |comment| %>
-					<% if comment.post && comment.post.title && comment.created_at%>
-						<li>Commented on <%= link_to comment.post.title, comment.post %> <%= time_ago_in_words(comment.created_at) %> ago.</li>
-						<% unless comment == @user.comments[0] %>
-							<hr>
-						<%end%>
-					<% end %>
-				<%end%>
-		<%else%>
-			<li><em>[No comments by this user]</em></li>
 		<%end%>
 	</ul>
-    </div> <%if current_user%><%if current_user == @user || current_user.admin? %>
-    <div class="tab-pane" id="tab3">
-      <ul><%if @user.notifications.length > 0 %>
 
-				<%@user.notifications.reverse.each do |n|%>
-					<% if n.content %>
-						<li id=<%=n.id%>><%=raw n.content%>  <%= link_to 'Dismiss', n, method: :delete, :remote => true, :class => "dismiss" %></li><hr>
+	<div class="tab-content">
+		<div class="tab-pane" id="tab1">
+			<ul>
+				<%if @user.posts.length > 0 %>
+					<% @user.posts.reverse.each do |post| %>
+						<% if post && post.title && post.created_at%>
+							<li>
+								Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.
+							</li>
+							<% unless post == @user.posts[0] %>
+								<hr>
+							<%end%>
+						<% end %>
 					<%end%>
-				<% end %>
-				<li><%= link_to "Dismiss All", {:controller => "users", :action => "dismiss_all_notifications", :id => @user.id}, :class => "dismiss-all" %></li>
-		<%else%>
-			<li><em>No Notifications!</em></li>
-		<%end%><%end%><%end%>
-	</ul>
-	<div class="tab-pane active" id="tab4">
-      <ul>
-		<% @events.each do |e| %>
-			<li><% if e.class.to_s == "Ncomment" %><%if e.comment && e.comment.post && e.comment.post.title %>Commented on a comment on <%= link_to e.comment.post.title, e.comment.post %> <%= time_ago_in_words(e.created_at) %> ago.<% unless e == @events[-1] %><hr><%end%><%end%>
-				<% elsif e.class.to_s.to_s == "Comment" %><%if e.post && e.post.title %>Commented on <%= link_to e.post.title, e.post %> <%= time_ago_in_words(e.created_at) %> ago.<% unless e == @events[-1] %><hr><%end%><%end%>
-				<% elsif e.class.to_s == "Post" %> <% if e && e.title %>Posted <%= link_to e.title, e %> <%= time_ago_in_words(e.created_at) %> ago. <% unless e == @events[-1] %><hr><%end%><%end%><%end%></li>
+				<%else%>
+					<li>
+						<em>
+							[No posts by this user]
+						</em>
+					</li>
+				<%end%>
+			</ul>
+		</div>
+		<div class="tab-pane" id="tab2">
+			<ul>
+				<%if @user.comments.length > 0 %>
+					<% @user.comments.reverse.each do |comment| %>
+						<% if comment.post && comment.post.title && comment.created_at%>
+							<li>
+								Commented on <%= link_to comment.post.title, comment.post %> <%= time_ago_in_words(comment.created_at) %> ago.
+							</li>
+							<% unless comment == @user.comments[0] %>
+								<hr>
+							<%end%>
+						<% end %>
+					<%end%>
+				<%else%>
+					<li>
+						<em>
+							[No comments by this user]
+						</em>
+					</li>
+				<%end%>
+			</ul>
+		</div>
+		<%if current_user%>
+			<%if current_user == @user || current_user.admin? %>
+				<div class="tab-pane" id="tab3">
+					<ul>
+						<%if @user.notifications.length > 0 %>
+							<%@user.notifications.reverse.each do |n|%>
+								<% if n.content %>
+									<li id=<%=n.id%>>
+										<%=raw n.content%>
+										<%= link_to 'Dismiss', n, method: :delete, :remote => true, :class => "dismiss" %>
+									</li>
+									<hr>
+								<%end%>
+							<% end %>
+							<li>
+								<%= link_to "Dismiss All", {:controller => "users", :action => "dismiss_all_notifications", :id => @user.id}, :class => "dismiss-all" %>
+							</li>
+						<%else%>
+							<li>
+								<em>
+									No Notifications!
+								</em>
+							</li>
+						<%end%>
+					</ul>
+				</div>
+			<%end%>
 		<%end%>
-		</ul>
-    </div>
-    </div>
-    
-  </div>
+		<div class="tab-pane active" id="tab4">
+			<ul>
+				<% @events.each do |e| %>
+					<li>
+						<% if e.class.to_s == "Ncomment" %>
+							<%if e.comment && e.comment.post && e.comment.post.title %>
+								Commented on a comment on <%= link_to e.comment.post.title, e.comment.post %> <%= time_ago_in_words(e.created_at) %> ago.
+								<% unless e == @events[-1] %>
+									<hr>
+								<%end%>
+							<%end%>
+						<% elsif e.class.to_s.to_s == "Comment" %>
+							<%if e.post && e.post.title %>
+								Commented on <%= link_to e.post.title, e.post %> <%= time_ago_in_words(e.created_at) %> ago.
+								<% unless e == @events[-1] %>
+									<hr>
+								<%end%>
+							<%end%>
+						<% elsif e.class.to_s == "Post" %>
+							<% if e && e.title %>
+								Posted <%= link_to e.title, e %> <%= time_ago_in_words(e.created_at) %> ago. 
+								<% unless e == @events[-1] %>
+									<hr>
+								<%end%>
+							<%end%>
+						<%end%>
+					</li>
+				<%end%>
+			</ul>
+		</div>
+	</div>
 </div>
