@@ -51,6 +51,7 @@ $(document).ready(function(){
 		return false;
 	});
 
+	
 
 	if (($(location).attr('href')).split("#")[1] === "n") {
 		$("a#n_button").click()

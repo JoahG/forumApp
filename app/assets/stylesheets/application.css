@@ -362,3 +362,28 @@ ul.admin li.admin-in {
 .pagination {
 	text-align: center;
 }
+
+#comment_back_content {
+	display:none;
+}
+
+#flip {
+	cursor:pointer;
+}
+
+ul.preview {
+	margin: 0 0 -5px 25px;
+}
+
+ul.preview li.active a {
+	background-color: whitesmoke;
+}
+
+.comment_content.preview {
+	float:none;
+	min-height: 70px;
+}
+
+.comment_preview_submit {
+	clear:both;
+}
