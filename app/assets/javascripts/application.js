@@ -50,4 +50,9 @@ $(document).ready(function(){
 		$.get(this.href, null, null, "script")
 		return false;
 	});
+
+
+	if (($(location).attr('href')).split("#")[1] === "n") {
+		$("a#n_button").click()
+	}
 });
