@@ -1,0 +1,4 @@
+$("#tab3").html("")
+$("#tab3").css("background-image", "url(/assets/loading.gif)");
+$("#tab3").html("<%= escape_javascript render :partial => 'notifications', :locals => {:user => @user} %>");
+$("#tab3").css("background-image", "none");

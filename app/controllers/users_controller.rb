@@ -155,4 +155,11 @@ class UsersController < ApplicationController
       format.html {redirect_to u}
     end
   end
+
+  def refresh
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
 end

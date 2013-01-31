@@ -14,6 +14,7 @@ ForumApp::Application.routes.draw do
       get 'make_mod'
       get 'make_not_mod'
       get 'dismiss_all_notifications'
+      get 'refresh'
     end
   end
   

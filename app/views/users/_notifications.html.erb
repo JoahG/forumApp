@@ -1,0 +1,24 @@
+<ul>
+	<li><%= link_to "Refresh", {:controller => "users", :action => "refresh", :id => user.id}, :remote => true %></li>
+	<hr>
+	<%if user.notifications.length > 0 %>
+		<%user.notifications.reverse.each do |n|%>
+			<% if n.content %>
+				<li id=<%=n.id%>>
+					<%=raw n.content%>
+					<%= link_to 'Dismiss', n, method: :delete, :remote => true, :class => "dismiss" %>
+				</li>
+				<hr>
+			<%end%>
+		<% end %>
+		<li>
+			<%= link_to "Dismiss All", {:controller => "users", :action => "dismiss_all_notifications", :id => user.id}, :class => "dismiss-all" %>
+		</li>
+	<%else%>
+		<li>
+			<em>
+				No Notifications!
+			</em>
+		</li>
+	<%end%>
+</ul>

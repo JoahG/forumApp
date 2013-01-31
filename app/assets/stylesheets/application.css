@@ -387,3 +387,8 @@ ul.preview li.active a {
 .comment_preview_submit {
 	clear:both;
 }
+
+#tab3 {
+	background-position: center;
+	background-repeat: no-repeat;
+}
