@@ -72,7 +72,7 @@
                       </li>
                     </ul>
                   </li>
-                  <li>
+                  <li class="notifications_update">
                     <%=link_to pluralize(current_user.notifications.length, 'notification'), "/users/#{current_user.id.to_s}#n", :class => "notifications_button" %>
                   </li>
                 </ul>

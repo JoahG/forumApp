@@ -1,2 +1,3 @@
 $("li#<%=escape_javascript @notification.id.to_s%>").fadeOut(500)
 $("li#<%=escape_javascript @notification.id.to_s%>").next().fadeOut(500)
+$("li.notifications_update").html('<%= escape_javascript link_to pluralize(current_user.notifications.length, "notification"), "/users/#{current_user.id.to_s}#n", :class => "notifications_button" %>');
