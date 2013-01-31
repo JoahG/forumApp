@@ -56,4 +56,8 @@ $(document).ready(function(){
 	if (($(location).attr('href')).split("#")[1] === "n") {
 		$("a#n_button").click()
 	}
+
+	$(".notifications_button").click(function(){
+		$("n_button").click()
+	});
 });

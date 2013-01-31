@@ -51,11 +51,6 @@
                 <% end %>
               </ul>
             </nav>
-            <!--<nav class="center">
-              <!--/*<% flash.each do |name, msg| %>
-                <%= content_tag :div, msg, :id => "flash_#{name}" %>
-              <% end %>*/
-            </nav>-->
             <nav class="right">
               <%if current_user%>
                 <ul class="nav">
@@ -78,7 +73,7 @@
                     </ul>
                   </li>
                   <li>
-                    <%=link_to pluralize(current_user.notifications.length, 'notification'), "/users/#{current_user.id.to_s}#n" %>
+                    <%=link_to pluralize(current_user.notifications.length, 'notification'), "/users/#{current_user.id.to_s}#n", :class => "notifications_button" %>
                   </li>
                 </ul>
               <%else%>
