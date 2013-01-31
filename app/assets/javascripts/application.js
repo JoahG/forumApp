@@ -58,6 +58,6 @@ $(document).ready(function(){
 	}
 
 	$(".notifications_button").click(function(){
-		$(".n_button").click()
+		$("#n_button").click()
 	});
 });
