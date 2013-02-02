@@ -68,7 +68,9 @@
 	<h2>Recent Posts</h2>
 	<ul class="no-lst admin">
 		<% @posts.each do |post|%>
-			<li><%=link_to post.title, post%> by <%=link_to post.user.name, post.user%></li><% if post != @posts.last%><hr><%end%>
+			<% if post && post.title && post.user && post.user.name %>
+				<li><%=link_to post.title, post%> by <%=link_to post.user.name, post.user%></li><% if post != @posts.last%><hr><%end%>
+			<%end%>
 		<%end%>
 	</ul>
 </div>
@@ -77,7 +79,9 @@
 	<h2>Recent Comments</h2>
 	<ul class="no-lst admin">
 		<% @comments.each do |comment|%>
-			<li>"<%=link_to comment.content, comment.post%>"</li><% if comment != @comments.last%><hr><%end%>
+			<% if comment && comment.content && comment.post %>
+				<li>"<%=link_to comment.content, comment.post%>"</li><% if comment != @comments.last%><hr><%end%>
+			<%end%>
 		<%end%>
 	</ul>
 </div>
@@ -86,7 +90,9 @@
 	<h2>Recent Nested Comments</h2>
 	<ul class="no-lst admin">
 		<% @ncomments.each do |ncomment|%>
-			<li>"<%= ncomment.content %>"</li><% if ncomment != @ncomments.last%><hr><%end%>
+			<% if ncomment && ncomment.content %>
+				<li>"<%= ncomment.content %>"</li><% if ncomment != @ncomments.last%><hr><%end%>
+			<%end%>
 		<%end%>
 	</ul>
 </div>
