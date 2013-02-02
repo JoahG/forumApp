@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments
+  has_many :followers
   belongs_to :forum
   attr_accessible :content, :title, :user_id, :forum_id
   validates_length_of :title, :minimum => 2

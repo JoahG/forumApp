@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :collect_plus
   helper_method :collect_comments
   helper_method :collect_posts
+  helper_method :is_follower_of
 
   private
 
@@ -58,5 +59,15 @@ class ApplicationController < ActionController::Base
       end
     end
     return c
+  end
+
+  def is_follower_of(u,p)
+    t = true
+    p.followers.each do |f|
+      if f.user == u
+        t = false
+      end
+    end
+    return t
   end
 end

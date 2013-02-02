@@ -42,9 +42,17 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        if @comment.user != @comment.post.user
-          Notification.create(:content => "<a href='/users/#{@comment.user.id}'>#{@comment.user.name}</a> commented on your post '<a href='/posts/#{@comment.post.id}##{@comment.id}'>#{@comment.post.title}</a>'", :user_id => @comment.post.user.id)
+
+        if is_follower_of(@comment.user, @comment.post)
+          Follower.create(:post_id => @comment.post.id, :user_id => @comment.user.id)
         end
+
+        @comment.post.followers.each do |follower|
+          if follower.user != @comment.user
+            Notification.create(:content => "<a href='/users/#{@comment.user.id}'>#{@comment.user.name}</a> commented on the post '<a href='/posts/#{@comment.post.id}##{@comment.id}'>#{@comment.post.title}</a>'", :user_id => follower.user.id)
+          end
+        end
+        
         format.js
       end
     end

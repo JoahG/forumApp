@@ -16,7 +16,7 @@
 <div id="top"></div>
 <div class="hero-unit post_page_post">
   <div class="inline post_info">
-    <p class="center">
+    <div class="center">
       <%if current_user %>
       <% if current_user == @post.user %>
         <%= image_tag avatar_url(@post.user, 76), :class => 'current_user_pic' %>
@@ -30,7 +30,35 @@
       <%end%>
       <br><%= link_to @post.user.name, @post.user%> <span class="user_pluses">(+<%=collect_plus(@post.user)%>)</span> <br>
       <%if @post.user.admin? || @post.user.moderator?%><%if @post.user.admin?%><mark class="user-role">admin</mark><%end%><%if @post.user.moderator?%>&nbsp;<mark class="user-role">moderator</mark><%end%><br><%end%>
-       <%= time_ago_in_words(@post.created_at) %> ago <br><%= @post.created_at.strftime("%b. %d %Y") %><br><small><%if current_user%><a href="#bottom">Comment</a><%end%> <% if current_user %><%if current_user == @post.user || current_user.admin? || current_user.moderator? %>| <%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><%end%><%end%></small> </p>
+
+       <%= time_ago_in_words(@post.created_at) %> ago 
+       <br>
+       <%= @post.created_at.strftime("%b. %d %Y") %>
+       <br>
+       <div class="small">
+        <%if current_user%>
+          <a href="#bottom">
+            Comment
+          </a>
+          | 
+          <% if is_follower_of(current_user, @post) %>
+            <%=form_for Follower.new do |f|%>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.hidden_field :post_id, :value => @post.id %>
+              <%= f.submit "Follow", :class => "follow_button" %>
+            <%end%>
+          <%else%>
+            Follower
+          <%end%>
+          <%if current_user == @post.user || current_user.admin? || current_user.moderator? %>
+            | <%= link_to 'Edit', edit_post_path(@post) %> 
+            | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%end%>
+        <%end%>
+      </div>
+    </div>
+
+      
   </div>
   <div class="inline post_content">
     <h1> <%=@post.title%> </h1>

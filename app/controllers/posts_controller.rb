@@ -49,6 +49,7 @@ class PostsController < ApplicationController
     @forums = Forum.all
     respond_to do |format|
       if @post.save
+        Follower.create(:post_id => @post.id, :user_id => @post.user.id)
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else

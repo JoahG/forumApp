@@ -25,4 +25,5 @@ ForumApp::Application.routes.draw do
   resources :notifications
   resources :plusones
   resources :forums
+  resources :followers
 end
