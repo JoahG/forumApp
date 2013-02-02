@@ -9,6 +9,6 @@
 </div>
 <% end %>
 <%else%>
-	<em> No posts in this forum yet, go <%=link_to "make one", new_post_path%>!</em>
+	<em> No posts in this forum yet, go <a href="/posts/new?forum=<%=forum.id%>">make one</a>!</em>
 <%end%>
 </div>

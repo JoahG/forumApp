@@ -21,7 +21,7 @@
     <%= f.text_area :content, :id => 'wmd-input', :placeholder => "Post Content Here" %>
   </div>
   <div class="field">
-    Forum: <select name="post[forum_id]">
+    Forum: <select name="post[forum_id]" id="post-forum-select">
       <% @forums.each do |forum| %>
         <option value="<%=forum.id%>"><%=forum.title%></option>
       <%end%>

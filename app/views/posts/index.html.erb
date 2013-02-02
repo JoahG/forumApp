@@ -32,7 +32,7 @@
 		</div>
 		<% @forums.each do |forum| %>
 			<div class="tab-pane" id="tab<%=forum.id%>">
-				<%= render :partial => 'posts', :object => forum.posts.all %>
+				<%= render :partial => 'posts', :object => forum.posts.all, :locals => {:forum => forum} %>
 			</div>
 		<%end%>
 	</div>

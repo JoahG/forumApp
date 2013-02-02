@@ -19,6 +19,12 @@ function goToByScroll(id){
         $('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
 }
 
+function getURLParameter(name) {
+    return decodeURI(
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+    );
+}
+
 $(document).ready(function(){
 	$(".comment_edit").live("click", function(){
 		$(".underlay").fadeIn()
@@ -60,4 +66,8 @@ $(document).ready(function(){
 	$(".notifications_button").click(function(){
 		$("#n_button").click()
 	});
+
+	if (getURLParameter('forum') != "null") {
+		$("#post-forum-select").val((getURLParameter('forum')).toString(10))
+	}
 });
