@@ -16,6 +16,7 @@
 	<div class="navbar">
 		<div class="navbar-inner">
 			<ul class="nav">
+				<li><a href="#tab0" data-toggle="tab"> All Posts </a></li>
 				<% @forums.each do |forum| %>
 					<li>
 						<a href="#tab<%=forum.id%>" data-toggle="tab"><%=forum.title%></a>
@@ -26,6 +27,9 @@
 	</div>
 
 	<div class="tab-content">
+		<div class="tab-pane" id="tab0">
+			<%= render :partial => 'posts', :object => @posts %>
+		</div>
 		<% @forums.each do |forum| %>
 			<div class="tab-pane" id="tab<%=forum.id%>">
 				<%= render :partial => 'posts', :object => forum.posts.all %>
