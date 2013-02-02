@@ -1,0 +1,9 @@
+<% if is_follower_of(user, post) %>
+	<%=form_for Follower.new, :remote => true do |f|%>
+		<%= f.hidden_field :user_id, :value => user.id %>
+		<%= f.hidden_field :post_id, :value => post.id %>
+		<%= f.submit "Follow", :class => "follow_button" %>
+	<%end%>
+<%else%>
+	Follower
+<%end%>

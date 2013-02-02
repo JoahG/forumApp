@@ -41,15 +41,9 @@
             Comment
           </a>
           | 
-          <% if is_follower_of(current_user, @post) %>
-            <%=form_for Follower.new do |f|%>
-              <%= f.hidden_field :user_id, :value => current_user.id %>
-              <%= f.hidden_field :post_id, :value => @post.id %>
-              <%= f.submit "Follow", :class => "follow_button" %>
-            <%end%>
-          <%else%>
-            Follower
-          <%end%>
+          <span id="follow-post">
+            <%= render :partial => 'follow', :locals => {:post => @post, :user => current_user} %>
+          </span>
           <%if current_user == @post.user || current_user.admin? || current_user.moderator? %>
             | <%= link_to 'Edit', edit_post_path(@post) %> 
             | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -8,7 +8,7 @@ class FollowersController < ApplicationController
 
   	respond_to do |format|
   		if @follower.save
-  			format.html {redirect_to @follower.post}
+  			format.js
   		end
   	end
   end

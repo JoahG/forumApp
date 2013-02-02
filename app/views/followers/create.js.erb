@@ -1,0 +1,1 @@
+$("#follow-post").html("<%= escape_javascript render :partial => 'posts/follow', :locals => {:post => @follower.post, :user => current_user}%>")

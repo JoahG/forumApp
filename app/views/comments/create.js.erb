@@ -1,3 +1,4 @@
+$("#follow-post").html("Follower")
 $("#comments_container").append("<div class='hidden'><%= escape_javascript render :partial => 'comment', :object => @comment%></div>")
 $("#comments_container .hidden").fadeIn(500)
 $("form#new_comment")[0].reset()
