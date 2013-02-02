@@ -419,3 +419,16 @@ form.new_follower {
 	color: #005580;
 	text-decoration: underline;
 }
+
+.errors {
+	list-style-type: none;
+	color: red;
+}
+
+.field_with_errors {
+	display: inline-block;
+}
+
+.edit_user input[type="text"], .edit_user input[type="password"], .new_user input[type="text"], .new_user input[type="password"] {
+	margin-left: 0;
+}
