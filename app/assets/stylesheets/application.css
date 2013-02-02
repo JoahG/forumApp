@@ -432,3 +432,7 @@ form.new_follower {
 .edit_user input[type="text"], .edit_user input[type="password"], .new_user input[type="text"], .new_user input[type="password"] {
 	margin-left: 0;
 }
+
+select {
+	margin-bottom: 0 !important;
+}
