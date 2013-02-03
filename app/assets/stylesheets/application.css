@@ -403,16 +403,6 @@ ul.preview li.active a {
 	margin-bottom:0px;
 }
 
-form.new_follower {
-	display:inline-block !important;
-	margin:0 !important;
-}
-
-.follow_button:hover {
-	color: #005580;
-	text-decoration: underline;
-}
-
 .errors {
 	list-style-type: none;
 	color: red;
@@ -434,4 +424,8 @@ input#unfollow:hover {
 	background: none;
 	color: white;
 	background-color: red !important;
+}
+
+form.button_to {
+	margin: 0 !important;
 }
