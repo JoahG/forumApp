@@ -14,5 +14,12 @@ class FollowersController < ApplicationController
   end
 
   def destroy
+    @follower = Follower.find(params[:id])
+
+    respond_to do |format|
+      if @follower.destroy
+        format.js
+      end
+    end
   end
 end

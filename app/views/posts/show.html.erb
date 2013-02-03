@@ -40,10 +40,6 @@
           <a href="#bottom">
             Comment
           </a>
-          | 
-          <span id="follow-post">
-            <%= render :partial => 'follow', :locals => {:post => @post, :user => current_user} %>
-          </span>
           <%if current_user == @post.user || current_user.admin? || current_user.moderator? %>
             | <%= link_to 'Edit', edit_post_path(@post) %> 
             | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -55,8 +51,11 @@
       
   </div>
   <div class="inline post_content">
-    <h1> <%=@post.title%> </h1>
-    <p class="inline comment_body"><p><%=raw render_body(@post)%></p></p>
+    <h1> <%=@post.title%> </h1><p></p>
+    <%=raw render_body(@post)%>
+    <div id="follow-post">
+      <%= render :partial => 'follow', :locals => {:post => @post, :user => current_user} %>
+    </div>
   </div>
 </div>
 

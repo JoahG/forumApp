@@ -51,6 +51,12 @@ $(document).ready(function(){
 			console.log($(".dismiss")[i])
 		}
 	});
+	$("input#unfollow").live("mouseenter", function(){
+		$("input#unfollow").val("Stop Following");
+	});
+	$("input#unfollow").live("mouseleave", function(){
+		$("input#unfollow").val("Following Post");
+	});
 	$(".overlay form .actions input").click(function(){$(".close_overlay").click()})
 	$(".pagination a").live("click", function() {
 		$.get(this.href, null, null, "script")

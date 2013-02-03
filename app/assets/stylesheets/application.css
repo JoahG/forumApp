@@ -71,6 +71,8 @@ div.post_info {
 
 div.post_content {
 	margin-left: 200px;
+	min-height: 232px;
+	width: 620px;
 }
 
 div.post_page_post {
@@ -393,21 +395,12 @@ ul.preview li.active a {
 	background-repeat: no-repeat;
 }
 
-.follow_button {
-	display:inline;
-    background: none;
-    cursor: pointer;
-    -webkit-box-align:stretch;
-    box-sizing: content-box;
-    vertical-align: baseline;
-    white-space: normal;
-    border: none;
-    padding: 0px;
-	color: #0088cc;
-	text-decoration: none;
-	font-size: 12px;
-	display: inline-block;
-	margin-left: 0 !important;
+#follow-post {
+	position: relative;
+	bottom:0;
+	width: 100%;
+	text-align: right;
+	margin-bottom:0px;
 }
 
 form.new_follower {
@@ -435,4 +428,10 @@ form.new_follower {
 
 select {
 	margin-bottom: 0 !important;
+}
+
+input#unfollow:hover {
+	background: none;
+	color: white;
+	background-color: red !important;
 }

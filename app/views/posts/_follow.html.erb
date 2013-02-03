@@ -2,8 +2,8 @@
 	<%=form_for Follower.new, :remote => true do |f|%>
 		<%= f.hidden_field :user_id, :value => user.id %>
 		<%= f.hidden_field :post_id, :value => post.id %>
-		<%= f.submit "Follow", :class => "follow_button" %>
+		<%= f.submit "Follow Post", :class => "btn" %>
 	<%end%>
 <%else%>
-	Follower
+	<%=button_to 'Following Post', find_follower(user, post), method: :delete, :class => 'btn', :id => "unfollow", :remote => true%>
 <%end%>
