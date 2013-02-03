@@ -426,6 +426,6 @@ input#unfollow:hover {
 	background-color: red !important;
 }
 
-form.button_to {
+form.button_to, form.new_follower {
 	margin: 0 !important;
 }
