@@ -1,4 +1,8 @@
 class FollowersController < ApplicationController
+  def index
+    @followers = Follower.all
+  end
+
   def new
   	@follower = Follower.new
   end

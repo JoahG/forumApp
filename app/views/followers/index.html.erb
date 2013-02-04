@@ -1,0 +1,12 @@
+<%if current_user%><% if current_user.admin? %>
+<div class="hero-unit">
+	<h1 class="center"> All Following </h1><br>
+	<ul class="no-lst center">
+		<% @followers.each do |f| %>
+			<% if f.user && f.user.name && f.post && f.post.title %>
+				<li><%= link_to f.user.name, f.user %> is following <%=link_to f.post.title, f.post %></li>
+			<%end%>
+		<%end%>
+	</ul>
+</div>
+<%end%><%end%>

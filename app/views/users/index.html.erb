@@ -1,3 +1,4 @@
+<%if current_user%><% if current_user.admin? %>
 <div class="admin-nav">
 	Jump To...<br>
 	<a onclick="goToByScroll('users')">Users</a><br>
@@ -9,7 +10,6 @@
 	<a onclick="goToByScroll('new_forum')">New Forum</a>
 </div>
 
-<%if current_user%><% if current_user.admin? %>
 <div class="hero-unit"><h1 class="center">Admin Control Center</h1>
 <br>
 <div id="users"></div>
