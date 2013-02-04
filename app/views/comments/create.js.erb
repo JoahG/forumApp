@@ -1,4 +1,4 @@
-$("#follow-post").html("Follower")
+$("#follow-post").html("<%= escape_javascript button_to 'Following Post', @follower, method: :delete, :class => 'btn', :id => 'unfollow', :remote => true%>");
 $("#comments_container").append("<div class='hidden'><%= escape_javascript render :partial => 'comment', :object => @comment%></div>")
 $("#comments_container .hidden").fadeIn(500)
 $("form#new_comment")[0].reset()

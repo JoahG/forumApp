@@ -44,7 +44,8 @@ class CommentsController < ApplicationController
       if @comment.save
 
         if is_follower_of(@comment.user, @comment.post)
-          Follower.create(:post_id => @comment.post.id, :user_id => @comment.user.id)
+          @follower = Follower.new(:post_id => @comment.post.id, :user_id => @comment.user.id)
+          @follower.save
         end
 
         @comment.post.followers.each do |follower|

@@ -53,19 +53,21 @@
   <div class="inline post_content">
     <h1> <%=@post.title%> </h1><p></p>
     <%=raw render_body(@post)%>
-    <div id="follow-post">
-      <%= render :partial => 'follow', :locals => {:post => @post, :user => current_user} %>
-    </div>
+    <% if current_user %>
+      <div id="follow-post">
+        <%= render :partial => 'follow', :locals => {:post => @post, :user => current_user} %>
+      </div>
+    <%end%>
   </div>
 </div>
 
 
-
-<% if @post.comments.length > 0 %><div id="comments_container">
+<div id="comments_container">
+<% if @post.comments.length > 0 %>
   <% @post.comments.each do |comment| %>
     <%= render :partial => '/comments/comment', :object => comment%>
   <%end%>
-</div><%end%>
+<%end%></div>
 
 <%if current_user %>
 <div class="tabbable">
