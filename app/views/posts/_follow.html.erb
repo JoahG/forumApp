@@ -5,5 +5,5 @@
 		<%= f.submit "Follow Post", :class => "btn" %>
 	<%end%>
 <%else%>
-	<%= render :partial => 'unfollow', :locals => {:user => user, :post => post} %>
+	<%=button_to 'Following Post', find_follower(user, post), method: :delete, :class => 'btn', :id => "unfollow", :remote => true%>
 <%end%>

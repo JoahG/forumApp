@@ -1,3 +1,4 @@
+$("#follow-post").html("<%= escape_javascript button_to 'Following Post', @follower, method: :delete, :class => 'btn', :id => 'unfollow', :remote => true%>");
 container = $("#<%= escape_javascript @ncomment.comment.id.to_s %>").parent().find("#nested_comments_container");
 container.find("#ncomments").append("<div class='hidden' id=<%= escape_javascript @ncomment.id.to_s%>><%= escape_javascript render :partial => 'ncomment', :object => @ncomment%></div>");
 container.find(".hidden").fadeIn(500)

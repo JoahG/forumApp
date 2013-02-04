@@ -45,7 +45,9 @@ class CommentsController < ApplicationController
 
         if is_follower_of(@comment.user, @comment.post)
           @follower = Follower.new(:post_id => @comment.post.id, :user_id => @comment.user.id)
-          @follower.save
+          if @follower.save
+            format.js { render 'follower.js.erb' }
+          end
         end
 
         @comment.post.followers.each do |follower|
