@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   helper_method :collect_posts
   helper_method :is_follower_of
   helper_method :find_follower
+  helper_method :rescue_action_in_public
 
   private
 
@@ -78,5 +79,11 @@ class ApplicationController < ActionController::Base
         return f
       end
     end
+  end
+
+  def rescue_action_in_public(exception)
+    Error.create :exception_name => exception.exception.to_s, :backtrace_info => exception.backtrace.to_s
+    super
+    redirect_to root_url
   end
 end
