@@ -420,12 +420,6 @@ select {
 	margin-bottom: 0 !important;
 }
 
-input#unfollow:hover {
-	background: none;
-	color: white;
-	background-color: red !important;
-}
-
 form.button_to, form.new_follower {
 	margin: 0 !important;
 }

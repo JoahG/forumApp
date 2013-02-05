@@ -53,9 +53,11 @@ $(document).ready(function(){
 	});
 	$("input#unfollow").live("mouseenter", function(){
 		$("input#unfollow").val("Stop Following");
+		$("input#unfollow").addClass("btn-danger");
 	});
 	$("input#unfollow").live("mouseleave", function(){
 		$("input#unfollow").val("Following Post");
+		$("input#unfollow").removeClass("btn-danger");
 	});
 	$(".overlay form .actions input").click(function(){$(".close_overlay").click()})
 	$(".pagination a").live("click", function() {
