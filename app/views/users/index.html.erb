@@ -51,7 +51,7 @@
 		<ul class="no-lst admin">
 			<% @forums.each do |forum| %>
 				<li class="admin-in">
-					<%= forum.title %> - <%= forum.posts.length%> posts.
+					<%= forum.title %> - <%= pluralize(forum.posts.length, "post")%>
 					<% unless forum.id == 1 %>
 						<div class="right">
 							<%=link_to 'Delete', forum, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -30,11 +30,15 @@
       <%end%>
       <br><%= link_to @post.user.name, @post.user%> <span class="user_pluses">(+<%=collect_plus(@post.user)%>)</span> <br>
       <%if @post.user.admin? || @post.user.moderator?%><%if @post.user.admin?%><mark class="user-role">admin</mark><%end%><%if @post.user.moderator?%>&nbsp;<mark class="user-role">moderator</mark><%end%><br><%end%>
-
-       <%= time_ago_in_words(@post.created_at) %> ago 
-       <br>
        <%= @post.created_at.strftime("%b. %d %Y") %>
-       <br>
+       
+       <div class="lh-small">
+      <% if !@post.post_updated_at %>
+        <%= time_ago_in_words(@post.created_at) %> ago 
+      <%else%>
+        Updated <%= time_ago_in_words(@post.post_updated_at) %> ago by <%=link_to User.find(@post.post_updated_by).name, User.find(@post.post_updated_by) %>
+      <% end %>
+      </div>
        <div class="small">
         <%if current_user%>
           <a href="#bottom">

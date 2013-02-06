@@ -1,3 +1,5 @@
 $(".well .comment#<%=escape_javascript @comment.id.to_s%> .comment_content .comment_text").html("<%=escape_javascript raw render_body(@comment)%>")
 $(".well .comment#<%=escape_javascript @comment.id.to_s%> .comment_content .comment_raw").html("<%=escape_javascript @comment.content%>")
 $(".overlay form")[0].reset()
+
+$(".well .comment#<%=escape_javascript @comment.id.to_s%> .timestamp").html("<%=escape_javascript render :partial => 'comments/timestamp', :locals => {:comment => @comment}%>")

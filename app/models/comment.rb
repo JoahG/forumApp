@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :content, :user_id, :post_id
+  attr_accessible :content, :user_id, :post_id, :comment_updated_at, :comment_updated_by
   belongs_to :user
   belongs_to :post
   has_many :ncomments

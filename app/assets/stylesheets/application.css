@@ -81,6 +81,7 @@ div.post_page_post {
 
 .small {
 	font-size: 65% !important;
+	line-height: 40px
 }
 
 .inline {
@@ -422,4 +423,9 @@ select {
 
 form.button_to, form.new_follower {
 	margin: 0 !important;
+}
+
+.lh-small {
+	font-size: 15px;
+	line-height:22px;
 }

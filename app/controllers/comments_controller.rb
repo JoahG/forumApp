@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
       if current_user.admin? || current_user.moderator? || current_user == @comment.user
         respond_to do |format|
           if @comment.update_attributes(params[:comment])
+            @comment.update_attributes(:comment_updated_at => Time.current, :comment_updated_by => current_user.id)
             @comment.save
             format.js
           end

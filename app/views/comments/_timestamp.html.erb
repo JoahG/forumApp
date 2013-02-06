@@ -1,0 +1,1 @@
+<% if !comment.comment_updated_at %> <%= time_ago_in_words(comment.created_at) %> ago. <%else%>. Updated <%= time_ago_in_words(comment.comment_updated_at) %> ago<%if User.find(comment.comment_updated_by) != comment.user %> by <%=link_to User.find(comment.comment_updated_by).name, User.find(comment.comment_updated_by) %><%end%>.<%end%>
