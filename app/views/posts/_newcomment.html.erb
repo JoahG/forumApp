@@ -1,0 +1,50 @@
+<%if current_user %>
+<div class="tabbable">
+  <ul class="nav nav-tabs preview">
+    <li class="active">
+      <a href="#tab1" data-toggle="tab" id="comment_tab">
+        Comment
+      </a>
+    </li>
+    <li>
+      <a href="#tab2" data-toggle="tab">
+        Preview
+      </a>
+    </li>
+  </ul>
+
+<div class="tab-content">
+<div class="tab-pane active" id="tab1">
+  <%= form_for @comment, :remote => true do |f| %>
+  <div class="well">
+    <div class="field">
+      <div id="wmd-button-bar"></div>
+      <%= f.text_area :content, :id => 'wmd-input', :class =>'full_wide get_me', :placeholder => "Comments Go Here..." %>
+    </div>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :post_id, :value => @post.id %>
+    <div class="actions comment_actions">
+      <%= f.submit "Comment", :class => 'btn'%>
+      &nbsp; &nbsp;&nbsp;<span class="note"> Comments are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span>
+    </div>
+  </div>
+</div>
+<div class="tab-pane" id="tab2">
+    <div class="well">
+  <div class="comment">
+      <%= image_tag avatar_url(current_user, 76), :class => 'current_user_pic comment_avatar' %>
+
+    <div class="comment_content preview">
+       <p class="comment_info">Commented by <%= link_to current_user.name, current_user%> <span class="user_pluses">(+<%=collect_plus(current_user)%>)</span> less than a minute ago.</p>
+    <div><div class="comment_text"><div id="wmd-preview"></div></div></div>
+    </div>
+  </div>
+  <div class="actions comment_actions comment_preview_submit">
+  <%= f.submit "Comment", :class => 'btn'%>
+      &nbsp; &nbsp;&nbsp;<span class="note"> Comments are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span></div>
+  </div>
+</div>
+
+<% end %>
+<%end%>
+</div>
