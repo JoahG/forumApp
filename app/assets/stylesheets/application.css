@@ -457,3 +457,7 @@ a.notalink:hover {
    margin-left: -16px;
    margin-top: -16px;
 }
+
+.tab-pane:not(.active){
+	display: none;
+}

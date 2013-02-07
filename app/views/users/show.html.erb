@@ -72,24 +72,24 @@
 <div class="tabbable left user_tabs">
 	<ul class="nav nav-tabs">
 		<li class="active">
-			<a href="#tab4" data-toggle="tab">
+			<a href="#tab1" data-toggle="tab">
 				Recent Activity
 			</a>
 		</li>
 		<li>
-			<a href="#tab1" data-toggle="tab">
+			<a href="#tab2" data-toggle="tab">
 				Post Activity
 			</a>
 		</li>
 		<li>
-			<a href="#tab2" data-toggle="tab">
+			<a href="#tab3" data-toggle="tab">
 				Comment Activity
 			</a>
 		</li>
 		<%if current_user%>
 			<%if current_user == @user || current_user.admin? %>
 				<li>
-					<a href="#tab3" id="n_button" data-toggle="tab">
+					<a href="#tab4" id="n_button" data-toggle="tab">
 						Notifications
 					</a>
 				</li>
@@ -97,59 +97,10 @@
 		<%end%>
 	</ul>
 
+
 	<div class="tab-content">
-		<div class="tab-pane" id="tab1">
-			<ul>
-				<%if @user.posts.length > 0 %>
-					<% @user.posts.reverse.each do |post| %>
-						<% if post && post.title && post.created_at%>
-							<li>
-								Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.
-							</li>
-							<% unless post == @user.posts[0] %>
-								<hr>
-							<%end%>
-						<% end %>
-					<%end%>
-				<%else%>
-					<li>
-						<em>
-							[No posts by this user]
-						</em>
-					</li>
-				<%end%>
-			</ul>
-		</div>
-		<div class="tab-pane" id="tab2">
-			<ul>
-				<%if @user.comments.length > 0 %>
-					<% @user.comments.reverse.each do |comment| %>
-						<% if comment.post && comment.post.title && comment.created_at%>
-							<li>
-								Commented on <%= link_to comment.post.title, comment.post %> <%= time_ago_in_words(comment.created_at) %> ago.
-							</li>
-							<% unless comment == @user.comments[0] %>
-								<hr>
-							<%end%>
-						<% end %>
-					<%end%>
-				<%else%>
-					<li>
-						<em>
-							[No comments by this user]
-						</em>
-					</li>
-				<%end%>
-			</ul>
-		</div>
-		<%if current_user%>
-			<%if current_user == @user || current_user.admin? %>
-				<div class="tab-pane" id="tab3">
-					<%= render :partial => "notifications", :locals => {:user => @user} %>
-				</div>
-			<%end%>
-		<%end%>
-		<div class="tab-pane active" id="tab4">
+
+		<div class="tab-pane active" id="tab1">
 			<ul>
 				<% @events.each do |e| %>
 					<li>
@@ -179,5 +130,58 @@
 				<%end%>
 			</ul>
 		</div>
+
+		<div class="tab-pane" id="tab2">
+			<ul>
+				<%if @user.posts.length > 0 %>
+					<% @user.posts.reverse.each do |post| %>
+						<% if post && post.title && post.created_at%>
+							<li>
+								Posted <%= link_to post.title, post %> <%= time_ago_in_words(post.created_at) %> ago.
+							</li>
+							<% unless post == @user.posts[0] %>
+								<hr>
+							<%end%>
+						<% end %>
+					<%end%>
+				<%else%>
+					<li>
+						<em>
+							[No posts by this user]
+						</em>
+					</li>
+				<%end%>
+			</ul>
+		</div>
+		<div class="tab-pane" id="tab3">
+			<ul>
+				<%if @user.comments.length > 0 %>
+					<% @user.comments.reverse.each do |comment| %>
+						<% if comment.post && comment.post.title && comment.created_at%>
+							<li>
+								Commented on <%= link_to comment.post.title, comment.post %> <%= time_ago_in_words(comment.created_at) %> ago.
+							</li>
+							<% unless comment == @user.comments[0] %>
+								<hr>
+							<%end%>
+						<% end %>
+					<%end%>
+				<%else%>
+					<li>
+						<em>
+							[No comments by this user]
+						</em>
+					</li>
+				<%end%>
+			</ul>
+		</div>
+		<%if current_user%>
+			<%if current_user == @user || current_user.admin? %>
+				<div class="tab-pane" id="tab4">
+					<%= render :partial => "notifications", :locals => {:user => @user} %>
+				</div>
+			<%end%>
+		<%end%>
+		
 	</div>
 </div>
