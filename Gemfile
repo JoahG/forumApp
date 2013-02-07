@@ -32,6 +32,7 @@ group :development do
 end
 
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 
 gem 'jquery-rails'
 
