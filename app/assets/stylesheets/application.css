@@ -442,3 +442,17 @@ form.button_to, form.new_follower {
 footer {
 	color: #999;
 }
+
+#page_loading {
+	display:none;
+}
+
+#page_loading img {
+   width: 32px;
+   height: 32px;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-left: -16px;
+   margin-top: -16px;
+}

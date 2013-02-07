@@ -81,3 +81,13 @@ $(document).ready(function(){
 		$("#post-forum-select").val((getURLParameter('forum')).toString(10))
 	}
 });
+
+$(document).on('page:fetch', function() {
+	t = $('#content-container').height();
+	$('#content-container').hide();
+	$('#page_loading').show().height(t);
+});
+$(document).on('page:change', function() {
+	$('#page_loading').hide();
+	$('#content-container').show();
+});
