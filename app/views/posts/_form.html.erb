@@ -32,3 +32,10 @@
     <%= f.submit(:class => 'btn') %>&nbsp; &nbsp;&nbsp;<span class="note"> Posts are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span>
   </div>
 <% end %>
+
+<script>
+  setup_wmd({
+      input: "wmd-input",
+      button_bar: "wmd-button-bar"
+  });
+</script>

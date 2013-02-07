@@ -27,7 +27,31 @@ function getURLParameter(name) {
     );
 }
 
+function loadTextEditor()
+{
+    var instances = [];
+
+    if (!Attacklab || !Attacklab.wmd) {
+                alert("WMD hasn't finished loading!");
+                return;
+            }
+    /***** build the preview manager *****/
+    var textArea = document.getElementById('postcontent');
+    var previewPane = document.getElementById('postPreview');
+
+    var panes = {input:textArea, preview:previewPane, output:null};
+    var previewManager = new Attacklab.wmd.previewManager(panes);
+
+    /***** build the editor and tell it to refresh the preview after commands *****/
+    var editor = new Attacklab.wmd.editor(textArea,previewManager.refresh);
+
+    // save everything so we can destroy it all later
+    instances.push({ta:textarea, div:previewDiv, ed:editor, pm:previewManager});
+
+}
+
 $(document).ready(function(){
+
 	$(".comment_edit").live("click", function(){
 		$(".underlay").fadeIn()
 		$(".overlay").fadeIn()
@@ -90,4 +114,5 @@ $(document).on('page:fetch', function() {
 $(document).on('page:change', function() {
 	$('#page_loading').hide();
 	$('#content-container').show();
+	$('textarea.get_me').wmd();
 });
