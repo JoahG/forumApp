@@ -31,6 +31,8 @@ group :development do
   gem 'better_errors'
 end
 
+gem 'turbolinks'
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password

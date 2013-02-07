@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 //= require twitter/bootstrap
+//= require turbolinks
 
 function goToByScroll(id){
         $('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
