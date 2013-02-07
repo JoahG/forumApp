@@ -429,3 +429,16 @@ form.button_to, form.new_follower {
 	font-size: 15px;
 	line-height:22px;
 }
+
+.tos_check {
+	font-size:15px;
+	line-height: 22px;
+}
+
+.tos_check input[type="checkbox"] {
+	margin:-3px 5px 0 0;
+}
+
+footer {
+	color: #999;
+}

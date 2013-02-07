@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation, :aboutme, :sociallink, :linkedin, :twitter, :github, :gplus, :admin, :moderator
+  attr_accessible :email, :name, :password, :password_confirmation, :aboutme, :sociallink, :linkedin, :twitter, :github, :gplus, :admin, :moderator, :terms
   has_many :posts
   has_many :comments
   has_many :ncomments
@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
 
   validates_confirmation_of :password
+  validates_acceptance_of :terms
   validates_presence_of :name
   validates_presence_of :password, :on => :create
   validates_presence_of :email

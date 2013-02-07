@@ -5,6 +5,7 @@ ForumApp::Application.routes.draw do
   get "stats" => "users#rank", :as => "stats"
   get "admin" => "users#index", :as => "admin"
   get "admin/followers" => "followers#index", :as => "admin/followers"
+  get "terms" => "terms#show", :as => "terms"
   root :to => "posts#index"
 
   post "comments/:id" => "comments#update"
