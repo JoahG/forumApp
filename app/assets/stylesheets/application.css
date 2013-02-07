@@ -35,6 +35,7 @@ nav.center {
 
 body { 
     padding-top: 50px; 
+    padding-bottom: 50px; 
 }
 
 input[type='text'], input[type='password'] {
@@ -439,8 +440,8 @@ form.button_to, form.new_follower {
 	margin:-3px 5px 0 0;
 }
 
-footer {
-	color: #999;
+a.notalink:hover {
+	color:#999 !important;
 }
 
 #page_loading {

@@ -96,10 +96,21 @@
   <div class="container" id="content-container">
 <%= yield %>
   </div>
-  <footer>
-    <div class="container">
-      <p class="left">All Content &copy; Popcorn Web Development 2013.</p>
-      <p class="right"> <a href="http://popcorn-web-development.github.com">About Us</a> | <a href="/terms">Terms Of Service</a></p>
+  <footer class="navbar navbar-inverse navbar-bottom navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container">
+        <nav class="left">
+          <ul class="nav">
+            <li><a class="notalink">All Content &copy; Popcorn Web Development 2013.</a></li>
+          </ul>
+        </nav>
+        <nav class="right">
+          <ul class="nav">
+            <li><a href="http://popcorn-web-development.github.com">About Us</a></li>
+            <li><a href="/terms">Terms Of Service</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </footer>
 </body>
