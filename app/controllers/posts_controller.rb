@@ -15,7 +15,7 @@ class PostsController < ApplicationController
         @posts = Post.find(:all, :conditions => ["title LIKE ? and forum_id = ?", "#{params[:search]}", "#{params[:forum]}"])
       end
     end
-    @posts = @posts.paginate(:per_page => 10, :page => params[:page])
+    @posts = @posts.reverse.paginate(:per_page => 10, :page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

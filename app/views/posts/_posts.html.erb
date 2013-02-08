@@ -8,10 +8,10 @@
 
 <div class="hero-unit">
 	<% if posts.length > 0 %>
-<% posts.reverse.each do |post| %>
+<% posts.each do |post| %>
  <div class="post">
    <%= link_to post.title, post, :class => 'post_title' %> by <span class="post_author"><%=link_to post.user.name, post.user %> <%= time_ago_in_words(post.created_at) %> ago on <%= post.created_at.strftime("%b. %d %Y") %>. <%=pluralize(post.comments.length, 'comment')%>.</span>
-<% unless post == posts[0] %>
+<% unless post == posts.last %>
    <hr>
  <%end%>
 </div>
