@@ -8,6 +8,14 @@ class Post < ActiveRecord::Base
   validates_length_of :content, :minimum => 5
   before_save :test_whitespace
 
+  def self.search(search)
+    if search
+      where('title Like ?', '%#{search}%')
+    else
+      scoped
+    end
+  end
+
   private
   def test_whitespace
     if self.content.strip.length == 0

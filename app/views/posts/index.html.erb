@@ -1,7 +1,10 @@
 <script>
 	$(document).ready(function(){
-		$(".tabbable .navbar .navbar-inner ul.nav li:first").addClass("active");
-		$(".tab-content div:first").addClass("active");
+		if ($.url().param('forum')) {
+			$(".tabbable .navbar .navbar-inner ul.nav li#"+( $.url().param('forum') )).addClass("active");
+		} else {
+			$(".tabbable .navbar .navbar-inner ul.nav li#0").addClass("active");
+		}
 	});
 </script>
 
@@ -15,25 +18,26 @@
 <div class="tabbable">
 	<div class="navbar">
 		<div class="navbar-inner">
-			<ul class="nav">
-				<li class="active"><a href="#tab0" data-toggle="tab"> All Posts </a></li>
+			<ul class="nav" id="forumnav">
+				<li id="0"><%=link_to "All Posts", params.merge(:forum => nil, :page => 1)%></li>
 				<% @forums.each do |forum| %>
-					<li>
-						<a href="#tab<%=forum.id%>" data-toggle="tab"><%=forum.title%></a>
+					<li id="<%=forum.id%>">
+						<%= link_to forum.title, params.merge(:forum => forum.id, :page => 1) %>
 					</li>
 				<%end%>
 			</ul>
+			<%= form_tag root_url, :method => 'get', :class => "navbar-search pull-right" do %>
+				<%= hidden_field_tag :forum, params[:forum] %>
+				<%= hidden_field_tag :page, 1 %>
+				<%= text_field_tag :search, params[:search], :class => "search-query", :placeholder => "Search" %>
+				<%= submit_tag "Search", :class => 'hidden', :name => nil %>
+			<%end%>
 		</div>
 	</div>
 
-	<div class="tab-content">
+	<div class="tab-content" id="front-page-change">
 		<div class="tab-pane active" id="tab0">
-			<%= render :partial => 'posts', :object => @posts %>
+			<%= render :partial => 'posts', :object => @posts, :locals => {:forum => Forum.all.first} %>
 		</div>
-		<% @forums.each do |forum| %>
-			<div class="tab-pane" id="tab<%=forum.id%>">
-				<%= render :partial => 'posts', :object => forum.posts.all, :locals => {:forum => forum} %>
-			</div>
-		<%end%>
 	</div>
 </div>

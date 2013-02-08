@@ -2,9 +2,19 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    #@posts = Post.paginate(:per_page => 10, :page => params[:page])
     @posts = Post.all
     @forums = Forum.all
+    if params[:forum] != nil && params[:forum] != ""
+      @posts = Post.find(:all, :conditions => "forum_id = #{params[:forum]}")
+    end
+    if params[:search] != nil && params[:search] != ""
+      @posts = Post.find(:all, :conditions => ['title LIKE ?', "%#{params[:search]}%"])
+      if params[:forum] != nil && params[:forum] != ""
+        @posts = Post.find(:all, :conditions => ["title LIKE ? and forum_id = ?", "#{params[:search]}", "#{params[:forum]}"])
+      end
+    end
+    @posts = @posts.paginate(:per_page => 10, :page => params[:page])
+
     respond_to do |format|
       format.html # index.html.erb
       format.js
