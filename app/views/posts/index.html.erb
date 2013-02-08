@@ -22,7 +22,7 @@
 						<%= link_to forum.title, params.merge(:forum => forum.id) %>
 					</li>
 				<%end%>
-				<li class="hidden" id="front-page-loading"><a><img src="/assets/loading.gif" height="18" width="18"></a></li>
+				<li class="hidden" id="front-page-loading"><a><img src="/assets/loading.gif" height="16" width="16"></a></li>
 			</ul>
 			<%= form_tag root_url, :method => 'get', :class => "navbar-search pull-right", :id => "posts_search" do %>
 				<%= hidden_field_tag :forum, params[:forum] %>
