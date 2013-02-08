@@ -87,9 +87,18 @@ $(document).ready(function(){
 		$("#n_button").click()
 	});
 
-	if (getURLParameter('forum') != "null") {
-		$("#post-forum-select").val((getURLParameter('forum')).toString(10))
+	if ($.url().param('forum')) {
+		$("#post-forum-select").val($.url().param('forum').toString(10))
 	}
+
+	$("input#search").keyup(function(){
+		$(this).closest("form").submit()
+	});
+
+	$("#posts_search").submit(function(){
+		$.get(this.action, $(this).serialize(), null, "script")
+		return false;
+	});
 });
 
 $(document).on('page:fetch', function() {
