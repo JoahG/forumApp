@@ -9,7 +9,7 @@ class PostsController < ApplicationController
       @forum = Forum.find(params[:forum])
     end
     if params[:search] != nil && params[:search] != ""
-      @posts = @posts.select { |post| post.title.include? params[:search] } 
+      @posts = @posts.select { |post| post.title.downcase.include? params[:search].downcase } 
     end
     @posts = @posts.reverse.paginate(:per_page => 10, :page => params[:page])
 
