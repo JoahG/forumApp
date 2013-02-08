@@ -6,10 +6,12 @@ class PostsController < ApplicationController
     @forums = Forum.all
     if params[:forum] != nil && params[:forum] != ""
       @posts = Post.find(:all, :conditions => "forum_id = #{params[:forum]}")
+      @forum = Forum.find(params[:forum])
     end
     if params[:search] != nil && params[:search] != ""
       @posts = Post.find(:all, :conditions => ['title LIKE ?', "%#{params[:search]}%"])
       if params[:forum] != nil && params[:forum] != ""
+        @forum = Forum.find(params[:forum])
         @posts = Post.find(:all, :conditions => ["title LIKE ? and forum_id = ?", "#{params[:search]}", "#{params[:forum]}"])
       end
     end

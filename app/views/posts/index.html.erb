@@ -1,10 +1,7 @@
 <script>
-	$(document).ready(function(){
-		if ($.url().param('forum')) {
-			$(".tabbable .navbar .navbar-inner ul.nav li#"+( $.url().param('forum') )).addClass("active");
-		} else {
-			$(".tabbable .navbar .navbar-inner ul.nav li#0").addClass("active");
-		}
+	$(document).ready( function(){
+		$("li.active").removeClass("active");
+		$(".tabbable .navbar .navbar-inner ul.nav li#"+$("#forum_id").text().replace(/\s+/g, ' ')[1]).addClass("active");
 	});
 </script>
 
@@ -19,10 +16,10 @@
 	<div class="navbar">
 		<div class="navbar-inner">
 			<ul class="nav" id="forumnav">
-				<li id="0"><%=link_to "All Posts", params.merge(:forum => nil, :page => 1)%></li>
+				<li id="0"><%=link_to "All Posts", params.merge(:forum => nil)%></li>
 				<% @forums.each do |forum| %>
 					<li id="<%=forum.id%>">
-						<%= link_to forum.title, params.merge(:forum => forum.id, :page => 1) %>
+						<%= link_to forum.title, params.merge(:forum => forum.id) %>
 					</li>
 				<%end%>
 			</ul>

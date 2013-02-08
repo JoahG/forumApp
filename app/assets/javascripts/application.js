@@ -70,12 +70,6 @@ $(document).ready(function(){
 		$("input#unfollow").removeClass("btn-danger");
 	});
 	$(".overlay form .actions input").click(function(){$(".close_overlay").click()})
-	//$(".pagination a").live("click", function() {
-	//	$.get(this.href, null, null, "script")
-	//	return false;
-	//});
-
-	
 
 	if (($(location).attr('href')).split("#")[1] === "n") {
 		$("a#n_button").click()
@@ -97,6 +91,11 @@ $(document).ready(function(){
 
 	$("#posts_search").submit(function(){
 		$.get(this.action, $(this).serialize(), null, "script")
+		return false;
+	});
+
+	$(".pagination a, .nav#forumnav li a").live("click", function() {
+		$.get(this.href, null, function(){$("li.active").removeClass("active");$(".tabbable .navbar .navbar-inner ul.nav li#"+$("#forum_id").text().replace(/\s+/g, ' ')[1]).addClass("active");}, "script")
 		return false;
 	});
 });
