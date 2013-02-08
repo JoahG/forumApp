@@ -93,11 +93,7 @@
       <img src="/assets/loading.gif">
     </div>
   </div>
-  <% if !current_page?(posts_path) && !current_page?(root_path) %>
-    <div class="container" id="content-container">
-  <%else%>
-    <div class="container">
-  <%end%> 
+  <div class="container" id="content-container">
 <%= yield %>
   </div>
   <footer class="navbar navbar-inverse navbar-bottom navbar-fixed-bottom">

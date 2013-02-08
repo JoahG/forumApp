@@ -113,13 +113,9 @@ $(document).ready(function(){
 
 $(document).on('page:fetch', function() {
 	t = $('#content-container').height();
-	if ($('#content-container').length > 0){
-		$('#content-container').hide();
-		$('#page_loading').show().height(t);
-	} else {
-		$("#front-page-change").hide();
-		$('#front-page_loading').show()
-	}
+	$('#content-container').hide();
+	$('#page_loading').show().height(t);
+	
 });
 $(document).on('page:change', function() {
 	if ($('#content-container').length > 0){
