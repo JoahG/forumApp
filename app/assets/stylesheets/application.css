@@ -458,20 +458,6 @@ a.notalink:hover {
    margin-top: -16px;
 }
 
-#front-page_loading {
-	display:none;
-}
-
-#front-page_loading img {
-   width: 32px;
-   height: 32px;
-   position: absolute;
-   top: 60%;
-   left: 50%;
-   margin-left: -16px;
-   margin-top: -16px;
-}
-
 .tab-pane:not(.active){
 	display: none;
 }

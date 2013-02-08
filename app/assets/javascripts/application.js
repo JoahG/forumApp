@@ -86,9 +86,11 @@ $(document).ready(function(){
 	}
 
 	$("input#search").keyup(function(){
+		$("#front-page-loading").removeClass("hidden")
 		$(this).closest("form").submit()
 		$("li.active").removeClass("active")
 		$("li#0").addClass("active")
+		$("#front-page-loading").addClass("hidden")
 	});
 
 	$("#posts_search").submit(function(){
@@ -97,12 +99,14 @@ $(document).ready(function(){
 	});
 
 	$(".pagination a").live("click", function() {
-		$.get(this.href, null, function(){$("li.active").removeClass("active");$(".tabbable .navbar .navbar-inner ul.nav li#"+$("#forum_id").text().replace(/\s+/g, ' ')[1]).addClass("active");}, "script")
+		$("#front-page-loading").removeClass("hidden")
+		$.get(this.href, null, function(){$("#front-page-loading").addClass("hidden");$("li.active").removeClass("active");$(".tabbable .navbar .navbar-inner ul.nav li#"+$("#forum_id").text().replace(/\s+/g, ' ')[1]).addClass("active");}, "script")
 		return false;
 	});
 
 	$(".nav#forumnav li a").live("click", function(){
-		$.get(this.href, null, function(){$("input#search").val("");$("li.active").removeClass("active");$(".tabbable .navbar .navbar-inner ul.nav li#"+$("#forum_id").text().replace(/\s+/g, ' ')[1]).addClass("active");}, "script")
+		$("#front-page-loading").removeClass("hidden")
+		$.get(this.href, null, function(){$("#front-page-loading").addClass("hidden");$("input#search").val("");$("li.active").removeClass("active");$(".tabbable .navbar .navbar-inner ul.nav li#"+$("#forum_id").text().replace(/\s+/g, ' ')[1]).addClass("active");}, "script")
 		return false;
 	})
 });
