@@ -17,7 +17,15 @@
 </div>
 <% end %>
 <%else%>
-	<em> No posts in this forum yet, go <a href="/posts/new?forum=<%=forum.id%>">make one</a>!</em>
+	<p id="no_posts">
+		<% if @forum && !params[:search] %>
+			<em> No posts in this forum yet, go <a href="/posts/new?forum=<%=@forum.id%>">make one</a>!</em>
+		<% elsif !params[:search] %>
+			<em> No posts in this forum yet, go <a href="/posts/new?forum=1">make one</a>!</em>
+		<%else%>
+			<em> Sorry, no posts were found to match your query </em>
+		<%end%>
+	</p>
 <%end%>
 </div>
 
