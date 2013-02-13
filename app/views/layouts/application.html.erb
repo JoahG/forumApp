@@ -80,7 +80,7 @@
                 <%= form_tag sessions_path, :class => 'navbar-form pull-left' do %>
                   <%= email_field_tag :email, params[:email], :placeholder =>'Email Address' %>
                   <%= password_field_tag :password,nil, :placeholder => 'Password' %><%= submit_tag "Log in", :class => 'btn' %>
-              <% end %>
+                <% end %>
               <%end%>
             </nav>
           </div>
@@ -96,22 +96,24 @@
   <div class="container" id="content-container">
 <%= yield %>
   </div>
-  <footer class="navbar navbar-inverse navbar-bottom navbar-fixed-bottom">
-    <div class="navbar-inner">
-      <div class="container">
-        <nav class="left">
-          <ul class="nav">
-            <li><a class="notalink">All Content &copy; Popcorn Web Development 2013</a></li>
-          </ul>
-        </nav>
-        <nav class="right">
-          <ul class="nav">
-            <li><a href="http://popcorn-web-development.github.com">About Us</a></li>
-            <li><a href="/terms">Terms Of Service</a></li>
-          </ul>
-        </nav>
+  <% if !@user %>
+    <footer class="navbar container">
+      <div>
+        <div class="container">
+          <nav class="left">
+            <ul class="nav">
+              <li><a class="notalink">All Content &copy; Popcorn Web Development 2013</a></li>
+            </ul>
+          </nav>
+          <nav class="right">
+            <ul class="nav">
+              <li><a href="http://popcorn-web-development.github.com">About Us</a></li>
+              <li><a href="/terms">Terms Of Service</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  <%end%>
 </body>
 </html>

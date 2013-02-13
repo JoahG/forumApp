@@ -109,6 +109,14 @@ $(document).ready(function(){
 		$.get(this.href, null, function(){$("#front-page-loading").addClass("hidden");$("input#search").val("");$("li.active").removeClass("active");$(".tabbable .navbar .navbar-inner ul.nav li#"+$("#forum_id").text().replace(/\s+/g, ' ')[1]).addClass("active");}, "script")
 		return false;
 	})
+
+	$("textarea#wmd-input").keyup(function() {
+		if ($(this).val() === ""){
+			$("#comment-preview").hide()
+		}else{
+			$("#comment-preview").show()
+		}
+	});
 });
 
 $(document).on('page:fetch', function() {

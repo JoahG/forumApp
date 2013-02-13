@@ -79,6 +79,12 @@
     <div class="field">
       <div id="wmd-button-bar"></div>
       <%= f.text_area :content, :id => 'wmd-input', :class =>'full_wide get_me', :placeholder => "Comments Go Here..." %>
+      <br>
+
+      <div id="comment-preview">
+          <div class="comment_text" id="wmd-preview"></div>
+      </div>
+      <br>
     </div>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :post_id, :value => @post.id %>
@@ -93,7 +99,8 @@
 <script>
   setup_wmd({
       input: "wmd-input",
-      button_bar: "wmd-button-bar"
+      button_bar: "wmd-button-bar",
+      preview: "wmd-preview"
   });
 </script>
 
