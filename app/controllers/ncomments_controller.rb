@@ -32,7 +32,7 @@ class NcommentsController < ApplicationController
 
         @ncomment.comment.post.followers.each do |follower|
           if follower.user != @ncomment.user
-            Notification.create(:content => "<a href='/users/#{@ncomment.user.id}'>#{@ncomment.user.name}</a> commented on <a href='/users/#{@ncomment.comment.user.id}'>#{@ncomment.comment.user.name}</a>'s comment on '<a href='/posts/#{@ncomment.comment.post.id}##{@ncomment.comment.id}'>#{@ncomment.comment.post.title}</a>'", :user_id => follower.user.id)
+            Notification.create(:content => "<a href='/users/#{@ncomment.user.id}'>#{@ncomment.user.name}</a> commented on <a href='/users/#{@ncomment.comment.user.id}'>#{@ncomment.comment.user.name}</a>'s <a href='/posts/#{@ncomment.comment.post.id}##{@ncomment.comment.id}'>comment on '#{@ncomment.comment.post.title}'</a>", :user_id => follower.user.id)
           end
         end
 

@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   def render_body(p)
     require 'redcarpet'
     redcarpet = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new, {fenced_code_blocks: true})
-    return redcarpet.render p.content
+    return redcarpet.render p.content.gsub(/<\/?[^>]*>/, "")
   end
 
   def render_aboutme(p)
