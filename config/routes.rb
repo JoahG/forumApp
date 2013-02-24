@@ -29,4 +29,5 @@ ForumApp::Application.routes.draw do
   resources :plusones
   resources :forums
   resources :followers
+  resources :password_resets
 end

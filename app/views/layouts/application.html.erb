@@ -79,7 +79,9 @@
               <%else%>
                 <%= form_tag sessions_path, :class => 'navbar-form pull-left' do %>
                   <%= email_field_tag :email, params[:email], :placeholder =>'Email Address' %>
-                  <%= password_field_tag :password,nil, :placeholder => 'Password' %><%= submit_tag "Log in", :class => 'btn' %>
+                  <%= password_field_tag :password,nil, :placeholder => 'Password' %>
+                  <%= submit_tag "Log in", :class => 'btn' %>
+                  <%= check_box_tag :remember_me, 1, params[:remember_me] %>
                 <% end %>
               <%end%>
             </nav>

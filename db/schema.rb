@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207033439) do
+ActiveRecord::Schema.define(:version => 20130224213345) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -65,14 +65,6 @@ ActiveRecord::Schema.define(:version => 20130207033439) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "people", :force => true do |t|
-    t.string   "name"
-    t.integer  "age"
-    t.string   "about"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "permissions", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -108,11 +100,9 @@ ActiveRecord::Schema.define(:version => 20130207033439) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "password_hash"
-    t.string   "password_salt"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
     t.integer  "role_id"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "user_id"
     t.text     "aboutme"
     t.string   "sociallink"
@@ -120,8 +110,12 @@ ActiveRecord::Schema.define(:version => 20130207033439) do
     t.string   "twitter"
     t.string   "linkedin"
     t.string   "gplus"
-    t.boolean  "admin",         :default => false
-    t.boolean  "moderator",     :default => false
+    t.boolean  "admin",                  :default => false
+    t.boolean  "moderator",              :default => false
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.string   "password_digest"
+    t.string   "auth_token"
   end
 
 end

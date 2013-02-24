@@ -1,14 +1,16 @@
 class User < ActiveRecord::Base
+  has_secure_password
+
   attr_accessible :email, :name, :password, :password_confirmation, :aboutme, :sociallink, :linkedin, :twitter, :github, :gplus, :admin, :moderator, :terms
+
   has_many :posts
   has_many :comments
   has_many :ncomments
   has_many :plusones
   has_many :notifications
-  attr_accessor :password
-  before_save :encrypt_password
+  
+  before_create { generate_token(:auth_token) }
 
-  validates_confirmation_of :password
   validates_acceptance_of :terms
   validates_presence_of :name
   validates_presence_of :password, :on => :create
@@ -17,6 +19,19 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :name
   validates :email, :presence => true, :email => true
   validates_length_of :password, :minimum => 6
+
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
 
   def self.authenticate(email,password)
   	user = find_by_email(email)
