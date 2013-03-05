@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130224213345) do
+ActiveRecord::Schema.define(:version => 20130305035145) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -88,6 +88,12 @@ ActiveRecord::Schema.define(:version => 20130224213345) do
     t.integer  "forum_id",        :default => 1
     t.string   "post_updated_at"
     t.integer  "post_updated_by"
+  end
+
+  create_table "requests", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.text     "header"
   end
 
   create_table "roles", :force => true do |t|

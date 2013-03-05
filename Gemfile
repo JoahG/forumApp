@@ -31,6 +31,8 @@ group :development do
   gem 'better_errors'
 end
 
+gem "lograge"
+
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 

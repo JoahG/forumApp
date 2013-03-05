@@ -11,6 +11,15 @@ class ApplicationController < ActionController::Base
   helper_method :find_follower
   helper_method :rescue_action_in_public
 
+  before_filter :request_logging
+
+  def request_logging
+    r = Request.new(:header => "USERAGENT: #{request.headers['HTTP_USER_AGENT']}")
+    if Request.all[-1].header != r.header
+      r.save
+    end
+  end
+
   private
 
   def redirect_to_home(msg)

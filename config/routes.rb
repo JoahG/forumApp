@@ -30,4 +30,5 @@ ForumApp::Application.routes.draw do
   resources :forums
   resources :followers
   resources :password_resets
+  resources :requests
 end

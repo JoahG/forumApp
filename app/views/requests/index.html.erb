@@ -1,0 +1,8 @@
+<%= @requests.count %>
+<br>
+
+<ul>
+	<% @requests.each do |r| %>
+		<li><%= r.header %></li>
+	<% end %>
+</ul>
