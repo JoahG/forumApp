@@ -1,8 +1,7 @@
-<%= @requests.count %>
-<br>
-
-<ul>
-	<% @requests.each do |r| %>
-		<li><%= r.header %></li>
-	<% end %>
-</ul>
+<% if current_user && current_user.admin? %>
+	<ul>
+		<% @requests.each do |r| %>
+			<li><%= r.header %></li>
+		<% end %>
+	</ul>
+<% end %>
