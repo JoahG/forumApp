@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def redirect_to_home(msg)
+  def redirect_to_home(msg = "")
   	redirect_to root_url, :notice => msg
   end
 
