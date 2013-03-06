@@ -94,4 +94,20 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def lock
+    @post = Post.find(params[:id])
+    if current_user.admin?
+      @post.update_attributes(:locked => true)
+    end
+    redirect_to @post
+  end
+
+  def unlock
+    @post = Post.find(params[:id])
+    if current_user.admin?
+      @post.update_attributes(:locked => false)
+    end
+    redirect_to @post
+  end
 end

@@ -22,7 +22,12 @@ ForumApp::Application.routes.draw do
   end
   
   resources :sessions
-  resources :posts
+  resources :posts do 
+    member do
+      get 'lock'
+      get 'unlock'
+    end
+  end
   resources :comments
   resources :ncomments
   resources :notifications

@@ -20,24 +20,28 @@ class NcommentsController < ApplicationController
   def create
     @ncomment = Ncomment.new(params[:ncomment])
 
-    respond_to do |format|
-      if @ncomment.save
+    if !@ncomment.comment.post.locked?
+      respond_to do |format|
+        if @ncomment.save
 
-        if is_follower_of(@ncomment.user, @ncomment.comment.post)
-          @follower = Follower.new(:post_id => @ncomment.comment.post.id, :user_id => @ncomment.user.id)
-          if @follower.save
-            format.js { render 'follower.js.erb' }
+          if is_follower_of(@ncomment.user, @ncomment.comment.post)
+            @follower = Follower.new(:post_id => @ncomment.comment.post.id, :user_id => @ncomment.user.id)
+            if @follower.save
+              format.js { render 'follower.js.erb' }
+            end
           end
-        end
 
-        @ncomment.comment.post.followers.each do |follower|
-          if follower.user != @ncomment.user
-            Notification.create(:content => "<a href='/users/#{@ncomment.user.id}'>#{@ncomment.user.name}</a> commented on <a href='/users/#{@ncomment.comment.user.id}'>#{@ncomment.comment.user.name}</a>'s <a href='/posts/#{@ncomment.comment.post.id}##{@ncomment.comment.id}'>comment on '#{@ncomment.comment.post.title}'</a>", :user_id => follower.user.id)
+          @ncomment.comment.post.followers.each do |follower|
+            if follower.user != @ncomment.user
+              Notification.create(:content => "<a href='/users/#{@ncomment.user.id}'>#{@ncomment.user.name}</a> commented on <a href='/users/#{@ncomment.comment.user.id}'>#{@ncomment.comment.user.name}</a>'s <a href='/posts/#{@ncomment.comment.post.id}##{@ncomment.comment.id}'>comment on '#{@ncomment.comment.post.title}'</a>", :user_id => follower.user.id)
+            end
           end
-        end
 
-        format.js
+          format.js
+        end
       end
+    else
+      redirect_to @ncomment.comment.post
     end
   end
 

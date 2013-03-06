@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :followers
   belongs_to :forum
-  attr_accessible :content, :title, :user_id, :forum_id, :post_updated_at, :post_updated_by
+  attr_accessible :content, :title, :user_id, :forum_id, :post_updated_at, :post_updated_by, :locked
   validates_length_of :title, :minimum => 2
   validates_length_of :content, :minimum => 5
   before_save :test_whitespace

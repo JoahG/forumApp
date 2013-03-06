@@ -40,25 +40,29 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(params[:comment])
+    
+    if !@comment.post.locked?
+      respond_to do |format|
+        if @comment.save
 
-    respond_to do |format|
-      if @comment.save
-
-        if is_follower_of(@comment.user, @comment.post)
-          @follower = Follower.new(:post_id => @comment.post.id, :user_id => @comment.user.id)
-          if @follower.save
-            format.js { render 'follower.js.erb' }
+          if is_follower_of(@comment.user, @comment.post)
+            @follower = Follower.new(:post_id => @comment.post.id, :user_id => @comment.user.id)
+            if @follower.save
+              format.js { render 'follower.js.erb' }
+            end
           end
-        end
 
-        @comment.post.followers.each do |follower|
-          if follower.user != @comment.user
-            Notification.create(:content => "<a href='/users/#{@comment.user.id}'>#{@comment.user.name}</a> commented on the post '<a href='/posts/#{@comment.post.id}##{@comment.id}'>#{@comment.post.title}</a>'", :user_id => follower.user.id)
+          @comment.post.followers.each do |follower|
+            if follower.user != @comment.user
+              Notification.create(:content => "<a href='/users/#{@comment.user.id}'>#{@comment.user.name}</a> commented on the post '<a href='/posts/#{@comment.post.id}##{@comment.id}'>#{@comment.post.title}</a>'", :user_id => follower.user.id)
+            end
           end
+          
+          format.js
         end
-        
-        format.js
       end
+    else
+      redirect_to @comment.post
     end
   end
 

@@ -47,7 +47,14 @@
           <%if current_user == @post.user || current_user.admin? || current_user.moderator? %>
             | <%= link_to 'Edit', edit_post_path(@post) %> 
             | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <%end%>
+          <%end%><br>
+          <% if current_user.admin? %>
+            <% if @post.locked? %>
+              <%= link_to "Unlock Post", {:controller => "posts", :action => "unlock", :id => @post.id} %>
+            <% else %>
+              <%= link_to "Lock Post", {:controller => "posts", :action => "lock", :id => @post.id} %>
+            <% end %>
+          <% end %>
         <%end%>
       </div>
     </div>
@@ -73,35 +80,35 @@
   <%end%>
 <%end%></div>
   
-<%if current_user %>
-<%= form_for @comment, :remote => true do |f| %>
-  <div class="well">
-    <div class="field">
-      <div id="wmd-button-bar"></div>
-      <%= f.text_area :content, :id => 'wmd-input', :class =>'full_wide get_me', :placeholder => "Comments Go Here..." %>
-      <br>
+<%if current_user && !@post.locked? %>
+  <%= form_for @comment, :remote => true do |f| %>
+    <div class="well">
+      <div class="field">
+        <div id="wmd-button-bar"></div>
+        <%= f.text_area :content, :id => 'wmd-input', :class =>'full_wide get_me', :placeholder => "Comments Go Here..." %>
+        <br>
 
-      <div id="comment-preview">
-          <div class="comment_text" id="wmd-preview"></div>
+        <div id="comment-preview">
+            <div class="comment_text" id="wmd-preview"></div>
+        </div>
+        <br>
       </div>
-      <br>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :post_id, :value => @post.id %>
+      <div class="actions comment_actions">
+        <%= f.submit "Comment", :class => 'btn'%>
+        &nbsp; &nbsp;&nbsp;<span class="note"> Comments are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span>
+      </div>
     </div>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :post_id, :value => @post.id %>
-    <div class="actions comment_actions">
-      <%= f.submit "Comment", :class => 'btn'%>
-      &nbsp; &nbsp;&nbsp;<span class="note"> Comments are parsed with <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Syntax</a></span>
-    </div>
-  </div>
-<%end%>
-<%end%>
+  <%end%>
+  <%end%>
 
-<script>
-  setup_wmd({
-      input: "wmd-input",
-      button_bar: "wmd-button-bar",
-      preview: "wmd-preview"
-  });
-</script>
+  <script>
+    setup_wmd({
+        input: "wmd-input",
+        button_bar: "wmd-button-bar",
+        preview: "wmd-preview"
+    });
+  </script>
 
 <div id="bottom"></div>

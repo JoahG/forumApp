@@ -36,15 +36,17 @@
           <%end%>
         <%end%>
       </div>
-        <% if current_user %>
+        <% if current_user && !comment.post.locked? %>
           <%= form_for Ncomment.new, :remote => true, :html => {:class => 'navbar-form'} do |f|%>
             <%= f.text_field :content, :placeholder => "Comment...." %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.hidden_field :comment_id, :value => comment.id %>
             <%= f.submit "Comment", :class => 'btn'%> 
         <% end %>
-        <%else%>
+        <%elsif !current_user%>
           <span class="spalert">You have to be signed in to post comments.</span>
+        <% elsif comment.post.locked? %>
+          <span class="spalert">This post has been locked by an admin, and may not recieve any more comments.</span>
       <%end%>
     </div>
   </div>
