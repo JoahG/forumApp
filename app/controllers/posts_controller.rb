@@ -71,15 +71,19 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-    respond_to do |format|
-      if @post.update_attributes(params[:post])
-        @post.update_attributes(:post_updated_at => Time.current, :post_updated_by => current_user.id)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+    if !@post.locked?
+      respond_to do |format|
+        if @post.update_attributes(params[:post])
+          @post.update_attributes(:post_updated_at => Time.current, :post_updated_by => current_user.id)
+          format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to @post
     end
   end
 
@@ -87,11 +91,16 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
 
-    respond_to do |format|
-      format.html { redirect_to root_url }
-      format.json { head :no_content }
+    if !@post.locked?
+      @post.destroy
+
+      respond_to do |format|
+        format.html { redirect_to root_url }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to @post
     end
   end
 

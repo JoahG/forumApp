@@ -16,7 +16,7 @@
 
 
         <div class="inline comment_content">
-           <p class="comment_info">Commented by <%= link_to comment.user.name, comment.user%> <span class="user_pluses">(+<%=collect_plus(comment.user)%>)</span><span class="timestamp"><%= render :partial => 'comments/timestamp', :locals => {:comment => comment} %></span> <% if current_user %><% if current_user == comment.user || current_user.admin? || current_user.moderator?%> - <%= link_to 'Delete', comment, method: :delete, :remote => true %> | <a class="comment_edit">Edit</a><%end%><%end%>
+           <p class="comment_info">Commented by <%= link_to comment.user.name, comment.user%> <span class="user_pluses">(+<%=collect_plus(comment.user)%>)</span><span class="timestamp"><%= render :partial => 'comments/timestamp', :locals => {:comment => comment} %></span> <% if current_user %><% if (current_user == comment.user && !comment.post.locked?) || current_user.admin? || current_user.moderator?%> - <%= link_to 'Delete', comment, method: :delete, :remote => true %> | <a class="comment_edit">Edit</a><%end%><%end%>
            </p>
         <div id= <%=comment.id%>><div class="comment_raw"><%=comment.content%></div><div class="comment_text"><%=raw render_body(comment)%></div></div>
         </div>
@@ -32,7 +32,7 @@
         <div id="ncomments">
         <% if comment.ncomments.length > 0 %>
           <% comment.ncomments.each do |ncomment| %>
-            <p id=<%=ncomment.id%>><% if current_user %><% if current_user == ncomment.user || current_user.admin? || current_user.moderator? || current_user == ncomment.comment.user%><%= link_to '×', ncomment, method: :delete, "data-remote" => "true", :class => 'close' %><%end%><%end%> <%=link_to ncomment.user.name, ncomment.user%>:&nbsp;<%=ncomment.content%></p>
+            <p id=<%=ncomment.id%>><% if current_user %><% if (current_user == ncomment.user && !ncomment.comment.post.locked?) || current_user.admin? || current_user.moderator? || (current_user == ncomment.comment.user && !ncomment.comment.post.locked?)%><%= link_to '×', ncomment, method: :delete, "data-remote" => "true", :class => 'close' %><%end%><%end%> <%=link_to ncomment.user.name, ncomment.user%>:&nbsp;<%=ncomment.content%></p>
           <%end%>
         <%end%>
       </div>

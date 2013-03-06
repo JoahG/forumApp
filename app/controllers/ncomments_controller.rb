@@ -47,10 +47,11 @@ class NcommentsController < ApplicationController
 
   def destroy
     @ncomment = Ncomment.find(params[:id])
-    @ncomment.destroy
-
-    respond_to do |format|
-      format.js
+    if !@ncomment.comment.post.locked?
+      @ncomment.destroy
+      respond_to do |format|
+        format.js
+      end
     end
   end
 end

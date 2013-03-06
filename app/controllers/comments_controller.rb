@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     if current_user
-      if current_user.admin? || current_user.moderator? || current_user == @comment.user
+      if current_user.admin? || current_user.moderator? || (current_user == @comment.user && !@comment.post.locked?)
         respond_to do |format|
           if @comment.update_attributes(params[:comment])
             @comment.update_attributes(:comment_updated_at => Time.current, :comment_updated_by => current_user.id)
@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(params[:comment])
-    
+
     if !@comment.post.locked?
       respond_to do |format|
         if @comment.save
@@ -68,10 +68,12 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    if !@comment.post.locked?
+      @comment.destroy
 
-    respond_to do |format|
-      format.js
+      respond_to do |format|
+        format.js
+      end
     end
   end
 end

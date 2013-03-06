@@ -41,10 +41,12 @@
       </div>
        <div class="small">
         <%if current_user%>
-          <a href="#bottom">
-            Comment
-          </a>
-          <%if current_user == @post.user || current_user.admin? || current_user.moderator? %>
+          <% if !@post.locked? %>
+            <a href="#bottom">
+              Comment
+            </a>
+          <% end %>
+          <%if (current_user == @post.user && !@post.locked?) || current_user.admin? || current_user.moderator? %>
             | <%= link_to 'Edit', edit_post_path(@post) %> 
             | <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
           <%end%><br>
