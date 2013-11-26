@@ -1,1 +1,1 @@
-Pretty basic forum, hosted at [http://forum.joahg.com](http://forum.joahg.com)
+Pretty basic forum, hosted at [http://forum.joahg.com](http://forum.joahg.com).
